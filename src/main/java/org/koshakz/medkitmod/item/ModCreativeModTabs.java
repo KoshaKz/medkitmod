@@ -15,7 +15,7 @@ public class ModCreativeModTabs {
 
     public static final RegistryObject<CreativeModeTab> NUCLEAR_CORE_TAB = CREATIVE_MODE_TABS.register("nuclearcore_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TEST_ITEM.get()))
-                    .title(Component.translatable("creativetab.nuclearcore.main"))
+                    .title(Component.translatable("creativetab.medkitmod.main"))
                     .displayItems((pParameters, pOutput) -> {
 
                         pOutput.accept(ModBlocks.TEST_BLOCK.get());

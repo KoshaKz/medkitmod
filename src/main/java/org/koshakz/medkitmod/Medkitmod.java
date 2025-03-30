@@ -14,6 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.koshakz.medkitmod.block.ModBlocks;
+import org.koshakz.medkitmod.item.ModCreativeModTabs;
 import org.koshakz.medkitmod.item.ModItems;
 import org.slf4j.Logger;
 
@@ -31,6 +32,7 @@ public class Medkitmod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModCreativeModTabs.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
