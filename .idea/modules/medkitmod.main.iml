@@ -13,14 +13,10 @@
     </facet>
   </component>
   <component name="McpModuleSettings">
-    <option name="mappingFile" value="C:\Users\koshakz\untitled\build\createMcpToSrg\output.tsrg" />
-    <option name="mcpVersion" value="parchment_2023.06.26-1.20.1" />
+    <option name="mappingFile" value="E:\projects\medkitmod\build\createMcpToSrg\output.tsrg" />
+    <option name="mcpVersion" value="parchment_2023.09.03-1.20.1" />
     <option name="minecraftVersion" value="1.20.1" />
-    <option name="platformVersion" value="47.4.0" />
+    <option name="platformVersion" value="47.0.19" />
     <option name="srgType" value="TSRG" />
-  </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
