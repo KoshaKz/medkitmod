@@ -54,8 +54,6 @@ public class Medkitmod {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
     }
 
-    if else if else
-
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
