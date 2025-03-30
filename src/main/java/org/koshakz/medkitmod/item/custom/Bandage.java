@@ -20,20 +20,18 @@ public class Bandage extends Item {
 
     @Override
     public void onUseTick(Level level, LivingEntity user, ItemStack stack, int remainingUseTicks) {
+        if (level.isClientSide) return;
         if (!(user instanceof Player player)) return;
-
+        player.sendSystemMessage(Component.literal("пиздец"));
         int usedTicks = getUseDuration(stack) - remainingUseTicks;
         if (usedTicks == USE_DURATION && !level.isClientSide) {
             Player target = (Player) user;
             //Player target = findPlayerInSight(player, 4.5D); // 4.5 блока перед собой
 
-            if (target != null && target != player) {
-                target.heal(6.0F);
-                level.playSound(null, target.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 1.0F, 1.0F);
-                player.displayClientMessage(Component.literal("Вы вылечили игрока: " + target.getName().getString()), true);
-            } else {
-                player.displayClientMessage(Component.literal("Перед вами нет игрока"), true);
-            }
+            target.heal(6.0F);
+            level.playSound(null, target.blockPosition(), SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 1.0F, 1.0F);
+            player.displayClientMessage(Component.literal("Вы вылечили игрока: " + target.getName().getString()), true);
+
         }
     }
 }
