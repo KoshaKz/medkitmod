@@ -51,9 +51,6 @@ public class Bandage extends Item {
     @Override
     public void onUseTick(Level level, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         if (level.isClientSide) return;
-        for (Player player2 : level.getServer().getPlayerList().getPlayers()) {
-            player2.sendSystemMessage(Component.literal(user.getName().getString())+" ");
-        }
         if (!(user instanceof Player player)) return;
 
         int usedTicks = getUseDuration(stack) - remainingUseTicks;
