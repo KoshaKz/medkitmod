@@ -13,13 +13,13 @@ import org.koshakz.medkitmod.block.ModBlocks;
 public class ModCreativeModTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Medkitmod.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> NUCLEAR_CORE_TAB = CREATIVE_MODE_TABS.register("nuclearcore_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.TEST_ITEM.get()))
+    public static final RegistryObject<CreativeModeTab> BANDAGE = CREATIVE_MODE_TABS.register("nuclearcore_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BANDAGE.get()))
                     .title(Component.translatable("creativetab.medkitmod.main"))
                     .displayItems((pParameters, pOutput) -> {
 
                         pOutput.accept(ModBlocks.TEST_BLOCK.get());
-                        pOutput.accept(ModItems.TEST_ITEM.get());
+                        pOutput.accept(ModItems.BANDAGE.get());
                     })
                     .build());
 
