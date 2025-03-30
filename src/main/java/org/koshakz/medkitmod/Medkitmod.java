@@ -47,7 +47,7 @@ public class Medkitmod {
         modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
-
+    if else if else
     private void commonSetup(final FMLCommonSetupEvent event) {
     }
 
