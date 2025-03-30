@@ -5,8 +5,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import org.ferrum.nuclearcore.NuclearCore;
-import org.ferrum.nuclearcore.block.ModBlocks;
 import org.koshakz.medkitmod.Medkitmod;
 
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -16,7 +14,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        blockWithItem(Medkitmod.TEST_BLOCK);
+        //blockWithItem(Medkitmod.TEST_BLOCK);
 
     }
     private  void blockWithItem(RegistryObject<Block> blockRegistryObject) {

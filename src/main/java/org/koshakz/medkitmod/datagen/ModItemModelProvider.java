@@ -7,9 +7,9 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
-import org.ferrum.nuclearcore.NuclearCore;
-import org.ferrum.nuclearcore.item.ModItems;
+
 import org.koshakz.medkitmod.Medkitmod;
+import org.koshakz.medkitmod.item.ModItems;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
@@ -18,7 +18,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ModItems.TestItem);
+        simpleItem(ModItems.TEST_ITEM);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

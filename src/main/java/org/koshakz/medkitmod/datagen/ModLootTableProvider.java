@@ -3,7 +3,8 @@ package org.koshakz.medkitmod.datagen;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
-import org.ferrum.nuclearcore.datagen.loot.ModBlockLootTables;
+import org.koshakz.medkitmod.datagen.loot.ModBlockLootTables;
+
 
 import java.util.List;
 import java.util.Set;

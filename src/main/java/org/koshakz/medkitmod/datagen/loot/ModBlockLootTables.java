@@ -1,14 +1,11 @@
 package org.koshakz.medkitmod.datagen.loot;
 
 import net.minecraft.data.loot.BlockLootSubProvider;
-import net.minecraft.world.flag.FeatureFlag;
-import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
-import org.ferrum.nuclearcore.block.ModBlocks;
 import org.jetbrains.annotations.NotNull;
+import org.koshakz.medkitmod.block.ModBlocks;
 
 import java.util.Set;
 
