@@ -30,7 +30,6 @@ public class Medkitmod {
     public Medkitmod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        sdfsdfsdf
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
