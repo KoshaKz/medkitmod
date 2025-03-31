@@ -1,12 +1,10 @@
 package org.koshakz.medkitmod.item.custom;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,19 +12,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.UseAnim;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
-import java.io.Console;
 import java.util.List;
 
-public class Bandage extends Item {
+public class Bandages extends Item {
     private static final int USE_DURATION = 60;
-    public Bandage(Properties pProperties) {
+    public Bandages(Properties pProperties) {
         super(pProperties);
     }
 
@@ -40,6 +34,15 @@ public class Bandage extends Item {
         return UseAnim.BOW;
     }
 
+    private static boolean getUseWithShift(Player player) {
+        CompoundTag tag = player.getPersistentData();
+        return tag.getBoolean("useBandagesWithShift");
+    }
+
+    private static void setUseWithShift(Player player, boolean value) {
+        CompoundTag tag = player.getPersistentData();
+        tag.putBoolean("useBandagesWithShift", value);
+    }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -50,17 +53,40 @@ public class Bandage extends Item {
     @Override
     public void onUseTick(Level level, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         if (user instanceof ServerPlayer player) {
-            LivingEntity entity = getEntityPlayerIsLookingAt(player, 1);
-            if (entity == null) {
-                sendActionBar(player,"");
-                player.stopUsingItem();
-                return;
+            if (remainingUseTicks == USE_DURATION) {
+                setUseWithShift(player, player.isShiftKeyDown());
             }
-            if (remainingUseTicks == 1) {
-                entity.heal(10);
-                stack.setCount(stack.getCount() - 1);
+            if (player.isShiftKeyDown()) {
+                if (getUseWithShift(player)) {
+                    LivingEntity entity = getEntityPlayerIsLookingAt(player, 1);
+                    if (entity == null) {
+                        sendActionBar(player,"");
+                        player.stopUsingItem();
+                        return;
+                    }
+                    if (remainingUseTicks == 1) {
+                        entity.heal(10);
+                        stack.setCount(stack.getCount() - 1);
+                    }
+                    sendActionBar(player, "Progress: " + (int) ((USE_DURATION - remainingUseTicks) / (float) USE_DURATION * 100) + "%");
+                } else {
+                    sendActionBar(player,"");
+                    player.stopUsingItem();
+                    return;
+                }
+            } else {
+                if (getUseWithShift(player)) {
+                    sendActionBar(player,"");
+                    player.stopUsingItem();
+                    return;
+                } else {
+                    if (remainingUseTicks == 1) {
+                        player.heal(10);
+                        stack.setCount(stack.getCount() - 1);
+                    }
+                    sendActionBar(player, "Progress: " + (int) ((USE_DURATION - remainingUseTicks) / (float) USE_DURATION * 100) + "%");
+                }
             }
-            sendActionBar(player, "Progress: " + (int) ((USE_DURATION - remainingUseTicks) / (float) USE_DURATION * 100) + "%");
         }
     }
 
