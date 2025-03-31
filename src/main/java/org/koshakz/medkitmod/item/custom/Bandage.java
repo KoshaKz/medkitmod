@@ -50,7 +50,7 @@ public class Bandage extends Item {
     @Override
     public void onUseTick(Level level, LivingEntity user, ItemStack stack, int remainingUseTicks) {
         if (user instanceof ServerPlayer player) {
-            LivingEntity entity = getEntityPlayerIsLookingAt((Player) player, 1);
+            LivingEntity entity = getEntityPlayerIsLookingAt(player, 1);
             if (entity == null) {
                 sendActionBar(player,"");
                 player.stopUsingItem();

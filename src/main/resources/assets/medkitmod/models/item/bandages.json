@@ -1,0 +1,7 @@
+{
+  "parent": "combatgear:custom/bandages",
+  "textures": {
+    "1": "combatgear:block/bandagesmodt",
+    "particle": "combatgear:item/bandagestex"
+  }
+}

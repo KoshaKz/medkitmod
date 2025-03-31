@@ -12,7 +12,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Medkitmod.MOD_ID);
 
-    public static final RegistryObject<Item> BANDAGE = ITEMS.register("test_item", () -> new Bandage(new Item.Properties()));
+    public static final RegistryObject<Item> BANDAGE = ITEMS.register("bandage", () -> new Bandage(new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
