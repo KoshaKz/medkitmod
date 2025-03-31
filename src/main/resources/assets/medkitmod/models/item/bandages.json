@@ -1,7 +1,6 @@
 {
-  "parent": "combatgear:custom/bandages",
+  "parent": "medkitmod:custom/bandages",
   "textures": {
-    "1": "combatgear:block/bandagesmodt",
-    "particle": "combatgear:item/bandagestex"
+    "1": "medkitmod:item/bandages"
   }
 }
