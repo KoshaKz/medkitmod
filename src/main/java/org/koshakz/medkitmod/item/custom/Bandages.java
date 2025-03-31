@@ -1,5 +1,6 @@
 package org.koshakz.medkitmod.item.custom;
 
+import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
@@ -52,41 +53,39 @@ public class Bandages extends Item {
 
     @Override
     public void onUseTick(Level level, LivingEntity user, ItemStack stack, int remainingUseTicks) {
-        if (user instanceof ServerPlayer player) {
-            if (remainingUseTicks == USE_DURATION) {
-                setUseWithShift(player, player.isShiftKeyDown());
+
+        if (!(user instanceof ServerPlayer player)) return; //Проверка что действия прозходят на сервере
+
+        if (remainingUseTicks == USE_DURATION) {            //Записывает кого Игрока хочеть лечить Себя/Других
+            setUseWithShift(player, player.isShiftKeyDown());
+        }
+
+        if (player.isShiftKeyDown() != getUseWithShift(player)) { //Отменяем использование если игрок поменял действие
+            sendActionBar(player,"");
+            player.stopUsingItem();
+            return;
+        }
+
+        if (player.isShiftKeyDown()) {                             // Main пиздец
+            LivingEntity entity = getEntityPlayerIsLookingAt(player, 2);
+            if (entity == null) {
+                sendActionBar(player,"");
+                player.stopUsingItem();
+                return;
             }
-            if (player.isShiftKeyDown()) {
-                if (getUseWithShift(player)) {
-                    LivingEntity entity = getEntityPlayerIsLookingAt(player, 1);
-                    if (entity == null) {
-                        sendActionBar(player,"");
-                        player.stopUsingItem();
-                        return;
-                    }
-                    if (remainingUseTicks == 1) {
-                        entity.heal(10);
-                        stack.setCount(stack.getCount() - 1);
-                    }
-                    sendActionBar(player, "Progress: " + (int) ((USE_DURATION - remainingUseTicks) / (float) USE_DURATION * 100) + "%");
-                } else {
-                    sendActionBar(player,"");
-                    player.stopUsingItem();
-                    return;
-                }
-            } else {
-                if (getUseWithShift(player)) {
-                    sendActionBar(player,"");
-                    player.stopUsingItem();
-                    return;
-                } else {
-                    if (remainingUseTicks == 1) {
-                        player.heal(10);
-                        stack.setCount(stack.getCount() - 1);
-                    }
-                    sendActionBar(player, "Progress: " + (int) ((USE_DURATION - remainingUseTicks) / (float) USE_DURATION * 100) + "%");
-                }
+            if (remainingUseTicks == 1) {
+                entity.heal(10);
+                stack.setCount(stack.getCount() - 1);
             }
+            sendActionBar(player, "§7[§a" + "|".repeat((USE_DURATION - remainingUseTicks)/3) + "§7" + "|".repeat(remainingUseTicks/3) + "§7]");
+
+        } else {
+
+            if (remainingUseTicks == 1) {
+                player.heal(10);
+                stack.setCount(stack.getCount() - 1);
+            }
+            sendActionBar(player, "§7[§a" + "|".repeat((USE_DURATION - remainingUseTicks)/3) + "§7" + "|".repeat(remainingUseTicks/3) + "§7]");
         }
     }
 
@@ -119,8 +118,6 @@ public class Bandages extends Item {
     }
 
     public static void sendActionBar(ServerPlayer player, String message) {
-        Component component = Component.literal(message);
-        ClientboundSetActionBarTextPacket packet = new ClientboundSetActionBarTextPacket(component);
-        player.connection.send(packet);
+        player.connection.send(new ClientboundSetActionBarTextPacket(Component.literal(message)));
     }
 }
