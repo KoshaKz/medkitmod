@@ -21,6 +21,7 @@ import java.util.List;
 
 public class Bandages extends Item {
     private static final int USE_DURATION = 60;
+    private static final int PROGRESS_BAR_LEN = 20;
     public Bandages(Properties pProperties) {
         super(pProperties);
     }
@@ -47,6 +48,9 @@ public class Bandages extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        if (player.isShiftKeyDown() && getEntityPlayerIsLookingAt(player, 1.5) == null) {
+            return InteractionResultHolder.fail(player.getItemInHand(hand)) ;
+        }
         player.startUsingItem(hand);
         return InteractionResultHolder.consume(player.getItemInHand(hand));
     }
@@ -56,7 +60,7 @@ public class Bandages extends Item {
 
         if (!(user instanceof ServerPlayer player)) return; //Проверка что действия прозходят на сервере
 
-        if (remainingUseTicks == USE_DURATION) {            //Записывает кого Игрока хочеть лечить Себя/Других
+        if (remainingUseTicks == USE_DURATION) {            //Сохраняет что игрок будет лечить себя/других
             setUseWithShift(player, player.isShiftKeyDown());
         }
 
@@ -67,7 +71,7 @@ public class Bandages extends Item {
         }
 
         if (player.isShiftKeyDown()) {                             // Main пиздец
-            LivingEntity entity = getEntityPlayerIsLookingAt(player, 2);
+            LivingEntity entity = getEntityPlayerIsLookingAt(player, 1.5);
             if (entity == null) {
                 sendActionBar(player,"");
                 player.stopUsingItem();
@@ -77,7 +81,7 @@ public class Bandages extends Item {
                 entity.heal(10);
                 stack.setCount(stack.getCount() - 1);
             }
-            sendActionBar(player, "§7[§a" + "|".repeat((USE_DURATION - remainingUseTicks)/3) + "§7" + "|".repeat(remainingUseTicks/3) + "§7]");
+            renderProgressBar(player, (float) remainingUseTicks / (float) USE_DURATION);
 
         } else {
 
@@ -85,7 +89,7 @@ public class Bandages extends Item {
                 player.heal(10);
                 stack.setCount(stack.getCount() - 1);
             }
-            sendActionBar(player, "§7[§a" + "|".repeat((USE_DURATION - remainingUseTicks)/3) + "§7" + "|".repeat(remainingUseTicks/3) + "§7]");
+            renderProgressBar(player, (float) remainingUseTicks / USE_DURATION);
         }
     }
 
@@ -119,5 +123,10 @@ public class Bandages extends Item {
 
     public static void sendActionBar(ServerPlayer player, String message) {
         player.connection.send(new ClientboundSetActionBarTextPacket(Component.literal(message)));
+    }
+
+    private static void renderProgressBar(ServerPlayer player, float percent) {
+        int da = (int) (PROGRESS_BAR_LEN * percent);
+        sendActionBar(player, "§7[§a" + "|".repeat(PROGRESS_BAR_LEN - da) + "§7" + "|".repeat(da) + "§7]");
     }
 }
