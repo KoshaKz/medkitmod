@@ -84,6 +84,8 @@ public class Bandages extends Item {
                 entity.heal(10);
                 stack.setCount(stack.getCount() - 1);
                 player.stopUsingItem();
+                sendActionBar(player, "");
+                return;
             }
             renderProgressBar(player, (float) (remainingUseTicks - HEAL_OTHER_OFFSET) / (float) (USE_DURATION - HEAL_OTHER_OFFSET));
 
@@ -92,6 +94,8 @@ public class Bandages extends Item {
             if (remainingUseTicks == 1) {
                 player.heal(10);
                 stack.setCount(stack.getCount() - 1);
+                sendActionBar(player, "");
+                return;
             }
             renderProgressBar(player, (float) remainingUseTicks / USE_DURATION);
         }
