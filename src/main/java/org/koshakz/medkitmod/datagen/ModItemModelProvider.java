@@ -18,7 +18,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(ModItems.BANDAGE);
+        //simpleItem(ModItems.BANDAGE);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

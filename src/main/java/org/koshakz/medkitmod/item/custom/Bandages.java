@@ -5,6 +5,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.koshakz.medkitmod.utils.PlayerUtils;
 
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class Bandages extends Item {
     public static int PROGRESS_BAR_LEN;
     public static int HEAL_OTHER_OFFSET;
     public static double HEAL_RANGE;
+    public static int HEAL_MEDIC_OFFSET;
     public Bandages(Properties pProperties) {
         super(pProperties);
     }
@@ -74,9 +77,11 @@ public class Bandages extends Item {
             return;
         }
 
-        if (player.isShiftKeyDown()) {
+        if (player.isShiftKeyDown() && PlayerUtils.HasTag(player, "medic")) {
+            MedicOtherHeal(player, stack, remainingUseTicks);
+        } else if (player.isShiftKeyDown()) {
             OtherHeal(player, stack, remainingUseTicks);
-        } else {
+        } else{
             SelfHeal(player, stack, remainingUseTicks);
         }
     }
@@ -89,6 +94,24 @@ public class Bandages extends Item {
             return;
         }
         renderProgressBar(player, (float) remainingTicks / USE_DURATION);
+    }
+
+    private static void MedicOtherHeal(ServerPlayer player, ItemStack stack, int remainingTicks) {
+        LivingEntity entity = getEntityPlayerIsLookingAt(player, HEAL_RANGE);
+        if (entity == null) {
+            sendActionBar(player,"");
+            player.stopUsingItem();
+            return;
+        }
+        if (remainingTicks == HEAL_MEDIC_OFFSET ) {
+            entity.heal(10);
+            stack.setCount(stack.getCount() - 1);
+            player.stopUsingItem();
+            sendActionBar(player, "");
+            return;
+        }
+        renderProgressBar(player, (float) (remainingTicks - HEAL_MEDIC_OFFSET) / (float) (USE_DURATION - HEAL_MEDIC_OFFSET));
+
     }
 
     private static void OtherHeal(ServerPlayer player, ItemStack stack, int remainingTicks) {

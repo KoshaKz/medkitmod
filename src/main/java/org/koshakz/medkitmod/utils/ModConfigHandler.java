@@ -14,6 +14,7 @@ public class ModConfigHandler {
     public static ForgeConfigSpec.IntValue PROGRESS_BAR_LEN_CONFIG;
     public static ForgeConfigSpec.IntValue HEAL_OTHER_OFFSET_CONFIG;
     public static ForgeConfigSpec.DoubleValue HEAL_RANGE_CONFIG;
+    public static ForgeConfigSpec.IntValue HEAL_MEDIC_OFFSET_CONFIG;
 
 
     static {
@@ -32,6 +33,10 @@ public class ModConfigHandler {
         HEAL_RANGE_CONFIG = COMMON_BUILDER
                 .comment("123")
                 .defineInRange("HealRange", 1.5F, 0, Float.MAX_VALUE);
+
+        HEAL_MEDIC_OFFSET_CONFIG = COMMON_BUILDER
+                .comment("123")
+                .defineInRange("MedicHealOffset", 40, 0, Integer.MAX_VALUE);
 
         //ENABLE_FEATURE = COMMON_BUILDER
         //        .comment("Включить ли эту фичу?")
@@ -53,11 +58,15 @@ public class ModConfigHandler {
         if (USE_DURATION_CONFIG.get() < HEAL_OTHER_OFFSET_CONFIG.get()){
             return false;
         }
+        if (USE_DURATION_CONFIG.get() < HEAL_MEDIC_OFFSET_CONFIG.get()){
+            return false;
+        }
 
         Bandages.USE_DURATION = USE_DURATION_CONFIG.get();
         Bandages.PROGRESS_BAR_LEN = PROGRESS_BAR_LEN_CONFIG.get();
         Bandages.HEAL_OTHER_OFFSET = HEAL_OTHER_OFFSET_CONFIG.get() + 1;
         Bandages.HEAL_RANGE = HEAL_RANGE_CONFIG.get();
+        Bandages.HEAL_MEDIC_OFFSET = HEAL_MEDIC_OFFSET_CONFIG.get() + 1;
 
         return true;
     }
