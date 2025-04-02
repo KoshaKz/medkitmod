@@ -7,6 +7,7 @@ import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import org.koshakz.medkitmod.utils.ModConfigHandler;
 
 import java.awt.*;
 
@@ -20,7 +21,12 @@ public class ReloadConfigCommand {
 
 
     private static int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
-        context.getSource().sendSuccess(() -> net.minecraft.network.chat.Component.literal("Healing конфиг перезагружен!"), true);
+        if (ModConfigHandler.load()){
+            context.getSource().sendSuccess(() -> Component.literal("Healing конфиг перезагружен!"),true);
+        } else {
+            context.getSource().sendFailure(Component.literal("Конфиг ошибка"));
+        }
+
         return 0;
     }
 }
