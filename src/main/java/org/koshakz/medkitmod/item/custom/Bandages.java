@@ -74,32 +74,39 @@ public class Bandages extends Item {
             return;
         }
 
-        if (player.isShiftKeyDown()) {                             // Main пиздец
-            LivingEntity entity = getEntityPlayerIsLookingAt(player, HEAL_RANGE);
-            if (entity == null) {
-                sendActionBar(player,"");
-                player.stopUsingItem();
-                return;
-            }
-            if (remainingUseTicks == HEAL_OTHER_OFFSET) {
-                entity.heal(10);
-                stack.setCount(stack.getCount() - 1);
-                player.stopUsingItem();
-                sendActionBar(player, "");
-                return;
-            }
-            renderProgressBar(player, (float) (remainingUseTicks - HEAL_OTHER_OFFSET) / (float) (USE_DURATION - HEAL_OTHER_OFFSET));
-
+        if (player.isShiftKeyDown()) {
+            OtherHeal(player, stack, remainingUseTicks);
         } else {
-
-            if (remainingUseTicks == 1) {
-                player.heal(10);
-                stack.setCount(stack.getCount() - 1);
-                sendActionBar(player, "");
-                return;
-            }
-            renderProgressBar(player, (float) remainingUseTicks / USE_DURATION);
+            SelfHeal(player, stack, remainingUseTicks);
         }
+    }
+
+    private static void SelfHeal(ServerPlayer player, ItemStack stack, int remainingTicks) {
+        if (remainingTicks == 1) {
+            player.heal(10);
+            stack.setCount(stack.getCount() - 1);
+            sendActionBar(player, "");
+            return;
+        }
+        renderProgressBar(player, (float) remainingTicks / USE_DURATION);
+    }
+
+    private static void OtherHeal(ServerPlayer player, ItemStack stack, int remainingTicks) {
+        LivingEntity entity = getEntityPlayerIsLookingAt(player, HEAL_RANGE);
+        if (entity == null) {
+            sendActionBar(player,"");
+            player.stopUsingItem();
+            return;
+        }
+        if (remainingTicks == HEAL_OTHER_OFFSET) {
+            entity.heal(10);
+            stack.setCount(stack.getCount() - 1);
+            player.stopUsingItem();
+            sendActionBar(player, "");
+            return;
+        }
+        renderProgressBar(player, (float) (remainingTicks - HEAL_OTHER_OFFSET) / (float) (USE_DURATION - HEAL_OTHER_OFFSET));
+
     }
 
     public static LivingEntity getEntityPlayerIsLookingAt(Player player, double distance) {
