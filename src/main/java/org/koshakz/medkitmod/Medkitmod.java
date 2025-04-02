@@ -43,7 +43,6 @@ public class Medkitmod {
         MinecraftForge.EVENT_BUS.register(this);
         //modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfigHandler.COMMON_CONFIG);
-        ModConfigHandler.loadConfig(ModConfigHandler.COMMON_CONFIG, FMLPaths.CONFIGDIR.get().resolve("medkitmod-config.toml"));
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -52,6 +51,7 @@ public class Medkitmod {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         ReloadConfigCommand.register(event.getServer().getCommands().getDispatcher(), true);
+        ModConfigHandler.load();
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
