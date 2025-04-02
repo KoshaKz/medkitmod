@@ -31,9 +31,6 @@ public class Medkitmod {
 
     public Medkitmod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-
-
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
@@ -51,7 +48,9 @@ public class Medkitmod {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         ReloadConfigCommand.register(event.getServer().getCommands().getDispatcher(), true);
-        ModConfigHandler.load();
+        if (!ModConfigHandler.load()){
+            LOGGER.error("Ошибка при загрузке конфига!");
+        }
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent

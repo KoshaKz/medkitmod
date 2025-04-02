@@ -55,6 +55,11 @@ public class ModConfigHandler {
     //    config.setConfig(fileConfig);
     //}
     public static boolean load(){
+
+        if (USE_DURATION_CONFIG.get() < HEAL_OTHER_OFFSET_CONFIG.get()){
+            return false;
+        }
+
         Bandages.USE_DURATION = USE_DURATION_CONFIG.get();
         Bandages.PROGRESS_BAR_LEN = PROGRESS_BAR_LEN_CONFIG.get();
         Bandages.HEAL_OTHER_OFFSET = HEAL_OTHER_OFFSET_CONFIG.get() + 1;
