@@ -51,7 +51,7 @@ public class Bandages extends Item {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         if (player.isShiftKeyDown() && getEntityPlayerIsLookingAt(player, HEAL_RANGE) == null) {
             return InteractionResultHolder.fail(player.getItemInHand(hand)) ;
         }
