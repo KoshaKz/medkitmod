@@ -14,6 +14,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.koshakz.medkitmod.block.ModBlocks;
+import org.koshakz.medkitmod.command.ReloadConfigCommand;
 import org.koshakz.medkitmod.item.ModCreativeModTabs;
 import org.koshakz.medkitmod.item.ModItems;
 import org.koshakz.medkitmod.utils.ModConfigHandler;
@@ -30,6 +31,8 @@ public class Medkitmod {
 
     public Medkitmod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
+
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
@@ -48,6 +51,7 @@ public class Medkitmod {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+        ReloadConfigCommand.register(event.getServer().getCommands().getDispatcher(), true);
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
