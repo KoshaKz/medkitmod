@@ -49,15 +49,15 @@ public class ModConfigHandler {
         COMMON_CONFIG = COMMON_BUILDER.build();
     }
 
-    public static void loadConfig(ForgeConfigSpec config, Path path) {
-        final CommentedFileConfig fileConfig = CommentedFileConfig.builder(path).sync().autosave().build();
-        fileConfig.load();
-        config.setConfig(fileConfig);
-    }
+    //public static void loadConfig(ForgeConfigSpec config, Path path) {
+    //    final CommentedFileConfig fileConfig = CommentedFileConfig.builder(path).sync().autosave().build();
+    //    fileConfig.load();
+    //    config.setConfig(fileConfig);
+    //}
     public static boolean load(){
         Bandages.USE_DURATION = USE_DURATION_CONFIG.get();
-        Bandages.PROGRESS_BAR_LEN = USE_DURATION_CONFIG.get();
-        Bandages.HEAL_OTHER_OFFSET = USE_DURATION_CONFIG.get() + 1;
+        Bandages.PROGRESS_BAR_LEN = PROGRESS_BAR_LEN_CONFIG.get();
+        Bandages.HEAL_OTHER_OFFSET = HEAL_OTHER_OFFSET_CONFIG.get() + 1;
         Bandages.HEAL_RANGE = HEAL_RANGE_CONFIG.get();
 
         return true;
