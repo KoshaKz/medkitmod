@@ -20,9 +20,9 @@ public class ReloadConfigCommand {
 
     private static int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         if (ModConfigHandler.load()){
-            context.getSource().sendSuccess(() -> Component.literal("Healing конфиг перезагружен!"),true);
+            context.getSource().sendSuccess(() -> Component.literal("§aКонфиг был успешно перезагружен!"),true);
         } else {
-            context.getSource().sendFailure(Component.literal("Конфиг ошибка"));
+            context.getSource().sendFailure(Component.literal("§сПри перезагруске конфига произошла ошибка!"));
         }
 
         return 0;

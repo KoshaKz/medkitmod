@@ -31,9 +31,6 @@ public class Medkitmod {
 
     public Medkitmod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-
-
-
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModTabs.register(modEventBus);
@@ -50,6 +47,7 @@ public class Medkitmod {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
+        ReloadConfigCommand.register(event.getServer().getCommands().getDispatcher(), true);
         ModConfigHandler.load();
     }
 
