@@ -22,6 +22,7 @@ import java.util.List;
 public class Bandages extends Item {
     private static final int USE_DURATION = 60;
     private static final int PROGRESS_BAR_LEN = 20;
+    private static final int HEAL_OTHER_OFFSET = 21;
     public Bandages(Properties pProperties) {
         super(pProperties);
     }
@@ -77,11 +78,12 @@ public class Bandages extends Item {
                 player.stopUsingItem();
                 return;
             }
-            if (remainingUseTicks == 1) {
+            if (remainingUseTicks == HEAL_OTHER_OFFSET) {
                 entity.heal(10);
                 stack.setCount(stack.getCount() - 1);
+                player.stopUsingItem();
             }
-            renderProgressBar(player, (float) remainingUseTicks / (float) USE_DURATION);
+            renderProgressBar(player, (float) (remainingUseTicks - HEAL_OTHER_OFFSET) / (float) (USE_DURATION - HEAL_OTHER_OFFSET));
 
         } else {
 
