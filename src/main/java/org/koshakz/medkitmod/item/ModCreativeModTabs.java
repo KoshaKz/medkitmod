@@ -20,7 +20,6 @@ public class ModCreativeModTabs {
                     .title(Component.translatable("creativetab.medkitmod.main"))
                     .displayItems((pParameters, creativeTab) -> {
 
-                        creativeTab.accept(Items.POTATO);
                         creativeTab.accept(ModBlocks.TEST_BLOCK.get());
                         creativeTab.accept(ModItems.BANDAGE.get());
                     })

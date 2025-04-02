@@ -1,6 +1,5 @@
 package org.koshakz.medkitmod.item.custom;
 
-import net.minecraft.client.gui.components.ChatComponent;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
@@ -19,10 +18,13 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
+
 public class Bandages extends Item {
-    private static final int USE_DURATION = 60;
-    private static final int PROGRESS_BAR_LEN = 20;
-    private static final int HEAL_OTHER_OFFSET = 21;
+
+    public static int USE_DURATION;
+    public static int PROGRESS_BAR_LEN;
+    public static int HEAL_OTHER_OFFSET;
+    public static double HEAL_RANGE;
     public Bandages(Properties pProperties) {
         super(pProperties);
     }
@@ -49,7 +51,7 @@ public class Bandages extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (player.isShiftKeyDown() && getEntityPlayerIsLookingAt(player, 1.5) == null) {
+        if (player.isShiftKeyDown() && getEntityPlayerIsLookingAt(player, HEAL_RANGE) == null) {
             return InteractionResultHolder.fail(player.getItemInHand(hand)) ;
         }
         player.startUsingItem(hand);
@@ -72,7 +74,7 @@ public class Bandages extends Item {
         }
 
         if (player.isShiftKeyDown()) {                             // Main пиздец
-            LivingEntity entity = getEntityPlayerIsLookingAt(player, 1.5);
+            LivingEntity entity = getEntityPlayerIsLookingAt(player, HEAL_RANGE);
             if (entity == null) {
                 sendActionBar(player,"");
                 player.stopUsingItem();
