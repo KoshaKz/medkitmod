@@ -12,13 +12,11 @@ import org.koshakz.medkitmod.utils.ModConfigHandler;
 import java.awt.*;
 
 public class ReloadConfigCommand {
-    public static void register(CommandDispatcher<CommandSourceStack> dispatcher, boolean dedicated) {
+    public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("warhelper")
                 .then(Commands.literal("reload").executes(ReloadConfigCommand::run)));
     }
-
-
-
+    
 
     private static int run(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         if (ModConfigHandler.load()){

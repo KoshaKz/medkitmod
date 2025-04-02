@@ -50,7 +50,6 @@ public class Medkitmod {
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        ReloadConfigCommand.register(event.getServer().getCommands().getDispatcher(), true);
         ModConfigHandler.load();
     }
 
