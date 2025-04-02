@@ -1,11 +1,8 @@
 package org.koshakz.medkitmod.utils;
 
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
 import org.koshakz.medkitmod.item.custom.Bandages;
-
-import java.nio.file.Path;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModConfigHandler {
@@ -13,8 +10,6 @@ public class ModConfigHandler {
     public static final ForgeConfigSpec COMMON_CONFIG;
 
     // Пример переменной конфига
-    public static ForgeConfigSpec.BooleanValue ENABLE_FEATURE;
-    public static ForgeConfigSpec.IntValue MAX_VALUE;
     public static ForgeConfigSpec.IntValue USE_DURATION_CONFIG;
     public static ForgeConfigSpec.IntValue PROGRESS_BAR_LEN_CONFIG;
     public static ForgeConfigSpec.IntValue HEAL_OTHER_OFFSET_CONFIG;
@@ -55,7 +50,6 @@ public class ModConfigHandler {
     //    config.setConfig(fileConfig);
     //}
     public static boolean load(){
-
         if (USE_DURATION_CONFIG.get() < HEAL_OTHER_OFFSET_CONFIG.get()){
             return false;
         }
