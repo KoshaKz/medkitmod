@@ -24,7 +24,7 @@ public class ModConfigHandler {
 
         PROGRESS_BAR_LEN_CONFIG = COMMON_BUILDER
                 .comment("dsaf")
-                .defineInRange("ProgressBarLen", 20, 0, Integer.MAX_VALUE);
+                .defineInRange("ProgressBarLen", 40, 0, Integer.MAX_VALUE);
 
         HEAL_OTHER_OFFSET_CONFIG = COMMON_BUILDER
                 .comment("dsaf")
@@ -55,10 +55,10 @@ public class ModConfigHandler {
     //    config.setConfig(fileConfig);
     //}
     public static boolean load(){
-        if (USE_DURATION_CONFIG.get() < HEAL_OTHER_OFFSET_CONFIG.get()){
+        if (USE_DURATION_CONFIG.get() <= HEAL_OTHER_OFFSET_CONFIG.get()){
             return false;
         }
-        if (USE_DURATION_CONFIG.get() < HEAL_MEDIC_OFFSET_CONFIG.get() + HEAL_OTHER_OFFSET_CONFIG.get()){
+        if (USE_DURATION_CONFIG.get() <= HEAL_MEDIC_OFFSET_CONFIG.get() + HEAL_OTHER_OFFSET_CONFIG.get()){
             return false;
         }
 
