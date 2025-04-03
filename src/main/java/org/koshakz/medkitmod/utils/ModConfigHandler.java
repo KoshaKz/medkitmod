@@ -19,24 +19,24 @@ public class ModConfigHandler {
 
     static {
         USE_DURATION_CONFIG = COMMON_BUILDER
-                .comment("уххухй")
+                .comment("Длительность использования в тиках")
                 .defineInRange("UseDuration", 60, 0, Integer.MAX_VALUE);
 
         PROGRESS_BAR_LEN_CONFIG = COMMON_BUILDER
-                .comment("dsaf")
+                .comment("Длина полоски прогресса в палочках (|||||)")
                 .defineInRange("ProgressBarLen", 40, 0, Integer.MAX_VALUE);
 
         HEAL_OTHER_OFFSET_CONFIG = COMMON_BUILDER
-                .comment("dsaf")
+                .comment("На сколько быстрее лечить других в тиках")
                 .defineInRange("HealOtherOffset", 20, 0, Integer.MAX_VALUE);
 
-        HEAL_RANGE_CONFIG = COMMON_BUILDER
-                .comment("123")
-                .defineInRange("HealRange", 1.5F, 0, Float.MAX_VALUE);
-
         HEAL_MEDIC_OFFSET_CONFIG = COMMON_BUILDER
-                .comment("123")
+                .comment("На сколько быстрее лечит медик других в тиках (HealOtherOffset + это значение)")
                 .defineInRange("MedicHealOffset", 20, 0, Integer.MAX_VALUE);
+
+        HEAL_RANGE_CONFIG = COMMON_BUILDER
+                .comment("Максимальная дистанция лечения в блоках")
+                .defineInRange("HealRange", 1.5F, 0, Float.MAX_VALUE);
 
         //ENABLE_FEATURE = COMMON_BUILDER
         //        .comment("Включить ли эту фичу?")
