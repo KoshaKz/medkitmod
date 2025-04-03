@@ -29,6 +29,7 @@ public class Bandages extends Item {
     public static int HEAL_OTHER_OFFSET;
     public static double HEAL_RANGE;
     public static int HEAL_MEDIC_OFFSET;
+    public static boolean MEDIC_BOOST_TOGGLE;
     public Bandages(Properties pProperties) {
         super(pProperties);
     }
@@ -64,25 +65,28 @@ public class Bandages extends Item {
 
     @Override
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity user, @NotNull ItemStack stack, int remainingUseTicks) {
+        if (!(user instanceof ServerPlayer player)) return;
 
-        if (!(user instanceof ServerPlayer player)) return; //Проверка что действия прозходят на сервере
-
-        if (remainingUseTicks == USE_DURATION) {            //Сохраняет что игрок будет лечить себя/других
+        if (remainingUseTicks == USE_DURATION) {
             setUseWithShift(player, player.isShiftKeyDown());
         }
 
-        if (player.isShiftKeyDown() != getUseWithShift(player)) { //Отменяем использование если игрок поменял действие
+        if (player.isShiftKeyDown() != getUseWithShift(player)) {
             sendActionBar(player,"");
             player.stopUsingItem();
             return;
         }
 
-        if (player.isShiftKeyDown() && PlayerUtils.HasTag(player, "medic")) {
-            MedicOtherHeal(player, stack, remainingUseTicks);
-        } else if (player.isShiftKeyDown()) {
-            OtherHeal(player, stack, remainingUseTicks);
-        } else{
-            SelfHeal(player, stack, remainingUseTicks);
+        if (player.isShiftKeyDown()) {
+            // Лечение других игроков
+            if (MEDIC_BOOST_TOGGLE && PlayerUtils.HasTag(player, "medic")) {
+                MedicOtherHeal(player, stack, remainingUseTicks); // Усиленное лечение для медиков
+            } else {
+                OtherHeal(player, stack, remainingUseTicks); // Обычное лечение для всех
+            }
+        } else {
+            // Лечение себя (без Shift)
+            SelfHeal(player, stack, remainingUseTicks); // Всегда обычная скорость
         }
     }
 
