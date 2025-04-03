@@ -62,8 +62,6 @@ minecraft {
         configureEach {
             workingDirectory project.file('run')
 
-            args '--username', 'KoshaKzz'
-
             args '--username', 'Egor_##'
 
             // Recommended logging data for a userdev environment

@@ -54,13 +54,6 @@ public class Bandages extends Item {
     }
 
     @Override
-    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity entity, int timeCharged) {
-        if (!(entity instanceof ServerPlayer player)) return;
-
-        player.sendSystemMessage(net.minecraft.network.chat.Component.literal("Нет"));
-    }
-
-    @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, Player player, @NotNull InteractionHand hand) {
         if (player.isShiftKeyDown() && getEntityPlayerIsLookingAt(player, HEAL_RANGE) == null) {
             return InteractionResultHolder.fail(player.getItemInHand(hand)) ;
