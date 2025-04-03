@@ -64,6 +64,8 @@ minecraft {
 
             args '--username', 'KoshaKzz'
 
+            args '--username', 'Egor_##'
+
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
             // "SCAN": For mods scan.

@@ -1,5 +1,6 @@
 package org.koshakz.medkitmod.command;
 
+import net.minecraft.commands.Commands;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
@@ -7,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class ModCommands {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
-        ReloadConfigCommand.register(event.getDispatcher());
+         event.getDispatcher().register(Commands.literal("warhelper")
+                .then(Commands.literal("reload").executes(ReloadConfigCommand::run)));
     }
 }
