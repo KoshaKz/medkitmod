@@ -9,6 +9,7 @@ public class ModCommands {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
          event.getDispatcher().register(Commands.literal("warhelper")
-                .then(Commands.literal("reload").executes(ReloadConfigCommand::run)));
+                .then(Commands.literal("reload").executes(ReloadConfigCommand::run))
+                .then(Commands.literal("penis").executes(ChangeConfigCommand::run)));
     }
 }
