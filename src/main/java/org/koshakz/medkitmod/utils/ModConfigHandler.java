@@ -10,6 +10,7 @@ public class ModConfigHandler {
     public static final ForgeConfigSpec COMMON_CONFIG;
 
     // Пример переменной конфига
+
     public static ForgeConfigSpec.IntValue USE_DURATION_CONFIG;
     public static ForgeConfigSpec.IntValue PROGRESS_BAR_LEN_CONFIG;
     public static ForgeConfigSpec.IntValue HEAL_OTHER_OFFSET_CONFIG;
@@ -69,5 +70,9 @@ public class ModConfigHandler {
         Bandages.HEAL_MEDIC_OFFSET = HEAL_MEDIC_OFFSET_CONFIG.get() + HEAL_OTHER_OFFSET_CONFIG.get() + 1;
 
         return true;
+    }
+
+    public static void change(String name, int value) {
+        COMMON_CONFIG.getSpec().valueMap().get(name);
     }
 }

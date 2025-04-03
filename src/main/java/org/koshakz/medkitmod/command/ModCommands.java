@@ -8,8 +8,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class ModCommands {
     @SubscribeEvent
     public static void onRegisterCommands(RegisterCommandsEvent event) {
-         event.getDispatcher().register(Commands.literal("warhelper")
-                .then(Commands.literal("reload").executes(ReloadConfigCommand::run))
-                .then(Commands.literal("penis").executes(ChangeConfigCommand::run)));
+         event.getDispatcher().register(Commands.literal("warhelper").requires(source -> source.hasPermission(2))
+                 .then(Commands.literal("reload").executes(ReloadConfigCommand::run))
+                .then(ChangeConfigCommand.register()));
     }
 }
