@@ -29,7 +29,6 @@ public class Bandages extends Item {
     public static int HEAL_OTHER_OFFSET;
     public static double HEAL_RANGE;
     public static int HEAL_MEDIC_OFFSET;
-    public static boolean MEDIC_BOOST_TOGGLE;
     public Bandages(Properties pProperties) {
         super(pProperties);
     }
@@ -78,14 +77,12 @@ public class Bandages extends Item {
         }
 
         if (player.isShiftKeyDown()) {
-            // Лечение других игроков
-            if (MEDIC_BOOST_TOGGLE && PlayerUtils.HasTag(player, "medic")) {
+            if (PlayerUtils.HasTag(player, "medic")) {
                 MedicOtherHeal(player, stack, remainingUseTicks); // Усиленное лечение для медиков
             } else {
                 OtherHeal(player, stack, remainingUseTicks); // Обычное лечение для всех
             }
         } else {
-            // Лечение себя (без Shift)
             SelfHeal(player, stack, remainingUseTicks); // Всегда обычная скорость
         }
     }
@@ -107,7 +104,7 @@ public class Bandages extends Item {
             player.stopUsingItem();
             return;
         }
-        if (remainingTicks == HEAL_MEDIC_OFFSET ) {
+        if (remainingTicks == HEAL_MEDIC_OFFSET) {
             entity.heal(10);
             stack.setCount(stack.getCount() - 1);
             player.stopUsingItem();

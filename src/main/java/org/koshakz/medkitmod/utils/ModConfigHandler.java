@@ -15,7 +15,6 @@ public class ModConfigHandler {
     public static ForgeConfigSpec.IntValue HEAL_OTHER_OFFSET_CONFIG;
     public static ForgeConfigSpec.DoubleValue HEAL_RANGE_CONFIG;
     public static ForgeConfigSpec.IntValue HEAL_MEDIC_OFFSET_CONFIG;
-    public static ForgeConfigSpec.BooleanValue MEDIC_BOOST_TOGGLE_CONFIG;
 
 
     static {
@@ -37,11 +36,7 @@ public class ModConfigHandler {
 
         HEAL_MEDIC_OFFSET_CONFIG = COMMON_BUILDER
                 .comment("123")
-                .defineInRange("MedicHealOffset", 40, 0, Integer.MAX_VALUE);
-
-        MEDIC_BOOST_TOGGLE_CONFIG = COMMON_BUILDER
-                .comment("123")
-                .define("MedicBoostToggle", true);
+                .defineInRange("MedicHealOffset", 20, 0, Integer.MAX_VALUE);
 
         //ENABLE_FEATURE = COMMON_BUILDER
         //        .comment("Включить ли эту фичу?")
@@ -63,7 +58,7 @@ public class ModConfigHandler {
         if (USE_DURATION_CONFIG.get() < HEAL_OTHER_OFFSET_CONFIG.get()){
             return false;
         }
-        if (USE_DURATION_CONFIG.get() < HEAL_MEDIC_OFFSET_CONFIG.get()){
+        if (USE_DURATION_CONFIG.get() < HEAL_MEDIC_OFFSET_CONFIG.get() + HEAL_OTHER_OFFSET_CONFIG.get()){
             return false;
         }
 
@@ -71,8 +66,7 @@ public class ModConfigHandler {
         Bandages.PROGRESS_BAR_LEN = PROGRESS_BAR_LEN_CONFIG.get();
         Bandages.HEAL_OTHER_OFFSET = HEAL_OTHER_OFFSET_CONFIG.get() + 1;
         Bandages.HEAL_RANGE = HEAL_RANGE_CONFIG.get();
-        Bandages.HEAL_MEDIC_OFFSET = HEAL_MEDIC_OFFSET_CONFIG.get() + 1;
-        Bandages.MEDIC_BOOST_TOGGLE = MEDIC_BOOST_TOGGLE_CONFIG.get();
+        Bandages.HEAL_MEDIC_OFFSET = HEAL_MEDIC_OFFSET_CONFIG.get() + HEAL_OTHER_OFFSET_CONFIG.get() + 1;
 
         return true;
     }
