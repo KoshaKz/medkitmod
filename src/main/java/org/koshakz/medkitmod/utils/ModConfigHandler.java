@@ -17,6 +17,7 @@ public class ModConfigHandler {
     public static ForgeConfigSpec.IntValue HEAL_OTHER_OFFSET_CONFIG;
     public static ForgeConfigSpec.DoubleValue HEAL_RANGE_CONFIG;
     public static ForgeConfigSpec.IntValue HEAL_MEDIC_OFFSET_CONFIG;
+    public static ForgeConfigSpec.IntValue BANDAGES_HEAL_AMOUNT_CONFIG;
 
 
     static {
@@ -39,6 +40,10 @@ public class ModConfigHandler {
         HEAL_RANGE_CONFIG = COMMON_BUILDER
                 .comment("Максимальная дистанция лечения в блоках")
                 .defineInRange("HealRange", 1.5F, 0, Float.MAX_VALUE);
+
+        BANDAGES_HEAL_AMOUNT_CONFIG = COMMON_BUILDER
+                .comment("Сколько хп востанавливают бинты")
+                .defineInRange("BandagesHealAmount", 10, 0, Integer.MAX_VALUE);
 
         //ENABLE_FEATURE = COMMON_BUILDER
         //        .comment("Включить ли эту фичу?")
@@ -69,6 +74,7 @@ public class ModConfigHandler {
         Bandages.HEAL_OTHER_OFFSET = HEAL_OTHER_OFFSET_CONFIG.get() + 1;
         Bandages.HEAL_RANGE = HEAL_RANGE_CONFIG.get();
         Bandages.HEAL_MEDIC_OFFSET = HEAL_MEDIC_OFFSET_CONFIG.get() + HEAL_OTHER_OFFSET_CONFIG.get() + 1;
+        Bandages.BANDAGES_HEAL_AMOUNT = BANDAGES_HEAL_AMOUNT_CONFIG.get();
 
         return true;
     }

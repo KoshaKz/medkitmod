@@ -29,6 +29,8 @@ public class Bandages extends Item {
     public static int HEAL_OTHER_OFFSET;
     public static double HEAL_RANGE;
     public static int HEAL_MEDIC_OFFSET;
+    public static int BANDAGES_HEAL_AMOUNT;
+
     public Bandages(Properties pProperties) {
         super(pProperties);
     }
@@ -91,7 +93,7 @@ public class Bandages extends Item {
 
     private static void SelfHeal(ServerPlayer player, ItemStack stack, int remainingTicks) {
         if (remainingTicks == 1) {
-            player.heal(10);
+            player.heal(BANDAGES_HEAL_AMOUNT);
             stack.setCount(stack.getCount() - 1);
             sendActionBar(player, "");
             return;
@@ -107,7 +109,7 @@ public class Bandages extends Item {
             return;
         }
         if (remainingTicks == HEAL_MEDIC_OFFSET) {
-            entity.heal(10);
+            entity.heal(BANDAGES_HEAL_AMOUNT);
             stack.setCount(stack.getCount() - 1);
             player.stopUsingItem();
             sendActionBar(player, "");
@@ -125,7 +127,7 @@ public class Bandages extends Item {
             return;
         }
         if (remainingTicks == HEAL_OTHER_OFFSET) {
-            entity.heal(10);
+            entity.heal(BANDAGES_HEAL_AMOUNT);
             stack.setCount(stack.getCount() - 1);
             player.stopUsingItem();
             sendActionBar(player, "");
