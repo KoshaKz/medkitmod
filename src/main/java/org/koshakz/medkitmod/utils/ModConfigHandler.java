@@ -2,6 +2,7 @@ package org.koshakz.medkitmod.utils;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import org.koshakz.medkitmod.item.custom.Bandages;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -73,6 +74,6 @@ public class ModConfigHandler {
     }
 
     public static void change(String name, int value) {
-        COMMON_CONFIG.getSpec().valueMap().get(name);
+        return;
     }
 }

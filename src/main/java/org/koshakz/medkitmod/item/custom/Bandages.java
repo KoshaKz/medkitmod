@@ -64,7 +64,9 @@ public class Bandages extends Item {
 
     @Override
     public void onUseTick(@NotNull Level level, @NotNull LivingEntity user, @NotNull ItemStack stack, int remainingUseTicks) {
-        if (!(user instanceof ServerPlayer player)) return;
+        if (level.isClientSide) return;
+
+        ServerPlayer player = (ServerPlayer) user;
 
         if (remainingUseTicks == USE_DURATION) {
             setUseWithShift(player, player.isShiftKeyDown());
