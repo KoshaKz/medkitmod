@@ -13,6 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.koshakz.medkitmod.block.ModBlocks;
+import org.koshakz.medkitmod.gui.OverlayRenderer;
 import org.koshakz.medkitmod.item.ModCreativeModTabs;
 import org.koshakz.medkitmod.item.ModItems;
 import org.koshakz.medkitmod.utils.ModConfigHandler;
@@ -38,6 +39,7 @@ public class Medkitmod {
         MinecraftForge.EVENT_BUS.register(this);
         //modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfigHandler.COMMON_CONFIG);
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -56,6 +58,7 @@ public class Medkitmod {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            MinecraftForge.EVENT_BUS.register(new OverlayRenderer());
         }
     }
 }
