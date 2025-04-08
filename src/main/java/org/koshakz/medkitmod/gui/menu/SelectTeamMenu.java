@@ -20,7 +20,7 @@ public class SelectTeamMenu extends UICustomMenu {
 
 
         UILabel title = new UILabel(
-                0.45f, 0.1f,
+                0.45f, 0.1f, 2.0f, 3.0f,
                 Component.literal("Выбор команды"), 0xFFFFFF
         );
 
