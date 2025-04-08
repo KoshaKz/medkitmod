@@ -23,11 +23,13 @@ public class UIContainer extends UIWidget {
         super(0, 0);
     }
 
-    public UIContainer(float percentX, float percentY , int width, int height) {
+    public UIContainer(float percentX, float percentY , float percentWidth, float percentHeight) {
         final Screen screen = Minecraft.getInstance().screen;
 
         this.x = (int) (screen.width * percentX);
         this.y = (int) (screen.height * percentY);
+        this.width = (int) (screen.height * percentWidth);
+        this.height = (int) (screen.height * percentHeight);
     }
 
     public void addChild(UIWidget widget) {

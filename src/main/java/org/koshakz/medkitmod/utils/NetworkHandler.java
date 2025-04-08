@@ -18,13 +18,15 @@ public class NetworkHandler {
     private static int packetId = 0;
 
     public static void register() {
-        CHANNEL.registerMessage(packetId++, BandagesConfigPacket.class,
+        CHANNEL.registerMessage(packetId++,
+                BandagesConfigPacket.class,
                 BandagesConfigPacket::encode,
                 BandagesConfigPacket::decode,
-                BandagesConfigPacket::handle);
+                BandagesConfigPacket::handle
+        );
 
         CHANNEL.registerMessage(
-                packetId++, // ID пакета
+                packetId++,
                 TriggerPacket.class,
                 TriggerPacket::encode,
                 TriggerPacket::decode,
