@@ -8,12 +8,12 @@ import net.minecraft.resources.ResourceLocation;
 import org.koshakz.medkitmod.gui.api.*;
 import org.koshakz.medkitmod.gui.menu.VoMenu;
 
-public class TestWidget extends UIContainer {
-    private final UIButton button1;
+public class TeamWidget extends UIContainer {
+    private final UIButton selectTeamButton;
     private final UIButton button2;
     private final UITextField uiTextField;
 
-    public TestWidget(Screen screen, int x, int y, int width, int height) {
+    public TeamWidget(Screen screen, int x, int y, int width, int height) {
         super(x, y, width, height);
 
         Font font = Minecraft.getInstance().font;
@@ -22,8 +22,8 @@ public class TestWidget extends UIContainer {
 
 
         // Создаем кнопки для чата
-        this.button1 = new UIButton(
-                10, 10, 100, 20,
+        this.selectTeamButton = new UIButton(
+                80, 300, 700, 400,
                 new ResourceLocation("medkitmod", "textures/gui/da.png"),
                 () -> System.out.println("Кнопка 1 нажата")
         ).withLabel(Component.literal("Отправить"));
@@ -38,7 +38,6 @@ public class TestWidget extends UIContainer {
 
 
         this.addChild(uiTextField);
-        this.addChild(button1);
-        this.addChild(button2);
+        this.addChild(selectTeamButton);
     }
 }

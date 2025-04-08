@@ -39,9 +39,6 @@ public class VoMenu extends Screen {
 
         UIImage image = new UIImage(0, 0, this.width, this.height, texture);
         menu.addChild(image);
-
-
-
     }
 
     @Override
