@@ -1,0 +1,6 @@
+{
+  "parent": "warhelper:custom/bandages",
+  "textures": {
+    "1": "warhelper:item/bandages"
+  }
+}

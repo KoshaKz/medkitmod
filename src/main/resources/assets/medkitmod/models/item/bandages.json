@@ -1,6 +1,0 @@
-{
-  "parent": "medkitmod:custom/bandages",
-  "textures": {
-    "1": "medkitmod:item/bandages"
-  }
-}
