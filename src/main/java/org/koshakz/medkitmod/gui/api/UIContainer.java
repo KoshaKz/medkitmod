@@ -1,5 +1,6 @@
 package org.koshakz.medkitmod.gui.api;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import org.koshakz.medkitmod.Medkitmod;
@@ -20,6 +21,13 @@ public class UIContainer extends UIWidget {
 
     public UIContainer() {
         super(0, 0);
+    }
+
+    public UIContainer(float percentX, float percentY , int width, int height) {
+        final Screen screen = Minecraft.getInstance().screen;
+
+        this.x = (int) (screen.width * percentX);
+        this.y = (int) (screen.height * percentY);
     }
 
     public void addChild(UIWidget widget) {
