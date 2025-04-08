@@ -12,7 +12,7 @@ public class UILabel extends UIWidget {
         super(x, y, 0, 0);
         this.text = text;
         this.color = color;
-        // Можно рассчитать размер на основе текста
+        //Можно;
     }
 
     @Override
