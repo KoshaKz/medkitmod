@@ -25,4 +25,12 @@ public class UICustomMenu extends Screen {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         return frame.mouseClicked(mouseX, mouseY, button);
     }
+
+
+    private int getPercentX(final float percent) {
+        return (int) (this.width * percent);
+    }
+    private int getPercentY(final float percent) {
+        return (int) (this.height * percent);
+    }
 }
