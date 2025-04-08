@@ -13,10 +13,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.koshakz.medkitmod.block.ModBlocks;
-import org.koshakz.medkitmod.gui.OverlayRenderer;
 import org.koshakz.medkitmod.item.ModCreativeModTabs;
 import org.koshakz.medkitmod.item.ModItems;
 import org.koshakz.medkitmod.utils.ModConfigHandler;
+import org.koshakz.medkitmod.utils.NetworkHandler;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -26,7 +26,7 @@ public class Medkitmod {
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "medkitmod";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public Medkitmod() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -40,9 +40,13 @@ public class Medkitmod {
         //modEventBus.addListener(this::addCreative);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfigHandler.COMMON_CONFIG);
 
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            NetworkHandler.register();
+        });
     }
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
@@ -58,7 +62,7 @@ public class Medkitmod {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            MinecraftForge.EVENT_BUS.register(new OverlayRenderer());
+
         }
     }
 }

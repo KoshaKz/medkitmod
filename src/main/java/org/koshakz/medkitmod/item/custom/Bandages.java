@@ -17,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.koshakz.medkitmod.Medkitmod;
 import org.koshakz.medkitmod.utils.PlayerUtils;
 
 import java.util.List;
@@ -37,6 +38,8 @@ public class Bandages extends Item {
 
     @Override
     public int getUseDuration(@NotNull ItemStack stack) {
+        Medkitmod.LOGGER.warn("da -> "+ USE_DURATION);
+
         return USE_DURATION;
     }
 
@@ -81,11 +84,18 @@ public class Bandages extends Item {
         }
 
         if (player.isShiftKeyDown()) {
-            if (PlayerUtils.HasTag(player, "medic")) {
-                MedicOtherHeal(player, stack, remainingUseTicks); // Усиленное лечение для медиков
-            } else {
-                OtherHeal(player, stack, remainingUseTicks); // Обычное лечение для всех
+            LivingEntity entity = getEntityPlayerIsLookingAt(player, HEAL_RANGE);
+
+            if (entity == null) {
+                sendActionBar(player,"");
+                player.stopUsingItem();
+                return;
             }
+
+            int test = PlayerUtils.HasTag(player, "medic") ? HEAL_MEDIC_OFFSET : HEAL_OTHER_OFFSET;
+
+            heal(player, stack, remainingUseTicks, test, entity);
+
         } else {
             SelfHeal(player, stack, remainingUseTicks); // Всегда обычная скорость
         }
@@ -101,40 +111,15 @@ public class Bandages extends Item {
         renderProgressBar(player, (float) remainingTicks / USE_DURATION);
     }
 
-    private static void MedicOtherHeal(ServerPlayer player, ItemStack stack, int remainingTicks) {
-        LivingEntity entity = getEntityPlayerIsLookingAt(player, HEAL_RANGE);
-        if (entity == null) {
-            sendActionBar(player,"");
-            player.stopUsingItem();
-            return;
-        }
-        if (remainingTicks == HEAL_MEDIC_OFFSET) {
-            entity.heal(BANDAGES_HEAL_AMOUNT);
+    private static void heal(ServerPlayer player, ItemStack stack, int remainingTicks, int test, LivingEntity livingEntity) {
+        if (remainingTicks == test) {
+            livingEntity.heal(BANDAGES_HEAL_AMOUNT);
             stack.setCount(stack.getCount() - 1);
             player.stopUsingItem();
             sendActionBar(player, "");
             return;
         }
-        renderProgressBar(player, (float) (remainingTicks - HEAL_MEDIC_OFFSET) / (float) (USE_DURATION - HEAL_MEDIC_OFFSET));
-
-    }
-
-    private static void OtherHeal(ServerPlayer player, ItemStack stack, int remainingTicks) {
-        LivingEntity entity = getEntityPlayerIsLookingAt(player, HEAL_RANGE);
-        if (entity == null) {
-            sendActionBar(player,"");
-            player.stopUsingItem();
-            return;
-        }
-        if (remainingTicks == HEAL_OTHER_OFFSET) {
-            entity.heal(BANDAGES_HEAL_AMOUNT);
-            stack.setCount(stack.getCount() - 1);
-            player.stopUsingItem();
-            sendActionBar(player, "");
-            return;
-        }
-        renderProgressBar(player, (float) (remainingTicks - HEAL_OTHER_OFFSET) / (float) (USE_DURATION - HEAL_OTHER_OFFSET));
-
+        renderProgressBar(player, (float) (remainingTicks - test) / (float) (USE_DURATION - test));
     }
 
     public static LivingEntity getEntityPlayerIsLookingAt(Player player, double distance) {

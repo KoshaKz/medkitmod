@@ -3,6 +3,7 @@ package org.koshakz.medkitmod.utils;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import org.koshakz.medkitmod.Medkitmod;
 import org.koshakz.medkitmod.item.custom.Bandages;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -63,9 +64,11 @@ public class ModConfigHandler {
     //}
     public static boolean load(){
         if (USE_DURATION_CONFIG.get() <= HEAL_OTHER_OFFSET_CONFIG.get()){
+            Medkitmod.LOGGER.error("Config error, use_duration < other_offset");
             return false;
         }
         if (USE_DURATION_CONFIG.get() <= HEAL_MEDIC_OFFSET_CONFIG.get() + HEAL_OTHER_OFFSET_CONFIG.get()){
+            Medkitmod.LOGGER.error("Config error, use_duration < medic_offset + other_offset");
             return false;
         }
 
