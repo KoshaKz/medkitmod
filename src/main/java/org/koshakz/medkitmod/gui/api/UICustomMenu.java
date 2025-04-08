@@ -33,4 +33,8 @@ public class UICustomMenu extends Screen {
     protected int getPercentY(final float percent) {
         return (int) (this.height * percent);
     }
+
+    protected void addChild(UIWidget widget) {
+        frame.addChild(widget);
+    }
 }

@@ -8,7 +8,7 @@ import org.koshakz.medkitmod.Medkitmod;
 
 public class NetworkHandler {
     private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
+    public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(Medkitmod.MOD_ID, "main"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
@@ -18,9 +18,18 @@ public class NetworkHandler {
     private static int packetId = 0;
 
     public static void register() {
-        INSTANCE.registerMessage(packetId++, BandagesConfigPacket.class,
+        CHANNEL.registerMessage(packetId++, BandagesConfigPacket.class,
                 BandagesConfigPacket::encode,
                 BandagesConfigPacket::decode,
                 BandagesConfigPacket::handle);
+
+
+        CHANNEL.registerMessage(
+                0, // ID пакета
+                TriggerPacket.class,
+                TriggerPacket::encode,
+                TriggerPacket::decode,
+                TriggerPacket::handle
+        );
     }
 }

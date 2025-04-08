@@ -17,7 +17,7 @@ public class BandagesConfigSender {
             int number3 = 777; // Третье число
 
             // Отправляем пакет клиенту
-            NetworkHandler.INSTANCE.sendTo(
+            NetworkHandler.CHANNEL.sendTo(
                     new BandagesConfigPacket(number1, number2, number3),
                     player.connection.connection,
                     net.minecraftforge.network.NetworkDirection.PLAY_TO_CLIENT
