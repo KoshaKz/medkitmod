@@ -15,6 +15,11 @@ public abstract class UIWidget {
         this.height = height;
     }
 
+    public UIWidget(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public abstract void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick);
 
     public boolean mouseClicked(double mouseX, double mouseY, int button) {

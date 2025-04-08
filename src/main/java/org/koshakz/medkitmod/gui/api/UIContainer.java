@@ -14,7 +14,17 @@ public class UIContainer extends UIWidget {
         super(x, y, width, height);
     }
 
+    public UIContainer(int x, int y) {
+        super(x, y);
+    }
+
+    public UIContainer() {
+        super(0, 0);
+    }
+
     public void addChild(UIWidget widget) {
+        widget.x += this.x;
+        widget.y += this.y;
         children.add(widget);
     }
 
