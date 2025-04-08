@@ -12,7 +12,7 @@ public class TeamWidget extends UIContainer {
     private final UIButton selectTeamButton;
     private final UILabel uiLabel;
 
-    public TeamWidget(int x, int y, int width, int height, String teamTexture, String teamName) {
+    public TeamWidget(float x, float y, int width, int height, String teamTexture, String teamName) {
         super(x, y, width, height);
         this.uiLabel = new UILabel(0, 40, Component.literal(teamName), 0xFFFFFF);
 
