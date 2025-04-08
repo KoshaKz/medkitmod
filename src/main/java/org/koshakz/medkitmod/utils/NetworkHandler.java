@@ -23,9 +23,8 @@ public class NetworkHandler {
                 BandagesConfigPacket::decode,
                 BandagesConfigPacket::handle);
 
-
         CHANNEL.registerMessage(
-                0, // ID пакета
+                packetId++, // ID пакета
                 TriggerPacket.class,
                 TriggerPacket::encode,
                 TriggerPacket::decode,
