@@ -11,9 +11,9 @@ public class UIButton extends UIWidget {
     private final Runnable onClick;
 
     public UIButton(int x, int y, int width, int height,
-                    ResourceLocation texture, Runnable onClick) {
+                    String textureName, Runnable onClick) {
         super(x, y, width, height);
-        this.texture = texture;
+        this.texture = new ResourceLocation(Medkitmod.MOD_ID, "textures/gui/" + textureName + ".png");
         this.onClick = onClick;
     }
 
