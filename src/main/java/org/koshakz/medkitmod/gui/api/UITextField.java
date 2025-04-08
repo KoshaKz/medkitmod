@@ -7,13 +7,16 @@ import net.minecraft.network.chat.Component;
 import org.koshakz.medkitmod.gui.menu.VoMenu;
 
 public class UITextField extends UIWidget {
-    private final VoMenu screen;
     public final EditBox editBox;
     private boolean isFocused = false;
 
-    public UITextField(VoMenu screen, int x, int y, int width, int height, Font font) {
+    public UITextField(int x, int y, int width, int height, Font font) {
         super(x, y, width, height);
-        this.screen = screen;
+        this.editBox = new EditBox(font, x, y, width, height, Component.empty());
+    }
+
+    public UITextField(float percentX, float percentY , float percentWidth, float percentHeight, Font font) {
+        super(percentX, percentY, percentWidth, percentHeight);
         this.editBox = new EditBox(font, x, y, width, height, Component.empty());
     }
 

@@ -35,9 +35,7 @@ public class VoMenu extends Screen {
         );
         //menu.addChild(title);
 
-        ResourceLocation texture = new ResourceLocation("medkitmod", "textures/gui/int.png");
-
-        UIImage image = new UIImage(0, 0, this.width, this.height, texture);
+        UIImage image = new UIImage(0, 0, this.width, this.height, "int");
         menu.addChild(image);
     }
 

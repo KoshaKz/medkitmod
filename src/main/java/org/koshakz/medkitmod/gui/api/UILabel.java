@@ -2,6 +2,7 @@ package org.koshakz.medkitmod.gui.api;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import org.koshakz.medkitmod.Medkitmod;
@@ -15,6 +16,12 @@ public class UILabel extends UIWidget {
         this.text = text;
         this.color = color;
         //Можно;
+    }
+
+    public UILabel(float percentX, float percentY, Component text, int color) {
+        super(percentX, percentY, 0, 0);
+        this.text = text;
+        this.color = color;
     }
 
     @Override

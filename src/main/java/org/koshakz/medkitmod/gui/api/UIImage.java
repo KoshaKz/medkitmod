@@ -2,15 +2,21 @@ package org.koshakz.medkitmod.gui.api;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.resources.ResourceLocation;
+import org.koshakz.medkitmod.Medkitmod;
 
 public class UIImage extends UIWidget {
 
     private final ResourceLocation texture;
 
-    public UIImage(int x, int y, int width, int height, ResourceLocation texture) {
+    public UIImage(int x, int y, int width, int height, String textureName) {
         super(x, y, width, height);
-        this.texture = texture;
+        this.texture = new ResourceLocation(Medkitmod.MOD_ID, "textures/gui/" + textureName + ".png");
+    }
+    public UIImage(float percentX, float percentY , float percentWidth, float percentHeight, String textureName) {
+        super(percentX, percentY, percentWidth, percentHeight);
+        this.texture = new ResourceLocation(Medkitmod.MOD_ID, "textures/gui/" + textureName + ".png");
     }
 
     @Override

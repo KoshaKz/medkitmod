@@ -1,6 +1,8 @@
 package org.koshakz.medkitmod.gui.api;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.Screen;
 
 public abstract class UIWidget {
     protected int x;
@@ -19,6 +21,15 @@ public abstract class UIWidget {
     public UIWidget(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    public UIWidget(float percentX, float percentY , float percentWidth, float percentHeight) {
+        final Screen screen = Minecraft.getInstance().screen;
+
+        this.x = (int) (screen.width * percentX);
+        this.y = (int) (screen.height * percentY);
+        this.width = (int) (screen.height * percentWidth);
+        this.height = (int) (screen.height * percentHeight);
     }
 
     public abstract void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick);

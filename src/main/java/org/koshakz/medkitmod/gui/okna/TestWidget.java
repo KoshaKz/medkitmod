@@ -18,7 +18,7 @@ public class TestWidget extends UIContainer {
 
         Font font = Minecraft.getInstance().font;
 
-        this.uiTextField = new UITextField((VoMenu) screen, 20,50,200, 20,font);
+        this.uiTextField = new UITextField( 20,50,200, 20,font);
 
 
         // Создаем кнопки для чата

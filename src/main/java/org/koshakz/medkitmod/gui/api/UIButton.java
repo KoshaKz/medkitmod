@@ -16,6 +16,13 @@ public class UIButton extends UIWidget {
         this.onClick = onClick;
     }
 
+    public UIButton(float percentX, float percentY, float percentWidth, float percentHeight,
+                    String textureName, Runnable onClick) {
+        super(percentX, percentY, percentWidth, percentHeight);
+        this.texture = new ResourceLocation(Medkitmod.MOD_ID, "textures/gui/" + textureName + ".png");
+        this.onClick = onClick;
+    }
+
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 
