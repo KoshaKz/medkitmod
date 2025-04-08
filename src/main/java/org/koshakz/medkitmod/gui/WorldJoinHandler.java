@@ -7,12 +7,11 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import org.lwjgl.glfw.GLFW;
+import org.koshakz.medkitmod.gui.menu.VoMenu;
 
 @Mod.EventBusSubscriber(modid = "medkitmod", value = Dist.CLIENT)
 public class WorldJoinHandler {
 
-    private static boolean menuShown = false;
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -23,15 +22,13 @@ public class WorldJoinHandler {
         Minecraft minecraft = Minecraft.getInstance();
 
         // Проверяем что игрок - это мы, и мы в мире (не в меню)
-        if (player != minecraft.player || minecraft.level == null) {
-            menuShown = false; // Сброс при выходе из мира
+        if (player != minecraft.player || minecraft.level == null) {// Сброс при выходе из мира
             return;
         }
 
         // Открываем меню один раз при входе в мир
-        if (!menuShown && minecraft.screen == null) {
+        if (minecraft.screen == null) {
             minecraft.setScreen(new VoMenu());
-            menuShown = true;
         }
     }
 }

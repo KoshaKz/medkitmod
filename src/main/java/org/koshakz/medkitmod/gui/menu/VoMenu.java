@@ -1,13 +1,10 @@
-package org.koshakz.medkitmod.gui;
+package org.koshakz.medkitmod.gui.menu;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import org.koshakz.medkitmod.Medkitmod;
 import org.koshakz.medkitmod.gui.api.*;
 import org.koshakz.medkitmod.gui.okna.TestWidget;
 
@@ -29,14 +26,22 @@ public class VoMenu extends Screen {
 
 
         // Добавляем чат в меню
-        menu.addChild(testWidget);
+        //menu.addChild(testWidget);
 
         // Можно добавить другие элементы
         UILabel title = new UILabel(
                 width/2 - 50, 20,
                 Component.literal("Мое меню"), 0xFFFFFF
         );
-        menu.addChild(title);
+        //menu.addChild(title);
+
+        ResourceLocation texture = new ResourceLocation("medkitmod", "textures/gui/int.png");
+
+        UIImage image = new UIImage(0, 0, this.width, this.height, texture);
+        menu.addChild(image);
+
+
+
     }
 
     @Override

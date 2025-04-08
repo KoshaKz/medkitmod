@@ -30,7 +30,6 @@ public class UIContainer extends UIWidget {
         // Обрабатываем в обратном порядке (от верхних элементов к нижним)
         for (UIWidget uiWidget : children) {
             if (uiWidget.mouseClicked(mouseX, mouseY, button)) {
-                Medkitmod.LOGGER.info(uiWidget.getX() + "");
                 return true;
             }
         }

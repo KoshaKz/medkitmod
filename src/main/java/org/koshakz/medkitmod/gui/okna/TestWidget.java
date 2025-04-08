@@ -5,8 +5,7 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import org.koshakz.medkitmod.Medkitmod;
-import org.koshakz.medkitmod.gui.VoMenu;
+import org.koshakz.medkitmod.gui.menu.VoMenu;
 import org.koshakz.medkitmod.gui.api.*;
 
 public class TestWidget extends UIContainer {
