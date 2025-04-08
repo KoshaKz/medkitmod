@@ -97,18 +97,8 @@ public class Bandages extends Item {
             heal(player, stack, remainingUseTicks, test, entity);
 
         } else {
-            SelfHeal(player, stack, remainingUseTicks); // Всегда обычная скорость
+            heal(player, stack, remainingUseTicks, 1, player); // Всегда обычная скорость
         }
-    }
-
-    private static void SelfHeal(ServerPlayer player, ItemStack stack, int remainingTicks) {
-        if (remainingTicks == 1) {
-            player.heal(BANDAGES_HEAL_AMOUNT);
-            stack.setCount(stack.getCount() - 1);
-            sendActionBar(player, "");
-            return;
-        }
-        renderProgressBar(player, (float) remainingTicks / USE_DURATION);
     }
 
     private static void heal(ServerPlayer player, ItemStack stack, int remainingTicks, int test, LivingEntity livingEntity) {
