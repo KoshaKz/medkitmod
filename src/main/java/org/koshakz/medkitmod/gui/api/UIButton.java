@@ -6,8 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import org.koshakz.medkitmod.Medkitmod;
 
 public class UIButton extends UIWidget {
-    private final ResourceLocation texture;
-    private Component label;
+    private ResourceLocation texture;
     private final Runnable onClick;
 
     public UIButton(int x, int y, int width, int height,
@@ -38,8 +37,7 @@ public class UIButton extends UIWidget {
         return false;
     }
 
-    public UIButton withLabel(Component label) {
-        this.label = label;
-        return this;
+    public void changeTexture(String textureName) {
+        this.texture = new ResourceLocation(Medkitmod.MOD_ID, "textures/gui/" + textureName + ".png");
     }
 }
