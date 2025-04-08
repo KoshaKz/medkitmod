@@ -15,6 +15,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.koshakz.medkitmod.block.ModBlocks;
 import org.koshakz.medkitmod.item.ModCreativeModTabs;
 import org.koshakz.medkitmod.item.ModItems;
+import org.koshakz.medkitmod.utils.ClientTriggerSystem;
 import org.koshakz.medkitmod.utils.ModConfigHandler;
 import org.koshakz.medkitmod.utils.NetworkHandler;
 import org.slf4j.Logger;
@@ -62,7 +63,7 @@ public class Medkitmod {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            ClientTriggerSystem.init();
         }
     }
 }
