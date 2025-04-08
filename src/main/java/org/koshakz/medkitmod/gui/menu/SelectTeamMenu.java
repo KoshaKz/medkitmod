@@ -19,11 +19,12 @@ public class SelectTeamMenu extends UICustomMenu {
 
     @Override
     protected void init() {
+        super.init();
         // Инициализируем главное меню
         TeamWidget greenTeamWidget = new TeamWidget(0.05f, 0.3f, 300, 100, "green", "greentext");
         TeamWidget redTeamWidget = new TeamWidget(getPercentX(0.5f), getPercentY(0.3f), 300, 100, "red", "redtext");
 
-        this.frame.addChild(greenTeamWidget);
-        this.frame.addChild(redTeamWidget);
+        addChild(greenTeamWidget);
+        addChild(redTeamWidget);
     }
 }

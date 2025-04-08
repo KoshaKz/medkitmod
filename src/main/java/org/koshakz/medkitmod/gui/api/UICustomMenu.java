@@ -15,6 +15,11 @@ public class UICustomMenu extends Screen {
     }
 
     @Override
+    protected void init() {
+        this.frame.removeChildren(); //шкул шутинг
+    }
+
+    @Override
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         renderBackground(guiGraphics);
         frame.render(guiGraphics, mouseX, mouseY, partialTick);
@@ -24,14 +29,6 @@ public class UICustomMenu extends Screen {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         return frame.mouseClicked(mouseX, mouseY, button);
-    }
-
-
-    protected int getPercentX(final float percent) {
-        return (int) (this.width * percent);
-    }
-    protected int getPercentY(final float percent) {
-        return (int) (this.height * percent);
     }
 
     protected void addChild(UIWidget widget) {

@@ -28,14 +28,16 @@ public class UIContainer extends UIWidget {
 
         this.x = (int) (screen.width * percentX);
         this.y = (int) (screen.height * percentY);
-
-        Medkitmod.LOGGER.error(this.getX() + " " + this.getY());
     }
 
     public void addChild(UIWidget widget) {
         widget.x += this.x;
         widget.y += this.y;
         children.add(widget);
+    }
+
+    public void removeChildren() {
+        children.clear();
     }
 
     @Override
