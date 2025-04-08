@@ -1,6 +1,7 @@
 package org.koshakz.medkitmod.gui.api;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -10,24 +11,40 @@ import org.koshakz.medkitmod.Medkitmod;
 public class UILabel extends UIWidget {
     private Component text;
     private int color;
+    private Font font;
+
+    private float scaleX;
+    private float scaleY;
 
     public UILabel(int x, int y, Component text, int color) {
         super(x, y, 0, 0);
         this.text = text;
         this.color = color;
+        this.font = Minecraft.getInstance().font;
         //Можно;
     }
 
-    public UILabel(float percentX, float percentY, Component text, int color) {
+    public UILabel(float percentX, float percentY, float scaleX, float scaleY, Component text, int color) {
         super(percentX, percentY, 0, 0);
         this.text = text;
         this.color = color;
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
     }
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        guiGraphics.drawString(Minecraft.getInstance().font,
-                text, x, y, color);
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().scale(scaleX, scaleY, 1f); // Масштабирование
+        guiGraphics.drawString(
+                Minecraft.getInstance().font,
+                text,
+                x,
+                y,
+                color,
+                true // dropShadow
+        );
+        guiGraphics.pose().popPose();
     }
 
     public void changeText(String newText) {

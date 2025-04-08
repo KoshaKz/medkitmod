@@ -37,7 +37,6 @@ public class UIButton extends UIWidget {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (isMouseOver(mouseX, mouseY)) {
-            Medkitmod.LOGGER.info("test! b");
             onClick.run();
             return true;
         }
