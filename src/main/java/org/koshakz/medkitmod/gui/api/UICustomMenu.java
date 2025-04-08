@@ -27,10 +27,10 @@ public class UICustomMenu extends Screen {
     }
 
 
-    private int getPercentX(final float percent) {
+    protected int getPercentX(final float percent) {
         return (int) (this.width * percent);
     }
-    private int getPercentY(final float percent) {
+    protected int getPercentY(final float percent) {
         return (int) (this.height * percent);
     }
 }
