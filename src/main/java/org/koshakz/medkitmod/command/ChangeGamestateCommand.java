@@ -27,7 +27,7 @@ public class ChangeGamestateCommand{
 
     private static int execute(CommandSourceStack source, String arg1) {
         for (Player player : source.getLevel().players()) {
-            PlayerUtils.sendPlayerTrigger(player, "SHOW_WELCOME");
+            PlayerUtils.sendPlayerTrigger(player, "OPEN_SELECT_TEAM");
         }
         return Command.SINGLE_SUCCESS;
     }
