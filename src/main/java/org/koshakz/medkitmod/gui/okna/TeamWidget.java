@@ -12,12 +12,12 @@ public class TeamWidget extends UIContainer {
     private final UIButton selectTeamButton;
     private final UILabel uiLabel;
 
-    public TeamWidget(float x, float y, int width, int height, String teamTexture, String teamName) {
+    public TeamWidget(float x, float y, float width, float height, String teamTexture, String teamName) {
         super(x, y, width, height);
-        this.uiLabel = new UILabel(0, 40, Component.literal(teamName), 0xFFFFFF);
+        this.uiLabel = new UILabel(0.1f, 0.35f, Component.literal(teamName), 0xFFFFFF);
 
         this.selectTeamButton = new UIButton(
-                0, 0, 200, 20,
+                0, 0, 0.5f, 0.3f,
                 teamTexture,
                 () -> System.out.println("Кнопка 1 нажата"));
 
