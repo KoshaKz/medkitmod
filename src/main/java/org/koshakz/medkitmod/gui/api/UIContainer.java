@@ -21,7 +21,7 @@ public class UIContainer extends UIWidget {
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         for (UIWidget child : children) {
-            child.render(guiGraphics, mouseX, mouseY, partialTick);
+            child.render(guiGraphics, this.x + mouseX, this.y + mouseY, partialTick);
         }
     }
 
