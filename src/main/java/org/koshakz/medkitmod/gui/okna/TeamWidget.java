@@ -24,13 +24,13 @@ public class TeamWidget extends UIContainer {
         // Создаем кнопки для чата
         this.selectTeamButton = new UIButton(
                 80, 300, 700, 400,
-                new ResourceLocation("medkitmod", "textures/gui/da.png"),
+                "da",
                 () -> System.out.println("Кнопка 1 нажата")
         ).withLabel(Component.literal("Отправить"));
 
         this.button2 = new UIButton(
                 120, 10, 100, 20,
-                new ResourceLocation("medkitmod", "textures/gui/test23.png"),
+                "test23",
                 () -> System.out.println("Кнопка 2 нажата")
         ).withLabel(Component.literal("Отмена"));
 
