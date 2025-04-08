@@ -26,13 +26,13 @@ public class TestWidget extends UIContainer {
                 10, 10, 100, 20,
                 "da",
                 () -> System.out.println("Кнопка 1 нажата")
-        ).withLabel(Component.literal("Отправить"));
+        );
 
         this.button2 = new UIButton(
                 120, 10, 100, 20,
                 "test23",
                 () -> System.out.println("Кнопка 2 нажата")
-        ).withLabel(Component.literal("Отмена"));
+        );
 
         // Добавляем кнопки в контейнер
 

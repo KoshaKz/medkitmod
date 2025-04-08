@@ -10,34 +10,18 @@ import org.koshakz.medkitmod.gui.menu.VoMenu;
 
 public class TeamWidget extends UIContainer {
     private final UIButton selectTeamButton;
-    private final UIButton button2;
-    private final UITextField uiTextField;
+    private final UILabel uiLabel;
 
-    public TeamWidget(Screen screen, int x, int y, int width, int height) {
+    public TeamWidget(int x, int y, int width, int height, String teamTexture, String teamName) {
         super(x, y, width, height);
+        this.uiLabel = new UILabel(0, 40, Component.literal(teamName), 0xFFFFFF);
 
-        Font font = Minecraft.getInstance().font;
-
-        this.uiTextField = new UITextField((VoMenu) screen, 20,50,200, 20,font);
-
-
-        // Создаем кнопки для чата
         this.selectTeamButton = new UIButton(
-                80, 300, 700, 400,
-                "da",
-                () -> System.out.println("Кнопка 1 нажата")
-        ).withLabel(Component.literal("Отправить"));
+                0, 0, 200, 20,
+                teamTexture,
+                () -> System.out.println("Кнопка 1 нажата"));
 
-        this.button2 = new UIButton(
-                120, 10, 100, 20,
-                "test23",
-                () -> System.out.println("Кнопка 2 нажата")
-        ).withLabel(Component.literal("Отмена"));
-
-        // Добавляем кнопки в контейнер
-
-
-        this.addChild(uiTextField);
+        this.addChild(uiLabel);
         this.addChild(selectTeamButton);
     }
 }

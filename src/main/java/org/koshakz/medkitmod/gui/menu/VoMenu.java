@@ -56,8 +56,4 @@ public class VoMenu extends Screen {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         return menu.mouseClicked(mouseX, mouseY, button);
     }
-
-    public void setInputDa(EditBox editBox) {
-        this.setInitialFocus(editBox);
-    }
 }

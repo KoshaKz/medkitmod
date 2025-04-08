@@ -5,11 +5,13 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.client.Minecraft;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import org.koshakz.medkitmod.gui.menu.VoMenu;
 import org.koshakz.medkitmod.utils.ModConfigHandler;
 
 
@@ -33,6 +35,12 @@ public class ChangeConfigCommand {
         try {
             ServerPlayer player = source.getPlayerOrException();
             player.sendSystemMessage(Component.literal("Подкоманда выполнена! arg1: " + arg1 + ", arg2: " + arg2));
+            Minecraft minecraft = Minecraft.getInstance();
+            // Проверяем что игрок - это мы, и мы в мире (не в меню
+            // Открываем меню один раз при входе в мир
+            if (minecraft.screen == null) {
+                minecraft.setScreen(new VoMenu());
+            }
         } catch (Exception e) {
             source.sendFailure(Component.literal("Эту команду может выполнить только игрок!"));
         }

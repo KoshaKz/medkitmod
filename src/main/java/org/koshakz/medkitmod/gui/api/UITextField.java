@@ -15,7 +15,6 @@ public class UITextField extends UIWidget {
         super(x, y, width, height);
         this.screen = screen;
         this.editBox = new EditBox(font, x, y, width, height, Component.empty());
-        screen.setInputDa(editBox);
     }
 
     @Override
@@ -37,9 +36,6 @@ public class UITextField extends UIWidget {
     public void setFocused(boolean focused) {
         this.isFocused = focused;
         editBox.setFocused(focused);
-        if (focused) {
-            screen.setInputDa(editBox);
-        }
     }
 
     public String getValue() {
