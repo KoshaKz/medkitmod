@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class UICustomMenu extends Screen {
 
-    private final UIContainer frame;
+    protected final UIContainer frame;
 
     public UICustomMenu(Component pTitle) {
         super(pTitle);
