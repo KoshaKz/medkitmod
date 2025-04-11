@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/medkitmod.main.iml" filepath="$PROJECT_DIR$/.idea/modules/medkitmod.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/medkitmod.test.iml" filepath="$PROJECT_DIR$/.idea/modules/medkitmod.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.koshakz.warhelper.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.koshakz.warhelper.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.koshakz.warhelper.test.iml" filepath="$PROJECT_DIR$/.idea/modules/org.koshakz.warhelper.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/warhelper.main.iml" filepath="$PROJECT_DIR$/.idea/modules/warhelper.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/warhelper.test.iml" filepath="$PROJECT_DIR$/.idea/modules/warhelper.test.iml" />
     </modules>

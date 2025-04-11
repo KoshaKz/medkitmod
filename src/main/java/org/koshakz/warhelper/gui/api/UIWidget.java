@@ -29,7 +29,7 @@ public abstract class UIWidget {
 
         this.x = (int) (screen.width * percentX);
         this.y = (int) (screen.height * percentY);
-        this.width = (int) (screen.height * percentWidth);
+        this.width = (int) (screen.width * percentWidth);
         this.height = (int) (screen.height * percentHeight);
         WarHelper.LOGGER.error(screen.width + " " + screen.height + " " + percentX + " " + percentY + " " + this.width + " " + this.height + " " + this);
     }
@@ -37,7 +37,7 @@ public abstract class UIWidget {
     public UIWidget(UIWidget parent, float percentX, float percentY , float percentWidth, float percentHeight) {
         this.x = parent.x + (int) (parent.width * percentX);
         this.y = parent.y + (int) (parent.height * percentY);
-        this.width = (int) (parent.height * percentWidth);
+        this.width = (int) (parent.width * percentWidth);
         this.height = (int) (parent.height * percentHeight);
         WarHelper.LOGGER.error(parent.width + " " + parent.height + " " + percentX + " " + percentY + " " + this.width + " " + this.height + " "+this);
     }
