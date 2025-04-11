@@ -27,11 +27,13 @@ public abstract class UIWidget {
     public UIWidget(float percentX, float percentY , float percentWidth, float percentHeight) {
         final Screen screen = Minecraft.getInstance().screen;
 
+        if (screen == null) return;
+
         this.x = (int) (screen.width * percentX);
         this.y = (int) (screen.height * percentY);
         this.width = (int) (screen.width * percentWidth);
         this.height = (int) (screen.height * percentHeight);
-        WarHelper.LOGGER.error(screen.width + " " + screen.height + " " + percentX + " " + percentY + " " + this.width + " " + this.height + " " + this);
+        WarHelper.LOGGER.error(screen.width + " " + screen.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
     }
 
     public UIWidget(UIWidget parent, float percentX, float percentY , float percentWidth, float percentHeight) {
@@ -39,7 +41,7 @@ public abstract class UIWidget {
         this.y = parent.y + (int) (parent.height * percentY);
         this.width = (int) (parent.width * percentWidth);
         this.height = (int) (parent.height * percentHeight);
-        WarHelper.LOGGER.error(parent.width + " " + parent.height + " " + percentX + " " + percentY + " " + this.width + " " + this.height + " "+this);
+        WarHelper.LOGGER.error(parent.width + " " + parent.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
     }
 
     public abstract void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick);

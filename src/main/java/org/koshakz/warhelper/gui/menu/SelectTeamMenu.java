@@ -1,6 +1,7 @@
 package org.koshakz.warhelper.gui.menu;
 
 import net.minecraft.network.chat.Component;
+import org.koshakz.warhelper.gui.api.UIButton;
 import org.koshakz.warhelper.gui.api.UICustomMenu;
 import org.koshakz.warhelper.gui.api.UILabel;
 import org.koshakz.warhelper.gui.okna.TeamWidget;
@@ -15,8 +16,10 @@ public class SelectTeamMenu extends UICustomMenu {
     protected void init() {
         super.init();
         // Инициализируем главное меню
-        TeamWidget greenTeamWidget = new TeamWidget(0.2f, 0.37f, 0.3f, 0.55f, "green", "greentext");
-        TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.55f, "red", "redtext");
+        TeamWidget greenTeamWidget = new TeamWidget(0.1f, 0.37f, 0.3f, 0.4f, "green", "greentext");
+        TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.4f, "red", "redtext");
+
+
 
 
         UILabel title = new UILabel(
@@ -24,6 +27,7 @@ public class SelectTeamMenu extends UICustomMenu {
                 Component.literal("Выбор команды"), 0xFFFFFF
         );
 
+        addChild(new UIButton(0.15f, 0.7f, 0.7f, 0.15f, "da", () -> {} ));
         addChild(greenTeamWidget);
         addChild(redTeamWidget);
         addChild(title);

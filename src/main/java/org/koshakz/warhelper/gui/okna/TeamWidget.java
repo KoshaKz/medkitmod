@@ -12,7 +12,7 @@ public class TeamWidget extends UIContainer {
         this.uiLabel = new UILabel(this, .5f, .8f, 1f, 1f, Component.literal(teamName), 0xFFFFFF);
 
         this.selectTeamButton = new UIButton(
-                this, 0f, 0f, 1f, 0.6f,
+                this, 0f, 0f, 1f, 0.5f,
                 teamTexture,
                 () -> System.out.println("Кнопка 1 нажата"));
 
