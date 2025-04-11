@@ -39,9 +39,7 @@ public class WarHelper {
 
         MinecraftForge.EVENT_BUS.register(this);
         //modEventBus.addListener(this::addCreative);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfigHandler.COMMON_CONFIG);
-
-
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfigHandler.SPEC, "warhelper-common.toml");
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

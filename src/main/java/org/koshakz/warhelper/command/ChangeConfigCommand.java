@@ -28,18 +28,6 @@ public class ChangeConfigCommand {
 
 
     private static int execute(CommandSourceStack source, String arg1, String arg2) {
-        try {
-            ServerPlayer player = source.getPlayerOrException();
-            player.sendSystemMessage(Component.literal("Подкоманда выполнена! arg1: " + arg1 + ", arg2: " + arg2));
-            Minecraft minecraft = Minecraft.getInstance();
-            // Проверяем что игрок - это мы, и мы в мире (не в меню
-            // Открываем меню один раз при входе в мир
-            if (minecraft.screen == null) {
-                minecraft.setScreen(new VoMenu());
-            }
-        } catch (Exception e) {
-            source.sendFailure(Component.literal("Эту команду может выполнить только игрок!"));
-        }
         return Command.SINGLE_SUCCESS;
     }
 

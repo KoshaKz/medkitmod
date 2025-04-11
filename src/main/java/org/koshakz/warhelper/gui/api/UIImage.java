@@ -12,6 +12,7 @@ public class UIImage extends UIWidget {
         super(x, y, width, height);
         this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");
     }
+
     public UIImage(float percentX, float percentY , float percentWidth, float percentHeight, String textureName) {
         super(percentX, percentY, percentWidth, percentHeight);
         this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");

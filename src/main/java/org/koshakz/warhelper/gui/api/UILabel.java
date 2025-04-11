@@ -29,6 +29,14 @@ public class UILabel extends UIWidget {
         this.scaleY = scaleY;
     }
 
+    public UILabel(UIWidget parent, float percentX, float percentY, float scaleX, float scaleY, Component text, int color) {
+        super(parent, percentX, percentY, 0, 0);
+        this.text = text;
+        this.color = color;
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
+    }
+
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         guiGraphics.pose().pushPose();

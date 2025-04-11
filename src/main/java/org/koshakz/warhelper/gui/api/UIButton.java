@@ -22,6 +22,13 @@ public class UIButton extends UIWidget {
         this.onClick = onClick;
     }
 
+    public UIButton(UIWidget parent, float percentX, float percentY, float percentWidth, float percentHeight,
+                    String textureName, Runnable onClick) {
+        super(parent, percentX, percentY, percentWidth, percentHeight);
+        this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");
+        this.onClick = onClick;
+    }
+
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
 

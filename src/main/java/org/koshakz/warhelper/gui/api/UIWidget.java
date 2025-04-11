@@ -3,6 +3,7 @@ package org.koshakz.warhelper.gui.api;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
+import org.koshakz.warhelper.WarHelper;
 
 public abstract class UIWidget {
     protected int x;
@@ -30,6 +31,15 @@ public abstract class UIWidget {
         this.y = (int) (screen.height * percentY);
         this.width = (int) (screen.height * percentWidth);
         this.height = (int) (screen.height * percentHeight);
+        WarHelper.LOGGER.error(screen.width + " " + screen.height + " " + percentX + " " + percentY + " " + this.width + " " + this.height + " " + this);
+    }
+
+    public UIWidget(UIWidget parent, float percentX, float percentY , float percentWidth, float percentHeight) {
+        this.x = parent.x + (int) (parent.width * percentX);
+        this.y = parent.y + (int) (parent.height * percentY);
+        this.width = (int) (parent.height * percentWidth);
+        this.height = (int) (parent.height * percentHeight);
+        WarHelper.LOGGER.error(parent.width + " " + parent.height + " " + percentX + " " + percentY + " " + this.width + " " + this.height + " "+this);
     }
 
     public abstract void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick);
@@ -42,12 +52,6 @@ public abstract class UIWidget {
         return mouseX >= x && mouseX <= x + width &&
                 mouseY >= y && mouseY <= y + height;
     }
-
-    // Геттеры и сеттеры
-    public int getX() { return x; }
-    public int getY() { return y; }
-    public int getWidth() { return width; }
-    public int getHeight() { return height; }
 
     public void setPosition(int x, int y) {
         this.x = x;

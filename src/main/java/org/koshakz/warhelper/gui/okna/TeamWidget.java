@@ -9,10 +9,10 @@ public class TeamWidget extends UIContainer {
 
     public TeamWidget(float x, float y, float width, float height, String teamTexture, String teamName) {
         super(x, y, width, height);
-        this.uiLabel = new UILabel(0.1f, 0.35f, 2f, 2f, Component.literal(teamName), 0xFFFFFF);
+        this.uiLabel = new UILabel(this, .0f, .2f, 1f, 1f, Component.literal(teamName), 0xFFFFFF);
 
         this.selectTeamButton = new UIButton(
-                0, 0, 0.5f, 0.3f,
+                this, 0f, 0f, 0.5f, 0.15f,
                 teamTexture,
                 () -> System.out.println("Кнопка 1 нажата"));
 

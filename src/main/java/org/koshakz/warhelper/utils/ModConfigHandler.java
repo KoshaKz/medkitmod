@@ -7,8 +7,8 @@ import org.koshakz.warhelper.item.custom.Bandages;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModConfigHandler {
-    private static final ForgeConfigSpec.Builder COMMON_BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec COMMON_CONFIG;
+    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public static final ForgeConfigSpec SPEC;
 
     // Пример переменной конфига
 
@@ -21,27 +21,28 @@ public class ModConfigHandler {
 
 
     static {
-        USE_DURATION_CONFIG = COMMON_BUILDER
+        BUILDER.push("WarHelper config");
+        USE_DURATION_CONFIG = BUILDER
                 .comment("Длительность использования в тиках")
                 .defineInRange("UseDuration", 60, 0, Integer.MAX_VALUE);
 
-        PROGRESS_BAR_LEN_CONFIG = COMMON_BUILDER
+        PROGRESS_BAR_LEN_CONFIG = BUILDER
                 .comment("Длина полоски прогресса в палочках (|||||)")
                 .defineInRange("ProgressBarLen", 40, 0, Integer.MAX_VALUE);
 
-        HEAL_OTHER_OFFSET_CONFIG = COMMON_BUILDER
+        HEAL_OTHER_OFFSET_CONFIG = BUILDER
                 .comment("На сколько быстрее лечить других в тиках")
                 .defineInRange("HealOtherOffset", 20, 0, Integer.MAX_VALUE);
 
-        HEAL_MEDIC_OFFSET_CONFIG = COMMON_BUILDER
+        HEAL_MEDIC_OFFSET_CONFIG = BUILDER
                 .comment("На сколько быстрее лечит медик других в тиках (HealOtherOffset + это значение)")
                 .defineInRange("MedicHealOffset", 20, 0, Integer.MAX_VALUE);
 
-        HEAL_RANGE_CONFIG = COMMON_BUILDER
+        HEAL_RANGE_CONFIG = BUILDER
                 .comment("Максимальная дистанция лечения в блоках")
                 .defineInRange("HealRange", 1.5F, 0, Float.MAX_VALUE);
 
-        BANDAGES_HEAL_AMOUNT_CONFIG = COMMON_BUILDER
+        BANDAGES_HEAL_AMOUNT_CONFIG = BUILDER
                 .comment("Сколько хп востанавливают бинты")
                 .defineInRange("BandagesHealAmount", 10, 0, Integer.MAX_VALUE);
 
@@ -52,8 +53,8 @@ public class ModConfigHandler {
         //MAX_VALUE = COMMON_BUILDER
         //        .comment("Максимальное значение")
         //        .defineInRange("maxValue", 10, 1, 100);
-
-        COMMON_CONFIG = COMMON_BUILDER.build();
+        BUILDER.pop();
+        SPEC = BUILDER.build();
     }
 
     //public static void loadConfig(ForgeConfigSpec config, Path path) {
