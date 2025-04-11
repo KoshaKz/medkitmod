@@ -15,12 +15,12 @@ public class SelectTeamMenu extends UICustomMenu {
     protected void init() {
         super.init();
         // Инициализируем главное меню
-        TeamWidget greenTeamWidget = new TeamWidget(0.05f, 0.4f, 1f, 1f, "green", "greentext");
-        TeamWidget redTeamWidget = new TeamWidget(0.65f, 0.4f, 1f, 1f, "red", "redtext");
+        TeamWidget greenTeamWidget = new TeamWidget(0.2f, 0.37f, 0.3f, 0.55f, "green", "greentext");
+        TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.55f, "red", "redtext");
 
 
         UILabel title = new UILabel(
-                0.45f, 0.1f, 1.0f, 2.0f,
+                0.45f, 0.1f, 2.0f, 2.0f,
                 Component.literal("Выбор команды"), 0xFFFFFF
         );
 
