@@ -88,9 +88,7 @@ public class Bandages extends Item {
                 return;
             }
 
-            int test = PlayerUtils.HasTag(player, "medic") ? HEAL_MEDIC_OFFSET : HEAL_OTHER_OFFSET;
-
-            heal(player, stack, remainingUseTicks, test, entity);
+            heal(player, stack, remainingUseTicks, PlayerUtils.HasTag(player, "medic") ? HEAL_MEDIC_OFFSET : HEAL_OTHER_OFFSET, entity);
 
         } else {
             heal(player, stack, remainingUseTicks, 1, player); // Всегда обычная скорость
