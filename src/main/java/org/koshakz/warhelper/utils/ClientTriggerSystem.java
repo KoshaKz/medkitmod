@@ -2,6 +2,7 @@ package org.koshakz.warhelper.utils;
 
 import net.minecraft.client.Minecraft;
 import org.koshakz.warhelper.gui.menu.SelectTeamMenu;
+import org.koshakz.warhelper.gui.menu.SquadMenu;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +27,9 @@ public class ClientTriggerSystem {
     public static void init() {
         registerTrigger("OPEN_SELECT_TEAM", () -> {
             Minecraft.getInstance().setScreen(new SelectTeamMenu());
+        });
+        registerTrigger("OPEN_RESPAWN", () -> {
+            Minecraft.getInstance().setScreen(new SquadMenu());
         });
     }
 }

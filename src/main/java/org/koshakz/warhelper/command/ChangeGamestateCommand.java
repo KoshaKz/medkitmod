@@ -23,7 +23,14 @@ public class ChangeGamestateCommand{
 
     private static int execute(CommandSourceStack source, String arg1) {
         for (Player player : source.getLevel().players()) {
-            PlayerUtils.sendPlayerTrigger(player, "OPEN_SELECT_TEAM");
+            switch (arg1) {
+                case "1":
+                    PlayerUtils.sendPlayerTrigger(player, "OPEN_SELECT_TEAM");
+                    break;
+                case "2":
+                    PlayerUtils.sendPlayerTrigger(player, "OPEN_RESPAWN");
+                    break;
+            }
         }
         return Command.SINGLE_SUCCESS;
     }
