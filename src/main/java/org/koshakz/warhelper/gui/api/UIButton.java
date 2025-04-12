@@ -27,7 +27,7 @@ public class UIButton extends UIWidget {
 
     public UIButton(float percentX, float percentY, float percentWidth, float percentHeight,
                     String textureName, Runnable onClick) {
-        super(percentX, percentY, percentWidth, percentHeight);
+        super(percentX, percentY, percentWidth, percentHeight);//егор пидорас
         this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");
         this.onClick = onClick;
     }
