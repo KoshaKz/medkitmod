@@ -16,7 +16,7 @@ public class SelectTeamMenu extends UICustomMenu {
     protected void init() {
         super.init();
         // Инициализируем главное меню
-        TeamWidget greenTeamWidget = new TeamWidget(0.1f, 0.37f, 0.3f, 0.4f, "green", "greentext");
+        TeamWidget greenTeamWidget = new TeamWidget(0.1f, 0.37f, 0.3f, 0.4f, "test_test", "greentext");
         TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.4f, "red", "redtext");
 
 
