@@ -19,6 +19,11 @@ public class UITextField extends UIWidget {
         this.editBox = new EditBox(font, x, y, width, height, Component.empty());
     }
 
+    public UITextField(UIWidget parent, float percentX, float percentY , float percentWidth, float percentHeight, Font font) {
+        super(parent, percentX, percentY, percentWidth, percentHeight);
+        this.editBox = new EditBox(font, x, y, width, height, Component.empty());
+    }
+
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         editBox.render(guiGraphics, mouseX, mouseY, partialTick);

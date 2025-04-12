@@ -18,6 +18,11 @@ public class UIImage extends UIWidget {
         this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");
     }
 
+    public UIImage(UIWidget parent, float percentX, float percentY , float percentWidth, float percentHeight, String textureName) {
+            super(parent, percentX, percentY, percentWidth, percentHeight);
+            this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");
+    }
+
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         guiGraphics.blit(texture,

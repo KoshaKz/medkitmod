@@ -1,6 +1,7 @@
 package org.koshakz.warhelper.utils;
 
 import net.minecraft.client.Minecraft;
+import org.koshakz.warhelper.gui.menu.MenuTest;
 import org.koshakz.warhelper.gui.menu.SelectTeamMenu;
 import org.koshakz.warhelper.gui.menu.SquadMenu;
 
@@ -15,7 +16,7 @@ public class ClientTriggerSystem {
         TRIGGERS.put(id, action);
     }
 
-    // Активация триггера
+// Активация триггера
     public static void activate(String triggerId) {
         Runnable action = TRIGGERS.get(triggerId);
         if (action != null) {
@@ -30,6 +31,9 @@ public class ClientTriggerSystem {
         });
         registerTrigger("OPEN_RESPAWN", () -> {
             Minecraft.getInstance().setScreen(new SquadMenu());
+        });
+        registerTrigger("VO", () -> {
+            Minecraft.getInstance().setScreen(new MenuTest());
         });
     }
 }
