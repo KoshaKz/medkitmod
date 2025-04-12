@@ -16,8 +16,8 @@ public class SelectTeamMenu extends UICustomMenu {
     protected void init() {
         super.init();
         // Инициализируем главное меню
-        TeamWidget greenTeamWidget = new TeamWidget(0.1f, 0.37f, 0.3f, 0.4f, "test_test", "greentext");
-        TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.4f, "red", "redtext");
+        TeamWidget greenTeamWidget = new TeamWidget(0.1f, 0.37f, 0.3f, 0.6f, "test_test", "greentext");
+        TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.6f, "red", "redtext");
 
 
 
@@ -27,7 +27,14 @@ public class SelectTeamMenu extends UICustomMenu {
                 Component.literal("Выбор команды"), 0xFFFFFF, true
         );
 
-        addChild(new UIButton(0.15f, 0.7f, 0.7f, 0.15f, "da", () -> {} ));
+        addChild(new UIButton(
+                (1f - 0.35f) / 2f,  // X позиция: (1 - ширина)/2 для центрирования
+                0.9f,               // Y позиция: 90% от верха
+                0.35f,              // ширина: 35% экрана
+                0.08f,              // высота: 8% экрана
+                "da",
+                () -> {}
+        ));
         addChild(greenTeamWidget);
         addChild(redTeamWidget);
         addChild(title);

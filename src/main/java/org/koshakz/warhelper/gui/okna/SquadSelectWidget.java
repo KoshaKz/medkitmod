@@ -3,11 +3,11 @@ package org.koshakz.warhelper.gui.okna;
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.gui.api.*;
 
-public class TeamWidget extends UIContainer {
+public class SquadSelectWidget extends UIContainer {
     private final UIButton selectTeamButton;
     private final UILabel uiLabel;
 
-    public TeamWidget(float x, float y, float width, float height, String teamTexture, String teamName) {
+    public SquadSelectWidget(float x, float y, float width, float height, String teamTexture, String teamName) {
         super(x, y, width, height);
         this.uiLabel = new UILabel(this, .5f, .6f, 2f, 2f, Component.literal(teamName), 0xFFFFFF, true);
 
