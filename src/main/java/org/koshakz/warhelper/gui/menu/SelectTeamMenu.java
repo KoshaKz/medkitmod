@@ -23,8 +23,8 @@ public class SelectTeamMenu extends UICustomMenu {
 
 
         UILabel title = new UILabel(
-                0.45f, 0.1f, 2.0f, 2.0f,
-                Component.literal("Выбор команды"), 0xFFFFFF
+                0.5f, 0.1f, 4.0f, 4.0f,
+                Component.literal("Выбор команды"), 0xFFFFFF, true
         );
 
         addChild(new UIButton(0.15f, 0.7f, 0.7f, 0.15f, "da", () -> {} ));
