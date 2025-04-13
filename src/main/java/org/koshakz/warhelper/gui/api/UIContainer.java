@@ -32,6 +32,10 @@ public class UIContainer extends UIWidget {
         super(percentX, percentY, percentWidth, percentHeight);
     }
 
+    public UIContainer(UIWidget parent, float percentX, float percentY , float percentWidth, float percentHeight) {
+        super(parent, percentX, percentY, percentWidth, percentHeight);
+    }
+
     public void addChild(UIWidget widget) {
         //widget.x += this.x;
         //widget.y += this.y;
