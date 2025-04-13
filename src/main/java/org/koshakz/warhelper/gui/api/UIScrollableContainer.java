@@ -36,15 +36,12 @@ public class UIScrollableContainer extends UIContainer {
             UIWidget widget = children.get(i);
 
             if (isWidgetVisible(widget)) {
-                widget.y = (int) (i * (widget.height * 1.2f)) + scrollY;
+                widget.y = (int) ((i + 1) * (widget.height * 1.2f)) + scrollY;
                 widget.render(guiGraphics, mouseX, mouseY, partialTick);
             }
 
-            widget.y = (int) (i * (widget.height * 1.2f)) + scrollY;
-            widget.render(guiGraphics, mouseX, mouseY, partialTick);
         }
         guiGraphics.disableScissor();
-        // Рендерим скроллбар
 
     }
     private boolean isWidgetVisible(UIWidget widget) {

@@ -100,4 +100,13 @@ public class UIContainer extends UIWidget {
         }
         return false;
     }
+
+    @Override
+    public void setY(int newY) {
+        int deltaY = y - newY;
+        children.forEach((widget -> {
+            widget.y = widget.y + deltaY;
+        } ));
+        y = newY;
+    }
 }

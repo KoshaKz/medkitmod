@@ -72,4 +72,11 @@ public abstract class UIWidget {
         this.width = width;
         this.height = height;
     }
+
+    public void setX(int newX) {
+        this.x = newX;
+    }
+    public void setY(int newY) {
+        this.y = newY;
+    }
 }
