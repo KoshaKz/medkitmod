@@ -36,7 +36,7 @@ public class UIScrollableContainer extends UIContainer {
             UIWidget widget = children.get(i);
 
             if (isWidgetVisible(widget)) {
-                widget.y = (int) ((i + 1) * (widget.height * 1.2f)) + scrollY;
+                widget.setY((int) ((i + 1) * (widget.height * 1.2f)) + scrollY);
                 widget.render(guiGraphics, mouseX, mouseY, partialTick);
             }
 
