@@ -6,6 +6,7 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.koshakz.warhelper.WarHelper;
 import org.koshakz.warhelper.utils.Network.Packets.BandagesConfigPacket;
+import org.koshakz.warhelper.utils.Network.Packets.ClientButtonPacket;
 import org.koshakz.warhelper.utils.Network.Packets.TriggerPacket;
 
 public class NetworkHandler {
@@ -33,6 +34,15 @@ public class NetworkHandler {
                 TriggerPacket::encode,
                 TriggerPacket::decode,
                 TriggerPacket::handle
+        );
+
+        // Добавляем новый пакет
+        CHANNEL.registerMessage(
+                packetId++,
+                ClientButtonPacket.class,
+                ClientButtonPacket::encode,
+                ClientButtonPacket::decode,
+                ClientButtonPacket::handle
         );
     }
 }
