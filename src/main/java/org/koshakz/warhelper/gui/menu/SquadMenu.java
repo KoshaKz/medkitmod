@@ -1,6 +1,5 @@
 package org.koshakz.warhelper.gui.menu;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.gui.api.*;
 import org.koshakz.warhelper.gui.okna.*;
@@ -14,7 +13,7 @@ public class SquadMenu extends UICustomMenu {
     protected void init() {
         super.init();
 
-        TeamSelectionWidget teamSelectionWidget = new TeamSelectionWidget(0.02f, 0.1f, 0.23f, 0.75f);
+        SquadSelectionWidget teamSelectionWidget = new SquadSelectionWidget(0.02f, 0.1f, 0.23f, 0.75f);
         teamSelectionWidget.isBackgroundEnable = true;
 
         ClassSelectionWidget classSelectionWidget = new  ClassSelectionWidget(0.285f, 0.1f, 0.23f, 0.3f);
