@@ -103,9 +103,9 @@ public class UIContainer extends UIWidget {
 
     @Override
     public void setY(int newY) {
-        int deltaY = y - newY;
         children.forEach((widget -> {
-            widget.y = widget.y + deltaY;
+            float percentY = (widget.y - y) / (float) height;
+            widget.y = y + (int) (height * percentY);
         } ));
         y = newY;
     }
