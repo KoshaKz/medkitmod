@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UIContainer extends UIWidget {
-    private final List<UIWidget> children = new ArrayList<>();
+    protected final List<UIWidget> children = new ArrayList<>();
 
     public UIContainer(int x, int y, int width, int height) {
         super(x, y, width, height);
@@ -48,6 +48,36 @@ public class UIContainer extends UIWidget {
         // Обрабатываем в обратном порядке (от верхних элементов к нижним)
         for (UIWidget uiWidget : children) {
             if (uiWidget.mouseClicked(mouseX, mouseY, button)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+        for (UIWidget uiWidget : children) {
+            if (uiWidget.mouseScrolled(mouseX, mouseY, delta)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        for (UIWidget widget : children) {
+            if (widget.keyPressed(keyCode, scanCode, modifiers)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean charTyped(char codePoint, int modifiers) {
+        for (UIWidget widget : children) {
+            if (widget.charTyped(codePoint, modifiers)) {
                 return true;
             }
         }

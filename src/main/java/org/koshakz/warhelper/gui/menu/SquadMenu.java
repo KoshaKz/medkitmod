@@ -24,7 +24,7 @@ public class SquadMenu extends UICustomMenu {
         );
 
         UITextField squadNameField = new UITextField(
-                0.1f, 0.2f, 0.8f, 0.1f,  // Немного увеличил высоту поля
+                1, 2, 8, 0,  // Немного увеличил высоту поля
                 Minecraft.getInstance().font
         );
         squadNameField.editBox.setHint(Component.literal("Вводительность"));
@@ -84,11 +84,6 @@ public class SquadMenu extends UICustomMenu {
 
         addChild(centerPanel);
         centerPanel.addChild(classPanel);
-        classPanel.addChild(classTitle);
-        centerPanel.addChild(respawnPanel);
-        respawnPanel.addChild(respawnTitle);
 
-        addChild(mapPanel);
-        mapPanel.addChild(mapTitle);
     }
 }

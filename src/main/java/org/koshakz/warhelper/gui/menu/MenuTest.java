@@ -1,6 +1,8 @@
 package org.koshakz.warhelper.gui.menu;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -16,9 +18,12 @@ public class MenuTest extends UICustomMenu {
     @Override
     protected void init() {
         super.init();
+
+
         // Инициализируем главное меню
-        UIScrollableContainer scrollContainer = new UIScrollableContainer(0.25f, 0.1f,
-                0.5f, 0.7f);
+        UIScrollableContainer scrollContainer = new UIScrollableContainer(0.25f, 0.2f, 0.5f, 0.6f);
+
+        UITextField textField = new UITextField(10,10,100, 50, Minecraft.getInstance().font);
 
         // Добавляем элементы в список
         for (int i = 0; i < 20; i++) {
@@ -31,5 +36,6 @@ public class MenuTest extends UICustomMenu {
             scrollContainer.addChild(button);
         }
         addChild(scrollContainer);
+        addChild(textField);
     }
 }

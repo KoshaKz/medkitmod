@@ -50,6 +50,14 @@ public abstract class UIWidget {
         return false;
     }
 
+    public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+        return false;
+    }
+
+    public boolean keyPressed(int keyCode, int scanCode, int modifiers) { return false; }
+
+    public boolean charTyped(char codePoint, int modifiers)  { return false; }
+
     public boolean isMouseOver(double mouseX, double mouseY) {
         return mouseX >= x && mouseX <= x + width &&
                 mouseY >= y && mouseY <= y + height;
