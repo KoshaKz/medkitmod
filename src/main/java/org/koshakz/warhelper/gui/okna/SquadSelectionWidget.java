@@ -27,7 +27,7 @@ public class SquadSelectionWidget extends UIContainer {
         );
 
         nameField.setMaxLength(16);
-        nameField.setPlaceholder("Введите имя..");
+        nameField.setPlaceholder("имя..");
 
         this.createButton = new UIButton(
                 this,

@@ -1,6 +1,7 @@
 package org.koshakz.warhelper.gui.api;
 
 import net.minecraft.client.gui.GuiGraphics;
+import org.koshakz.warhelper.WarHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,10 +93,7 @@ public class UIContainer extends UIWidget {
 
     @Override
     public void setY(int newY) {
-        children.forEach((widget -> {
-            float percentY = (widget.y - y) / (float) height;
-            widget.y = y + (int) (height * percentY);
-        } ));
+        children.forEach((widget) -> widget.setY(newY + (int) (height * ((widget.y - y) / (float) height))));
         y = newY;
     }
 }

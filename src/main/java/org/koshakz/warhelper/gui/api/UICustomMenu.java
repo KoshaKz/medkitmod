@@ -37,6 +37,7 @@ public class UICustomMenu extends Screen {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+
         return frame.mouseScrolled(mouseX, mouseY, delta);
 
     }

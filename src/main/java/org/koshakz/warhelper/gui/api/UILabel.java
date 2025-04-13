@@ -14,7 +14,7 @@ public class UILabel extends UIWidget {
     private final boolean isCentre;
 
     private float scaleX;
-    private float scaleY;
+    public float scaleY;
 
     public UILabel(int x, int y, Component text, int color) {
         super(x, y, 0, 0);
@@ -33,8 +33,6 @@ public class UILabel extends UIWidget {
         this.font = Minecraft.getInstance().font;
         this.scaleX = scaleX * (screen.width / 1920f);
         this.scaleY = scaleY * (screen.height / 1080f);
-        this.x = (int) (this.x / this.scaleX);
-        this.y = (int) (this.y / this.scaleY);
         this.isCentre = isCentre;
     }
 
@@ -46,8 +44,6 @@ public class UILabel extends UIWidget {
         this.font = Minecraft.getInstance().font;
         this.scaleX = scaleX * (screen.width / 1920f);
         this.scaleY = scaleY * (screen.height / 1080f);
-        this.x = (int) (this.x / this.scaleX);
-        this.y = (int) (this.y / this.scaleY);
         this.isCentre = isCentre;
         WarHelper.LOGGER.warn((screen.width / 1920f) + " " + (screen.height / 1080f));
     }
@@ -60,21 +56,27 @@ public class UILabel extends UIWidget {
             guiGraphics.drawCenteredString(
                     font,
                     text,
-                    x,
-                    y,
+                    (int) (x / scaleX),
+                    (int) (y / scaleY),
                     color
             );
         } else {
             guiGraphics.drawString(
                     font,
                     text,
-                    x,
-                    y,
+                    (int) (x / scaleX),
+                    (int) (y / scaleY),
                     color,
                     true // dropShadow
             );
         }
         guiGraphics.pose().popPose();
+    }
+
+    @Override
+    public void setY(int newY) {
+        this.y = newY;
+        WarHelper.LOGGER.warn(y + " " + newY + " " + this.scaleY);
     }
 
     public void changeText(String newText) {

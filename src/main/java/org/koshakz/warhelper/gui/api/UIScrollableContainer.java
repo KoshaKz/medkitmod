@@ -33,10 +33,11 @@ public class UIScrollableContainer extends UIContainer {
 
         // Рендерим видимые виджеты
         for (int i = 0; i < children.size(); i++) {
+
             UIWidget widget = children.get(i);
+            widget.setY((int) ((i + 1) * (widget.height * 1.2f)) + scrollY);
 
             if (isWidgetVisible(widget)) {
-                widget.setY((int) ((i + 1) * (widget.height * 1.2f)) + scrollY);
                 widget.render(guiGraphics, mouseX, mouseY, partialTick);
             }
 
