@@ -7,7 +7,13 @@ import net.minecraft.client.gui.screens.Screen;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class UIContainer extends UIWidget {
+
+    public boolean isBackgroundEnable;
+    public int color = 0x80FFFFFF;
+
     protected final List<UIWidget> children = new ArrayList<>();
 
     public UIContainer(int x, int y, int width, int height) {
@@ -38,6 +44,13 @@ public class UIContainer extends UIWidget {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        if(isBackgroundEnable){
+            guiGraphics.fill(
+                    this.x, this.y,
+                    this.x + this.width, this.y + this.height,
+                    color
+            );
+        }
         for (UIWidget child : children) {
             child.render(guiGraphics, mouseX, mouseY, partialTick);
         }

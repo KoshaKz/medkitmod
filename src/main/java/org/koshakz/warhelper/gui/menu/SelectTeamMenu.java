@@ -20,8 +20,6 @@ public class SelectTeamMenu extends UICustomMenu {
         TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.6f, "red", "redtext");
 
 
-
-
         UILabel title = new UILabel(
                 0.5f, 0.1f, 4.0f, 4.0f,
                 Component.literal("Выбор команды"), 0xFFFFFF, true
