@@ -53,7 +53,7 @@ public class UIScrollableContainer extends UIContainer {
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
 
         if (isMouseOver(mouseX, mouseY)) {
-            scrollY = (scrollY - (int) (delta * 5));
+            scrollY = (scrollY - (int) (delta * -10));
             return true;
         }
         return false;
