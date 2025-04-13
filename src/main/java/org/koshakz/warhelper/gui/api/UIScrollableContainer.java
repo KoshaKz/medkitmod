@@ -21,6 +21,11 @@ public class UIScrollableContainer extends UIContainer {
         super(x, y, width, height);
     }
 
+
+    public UIScrollableContainer(UIWidget parent, float x, float y, float width, float height) {
+        super(parent, x, y, width, height);
+    }
+
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         // Включаем ножницы для обрезки содержимого
