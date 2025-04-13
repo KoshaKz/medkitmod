@@ -15,9 +15,9 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.koshakz.warhelper.block.ModBlocks;
 import org.koshakz.warhelper.item.ModCreativeModTabs;
 import org.koshakz.warhelper.item.ModItems;
-import org.koshakz.warhelper.utils.ClientTriggerSystem;
+import org.koshakz.warhelper.utils.Network.ClientTriggerSystem;
 import org.koshakz.warhelper.utils.ModConfigHandler;
-import org.koshakz.warhelper.utils.NetworkHandler;
+import org.koshakz.warhelper.utils.Network.NetworkHandler;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file

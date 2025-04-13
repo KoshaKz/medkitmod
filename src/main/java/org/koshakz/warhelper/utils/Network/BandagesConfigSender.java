@@ -1,10 +1,11 @@
-package org.koshakz.warhelper.utils;
+package org.koshakz.warhelper.utils.Network;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.koshakz.warhelper.item.custom.Bandages;
+import org.koshakz.warhelper.utils.Network.Packets.BandagesConfigPacket;
 
 @Mod.EventBusSubscriber
 public class BandagesConfigSender {

@@ -4,6 +4,8 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkDirection;
+import org.koshakz.warhelper.utils.Network.NetworkHandler;
+import org.koshakz.warhelper.utils.Network.Packets.TriggerPacket;
 
 public class PlayerUtils {
     public static boolean HasTag(LivingEntity entity, String tag) {

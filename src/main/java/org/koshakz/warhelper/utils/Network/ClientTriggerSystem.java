@@ -1,4 +1,4 @@
-package org.koshakz.warhelper.utils;
+package org.koshakz.warhelper.utils.Network;
 
 import net.minecraft.client.Minecraft;
 import org.koshakz.warhelper.gui.menu.MenuTest;
