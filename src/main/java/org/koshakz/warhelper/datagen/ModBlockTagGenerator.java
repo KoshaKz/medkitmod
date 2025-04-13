@@ -6,6 +6,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.koshakz.warhelper.WarHelper;
 import org.koshakz.warhelper.block.ModBlocks;
@@ -18,7 +19,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider provider) {
+    protected void addTags(HolderLookup.@NotNull Provider provider) {
         //this.tag(BlockTags.GUARDED_BY_PIGLINS).add(ModBlocks.TEST_BLOCK.get());
         //this.tag(BlockTags.DIRT).add(ModBlocks.TEST_BLOCK.get());
         //this.tag(BlockTags.INFINIBURN_NETHER).add(ModBlocks.TEST_BLOCK.get());

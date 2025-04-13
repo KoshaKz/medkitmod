@@ -1,14 +1,8 @@
 package org.koshakz.warhelper.gui.menu;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.EditBox;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import org.koshakz.warhelper.gui.api.*;
-import org.koshakz.warhelper.gui.okna.SquadSelectWidget;
-import org.koshakz.warhelper.gui.okna.TestWidget;
 
 public class MenuTest extends UICustomMenu {
     public MenuTest() {

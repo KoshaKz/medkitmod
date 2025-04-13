@@ -1,12 +1,9 @@
 package org.koshakz.warhelper.gui.api;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class UIContainer extends UIWidget {
@@ -15,14 +12,6 @@ public class UIContainer extends UIWidget {
     public int color = 0x80FFFFFF;
 
     protected final List<UIWidget> children = new ArrayList<>();
-
-    public UIContainer(int x, int y, int width, int height) {
-        super(x, y, width, height);
-    }
-
-    public UIContainer(int x, int y) {
-        super(x, y);
-    }
 
     public UIContainer() {
         super(0, 0);

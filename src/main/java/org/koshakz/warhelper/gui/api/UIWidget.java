@@ -17,7 +17,6 @@ public abstract class UIWidget {
         this.width = width;
         this.height = height;
     }
-    public UIWidget() {}
 
     public UIWidget(int x, int y) {
         this.x = x;

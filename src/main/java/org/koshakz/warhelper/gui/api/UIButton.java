@@ -2,34 +2,22 @@ package org.koshakz.warhelper.gui.api;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.client.resources.sounds.SoundInstance;
-import net.minecraft.client.sounds.SoundManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraftforge.common.data.SoundDefinition;
 import org.koshakz.warhelper.WarHelper;
 
 public class UIButton extends UIWidget {
     private ResourceLocation texture;
     private final Runnable onClick;
-    private SimpleSoundInstance soundClick;
-
-    public UIButton(int x, int y, int width, int height,
-                    String textureName, Runnable onClick) {
-        super(x, y, width, height);
-        this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");
-        this.onClick = onClick;
-        this.soundClick = SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F);
-    }
+    private final SimpleSoundInstance soundClick;
 
     public UIButton(float percentX, float percentY, float percentWidth, float percentHeight,
                     String textureName, Runnable onClick) {
         super(percentX, percentY, percentWidth, percentHeight);//егор пидорас
         this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");
         this.onClick = onClick;
+        this.soundClick = SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F);
     }
 
     public UIButton(UIWidget parent, float percentX, float percentY, float percentWidth, float percentHeight,
@@ -37,6 +25,7 @@ public class UIButton extends UIWidget {
         super(parent, percentX, percentY, percentWidth, percentHeight);
         this.texture = new ResourceLocation(WarHelper.MOD_ID, "textures/gui/" + textureName + ".png");
         this.onClick = onClick;
+        this.soundClick = SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F);
     }
 
 
@@ -54,9 +43,7 @@ public class UIButton extends UIWidget {
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (isMouseOver(mouseX, mouseY)) {
-            Minecraft.getInstance().getSoundManager().play(
-                    SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F)
-            );
+            Minecraft.getInstance().getSoundManager().play(soundClick);
             onClick.run();
             return true;
         }
