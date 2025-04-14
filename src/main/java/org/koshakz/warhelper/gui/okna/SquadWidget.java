@@ -7,28 +7,50 @@ import org.koshakz.warhelper.gui.api.UILabel;
 import org.koshakz.warhelper.gui.api.UIWidget;
 
 public class SquadWidget extends UIContainer {
+
+    private final UILabel squadName;
+    private final UILabel squadCount;
     private final UIButton button;
-    private final UIButton button2;
-    private final UILabel text;
-    private final UILabel amount;
 
     public SquadWidget(UIWidget parent, float x, float y, float width, float height) {
         super(parent, x, y, width, height);
 
-        button = new UIButton(this,0.1f, 0f, 0.4f, 1f, "1", () -> System.out.println("Создание отряда"));
+        // Название отряда — слева
+        // Название отряда (слева)
+        squadName = new UILabel(
+                this,
+                0.03f,        // X: 3% от левого края
+                0.5f - (0.2f / 2),  // Y: центр (50%) - половина высоты кнопки (20% / 2 = 10%)
+                2.6f, 2.6f,       // Размер текста: 4% (ширина и высота шрифта)
+                Component.literal("Отряд 123123"),
+                0xFFFFFF,
+                false
+        );
 
-        button2 = new UIButton(this,0.5f, 0.2f, 0.4f, 0.6f, "da", () -> System.out.println("Создание отряда"));
+// Кнопка (центр)
+        button = new UIButton(
+                this,
+                0.5f, // X: центрирование по горизонтали
+                0.5f - (0.2f / 2),  // Y: центр (50%) - половина высоты кнопки (20% / 2 = 10%)
+                0.25f,               // ширина: 25%
+                0.2f,                // высота: 20%
+                "button_texture",
+                () -> System.out.println("хуйхуй")
+        );
 
-        text = new UILabel(this, 0.1f, 0.01f, 2f, 2f,
-                Component.literal("test"), 0xFFFFFF, false);
+// Счетчик "1/x" (справа)
+        squadCount = new UILabel(
+                this,
+                0.78f,         // X: 78% от левого края
+                0.5f - (0.2f / 2),  // Y: центр (50%) - половина высоты кнопки (20% / 2 = 10%)
+                2.6f, 2.6f,        // Размер текста: 4%
+                Component.literal("1/x"),
+                0xFFFFFF,
+                false
+        );
 
-        amount = new UILabel(this, 0.01f, 0.01f, 3f, 3f,
-                Component.literal("test"), 0xFFFFFF, false);
-
-        addChild(amount);
+        addChild(squadName);
         addChild(button);
-        addChild(button2);
-        addChild(text);
-
+        addChild(squadCount);
     }
 }

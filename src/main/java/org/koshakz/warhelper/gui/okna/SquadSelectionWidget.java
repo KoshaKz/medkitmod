@@ -29,9 +29,9 @@ public class SquadSelectionWidget extends UIContainer {
         );
 
         nameField.setMaxLength(16);
-        nameField.setPlaceholder("имя..");
+        nameField.setPlaceholder("Имя..");
 
-        this.createButton = new UIButton(
+        createButton = new UIButton(
                 this,
                 0.6667f,    // x: ~66.67% слева
                 0.9225f,    // y: 25% сверху
@@ -40,14 +40,18 @@ public class SquadSelectionWidget extends UIContainer {
                 "qwasdf",
                 () -> NetworkHandler.sendPacketOnServet(new ClientButtonPacket(packet)));
 
-        scrollableContainer = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.88f);
+        scrollableContainer = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.85f);
 
-        scrollableContainer.addChild(new UIButton(scrollableContainer, 0.1f, 0f, 0.8f, 0.2f, "123123", () -> System.out.println("Создание отряда")));
-        scrollableContainer.addChild(new UIButton(scrollableContainer, 0.1f, 0f, 0.8f, 0.2f, "test_test", () -> System.out.println("Создание отряда")));
-        scrollableContainer.addChild(new UIButton(scrollableContainer, 0.1f, 0f, 0.8f, 0.2f, "test_test", () -> System.out.println("Создание отряда")));
-        scrollableContainer.addChild(new UIButton(scrollableContainer, 0.1f, 0f, 0.8f, 0.2f, "test_test", () -> System.out.println("Создание отряда")));
-        scrollableContainer.addChild(new SquadWidget(scrollableContainer, 0f, 0.1f, 1f,0.2f));
-        scrollableContainer.addChild(new SquadWidget(scrollableContainer, 0f, 0.1f, 1f,0.2f));
+        SquadWidget squadWidget = new SquadWidget(scrollableContainer, 0f, 0.1f, 1f,0.15f);
+        squadWidget.isBackgroundEnable = true;
+
+        scrollableContainer.addChild(squadWidget);
+        scrollableContainer.addChild(squadWidget);
+        scrollableContainer.addChild(squadWidget);
+        scrollableContainer.addChild(squadWidget);
+        scrollableContainer.addChild(squadWidget);
+        scrollableContainer.addChild(squadWidget);
+        scrollableContainer.addChild(squadWidget);
 
         addChild(title);
         addChild(nameField);

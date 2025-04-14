@@ -13,14 +13,14 @@ public class TeamWidget extends UIContainer {
 
     public TeamWidget(float x, float y, float width, float height, String teamTexture, String teamName, Team team) {
         super(x, y, width, height);
-        this.uiLabel = new UILabel(this, .5f, .6f, 2f, 2f, Component.literal(teamName), 0xFFFFFF, true);
+        uiLabel = new UILabel(this, .5f, .6f, 2f, 2f, Component.literal(teamName), 0xFFFFFF, true);
 
-        this.selectTeamButton = new UIButton(
+        selectTeamButton = new UIButton(
                 this, 0f, 0f, 1f, 0.5f,
                 teamTexture,
                 () -> NetworkHandler.sendPacketOnServet(new ClientSelectTeamPacket(team)));
 
-        this.addChild(uiLabel);
-        this.addChild(selectTeamButton);
+        addChild(uiLabel);
+        addChild(selectTeamButton);
     }
 }

@@ -14,6 +14,8 @@ public class SpawnPointWidget extends UIContainer {
                 Component.literal("ВЫБРАТЬ ТОЧКУ ВОЗРОЖДЕНИЯ"), 0xFFFFFF, false
         );
 
+        isBackgroundEnable = true;
+
         UIButton penis = new UIButton(
                 this,
                 0.6f,
