@@ -15,7 +15,7 @@ public class SquadSelectionWidget extends UIContainer {
         super(x, y, width, height);
 
         UILabel title = new UILabel(
-                this, 0.01f, 0.01f, 2.5f, 2.5f,
+                this, 0.02f, 0.02f, 2.5f, 2.5f,
                 Component.literal("ОТРЯДЫ"), 0xFFFFFF, false
         );
 

@@ -76,7 +76,7 @@ public class UILabel extends UIWidget {
     @Override
     public void setY(int newY) {
         this.y = newY;
-        WarHelper.LOGGER.warn(y + " " + newY + " " + this.scaleY);
+        //WarHelper.LOGGER.warn(y + " " + newY + " " + this.scaleY);
     }
 
     public void changeText(String newText) {
