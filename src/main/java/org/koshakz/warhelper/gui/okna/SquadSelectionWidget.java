@@ -38,7 +38,7 @@ public class SquadSelectionWidget extends UIContainer {
                 0.2833f,    // ширина: ~28.33%
                 0.05f,      // высота: 5%
                 "qwasdf",
-                () -> NetworkHandler.CHANNEL.sendToServer(new ClientButtonPacket(packet)));
+                () -> NetworkHandler.sendPacketOnServet(new ClientButtonPacket(packet)));
 
         scrollableContainer = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.88f);
 

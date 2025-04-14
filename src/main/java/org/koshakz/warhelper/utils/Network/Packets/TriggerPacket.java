@@ -6,7 +6,7 @@ import org.koshakz.warhelper.utils.Network.ClientTriggerSystem;
 
 import java.util.function.Supplier;
 
-public class TriggerPacket {
+public class TriggerPacket extends Packet {
     private final String triggerId;
 
     public TriggerPacket(String triggerId) {

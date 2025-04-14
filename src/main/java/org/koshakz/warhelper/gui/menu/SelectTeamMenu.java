@@ -1,10 +1,14 @@
 package org.koshakz.warhelper.gui.menu;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import org.koshakz.warhelper.game.Team;
 import org.koshakz.warhelper.gui.api.UIButton;
 import org.koshakz.warhelper.gui.api.UICustomMenu;
 import org.koshakz.warhelper.gui.api.UILabel;
 import org.koshakz.warhelper.gui.okna.TeamWidget;
+import org.koshakz.warhelper.utils.Network.NetworkHandler;
+import org.koshakz.warhelper.utils.Network.Packets.ClientSelectTeamPacket;
 
 
 public class SelectTeamMenu extends UICustomMenu {
@@ -16,8 +20,8 @@ public class SelectTeamMenu extends UICustomMenu {
     protected void init() {
         super.init();
         // Инициализируем главное меню
-        TeamWidget greenTeamWidget = new TeamWidget(0.1f, 0.37f, 0.3f, 0.6f, "test_test", "greentext", "green");
-        TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.6f, "red", "redtext", "red");
+        TeamWidget greenTeamWidget = new TeamWidget(0.1f, 0.37f, 0.3f, 0.6f, "test_test", "greentext", Team.GREEN);
+        TeamWidget redTeamWidget = new TeamWidget(0.6f, 0.37f , 0.3f, 0.6f, "red", "redtext", Team.RED);
 
 
         UILabel title = new UILabel(
@@ -31,7 +35,9 @@ public class SelectTeamMenu extends UICustomMenu {
                 0.35f,              // ширина: 35% экрана
                 0.08f,              // высота: 8% экрана
                 "da",
-                () -> {}
+                () -> {
+                    NetworkHandler.sendPacketOnServet(new ClientSelectTeamPacket(Team.SPECTATOR));
+                }
         ));
         addChild(greenTeamWidget);
         addChild(redTeamWidget);

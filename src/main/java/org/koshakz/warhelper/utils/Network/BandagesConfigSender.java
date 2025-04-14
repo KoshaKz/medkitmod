@@ -12,11 +12,7 @@ public class BandagesConfigSender {
     @SubscribeEvent
     public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            NetworkHandler.CHANNEL.sendTo(
-                    new BandagesConfigPacket(Bandages.USE_DURATION),
-                    player.connection.connection,
-                    net.minecraftforge.network.NetworkDirection.PLAY_TO_CLIENT
-            );
+            NetworkHandler.sendPacketOnClient(player, new BandagesConfigPacket(Bandages.USE_DURATION));
         }
     }
 }

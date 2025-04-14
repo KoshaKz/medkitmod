@@ -6,7 +6,7 @@ import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class ClientButtonPacket {
+public class ClientButtonPacket extends Packet{
     private final String buttonId;
 
     public ClientButtonPacket(String buttonId) {

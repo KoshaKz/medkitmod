@@ -14,13 +14,7 @@ public class PlayerUtils {
 
 
     public static void sendPlayerTrigger(Player player, String triggerId) {
-        if (player instanceof ServerPlayer serverPlayer) {
-            NetworkHandler.CHANNEL.sendTo(
-                    new TriggerPacket(triggerId),
-                    serverPlayer.connection.connection,
-                    NetworkDirection.PLAY_TO_CLIENT
-            );
-        }
+       NetworkHandler.sendPacketOnClient(player, new TriggerPacket(triggerId));
     }
 }
 

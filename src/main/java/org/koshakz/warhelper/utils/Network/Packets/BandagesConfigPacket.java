@@ -6,7 +6,7 @@ import org.koshakz.warhelper.item.custom.Bandages;
 
 import java.util.function.Supplier;
 
-public class BandagesConfigPacket {
+public class BandagesConfigPacket extends Packet {
 
     public final int USE_DURATION;
 
