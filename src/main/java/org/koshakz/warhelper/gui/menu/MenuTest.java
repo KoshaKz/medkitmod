@@ -19,6 +19,8 @@ public class MenuTest extends UICustomMenu {
 
         UITextField textField = new UITextField(10,10,100, 50, Minecraft.getInstance().font);
 
+        scrollContainer.addChild(new UILabel(0.1f, 0f, 1f, 1f, Component.literal("пикол"),0xFD9229, false));
+
         // Добавляем элементы в список
         for (int i = 0; i < 20; i++) {
             UIButton button = new UIButton(

@@ -40,10 +40,13 @@ public class SquadSelectionWidget extends UIContainer {
                 "qwasdf",
                 () -> NetworkHandler.CHANNEL.sendToServer(new ClientButtonPacket(packet)));
 
-        scrollableContainer = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.9f);
+        scrollableContainer = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.88f);
 
         scrollableContainer.addChild(new UIButton(scrollableContainer, 0.1f, 0f, 0.8f, 0.2f, "123123", () -> System.out.println("Создание отряда")));
         scrollableContainer.addChild(new UIButton(scrollableContainer, 0.1f, 0f, 0.8f, 0.2f, "test_test", () -> System.out.println("Создание отряда")));
+        scrollableContainer.addChild(new UIButton(scrollableContainer, 0.1f, 0f, 0.8f, 0.2f, "test_test", () -> System.out.println("Создание отряда")));
+        scrollableContainer.addChild(new UIButton(scrollableContainer, 0.1f, 0f, 0.8f, 0.2f, "test_test", () -> System.out.println("Создание отряда")));
+        scrollableContainer.addChild(new SquadWidget(scrollableContainer, 0f, 0.1f, 1f,0.2f));
         scrollableContainer.addChild(new SquadWidget(scrollableContainer, 0f, 0.1f, 1f,0.2f));
 
         addChild(title);

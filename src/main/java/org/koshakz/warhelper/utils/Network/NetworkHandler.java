@@ -44,5 +44,13 @@ public class NetworkHandler {
                 ClientButtonPacket::decode,
                 ClientButtonPacket::handle
         );
+
+        CHANNEL.registerMessage(
+                packetId++,
+                ClientButtonPacket.class,
+                ClientButtonPacket::encode,
+                ClientButtonPacket::decode,
+                ClientButtonPacket::handle
+        );
     }
 }

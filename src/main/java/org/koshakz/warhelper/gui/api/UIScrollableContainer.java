@@ -16,6 +16,7 @@ import org.koshakz.warhelper.WarHelper;
 public class UIScrollableContainer extends UIContainer {
 
     private int scrollY;
+    private int contentHeight;
 
     public UIScrollableContainer(float x, float y, float width, float height) {
         super(x, y, width, height);
@@ -29,7 +30,7 @@ public class UIScrollableContainer extends UIContainer {
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         // Включаем ножницы для обрезки содержимого
-        guiGraphics.enableScissor(this.x, this.y, this.x + this.width, this.y + this.width);
+        guiGraphics.enableScissor(x, y, x + width, y + height);
 
         // Рендерим видимые виджеты
         for (int i = 0; i < children.size(); i++) {
@@ -51,12 +52,10 @@ public class UIScrollableContainer extends UIContainer {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
-
-        if (isMouseOver(mouseX, mouseY)) {
-            scrollY = (scrollY - (int) (delta * -10));
-            return true;
-        }
-        return false;
+        int newScroll = (scrollY - (int) (delta * -10));
+        if (contentHeight + newScroll < height || newScroll > 20 ) {return false;}
+        scrollY = newScroll;
+        return true;
     }
 
     @Override
@@ -70,5 +69,12 @@ public class UIScrollableContainer extends UIContainer {
             }
         }
         return false;
+    }
+
+    public void addChild(UIWidget widget) {
+        super.addChild(widget);
+        contentHeight = children.stream()
+                .mapToInt(w -> (int) (w.height * 1.2f))
+                .sum();
     }
 }

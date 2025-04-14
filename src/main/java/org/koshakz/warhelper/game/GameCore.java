@@ -19,14 +19,19 @@ public class GameCore {
     private static MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
 
 
-
-
-
     public static void StatGame() {
         PlayerList playerList = server.getPlayerList();
         players.forEach(player ->
                 PlayerUtils.sendPlayerTrigger(player, "OPEN_TEAM")
         );
+    }
+
+    public static void ChoseTeam(String name, Team team) {
+        WarPlayer player = players.stream().filter(p -> p.getName().toString().equals(name)).findFirst().orElse(null);
+        if (player == null) return;
+        player.team = team;
+
+        player.addTag(team.toString());
     }
 
 
