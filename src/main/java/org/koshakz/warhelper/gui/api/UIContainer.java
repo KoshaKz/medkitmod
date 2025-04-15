@@ -64,7 +64,7 @@ public class UIContainer extends UIWidget {
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
         for (UIWidget uiWidget : children) {
-            if (uiWidget.mouseScrolled(mouseX, mouseY, delta)) {
+            if (uiWidget.isMouseOver(mouseX, mouseY) && uiWidget.mouseScrolled(mouseX, mouseY, delta)) {
                 return true;
             }
         }

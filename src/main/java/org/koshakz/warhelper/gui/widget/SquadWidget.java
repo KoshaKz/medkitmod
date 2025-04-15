@@ -1,4 +1,4 @@
-package org.koshakz.warhelper.gui.okna;
+package org.koshakz.warhelper.gui.widget;
 
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.gui.api.*;

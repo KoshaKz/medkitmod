@@ -6,6 +6,7 @@ import com.mojang.brigadier.builder.ArgumentBuilder;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.world.entity.player.Player;
+import org.koshakz.warhelper.game.GameCore;
 import org.koshakz.warhelper.utils.PlayerUtils;
 
 public class ChangeGamestateCommand{
@@ -24,6 +25,9 @@ public class ChangeGamestateCommand{
     private static int execute(CommandSourceStack source, String arg1) {
         for (Player player : source.getLevel().players()) {
             switch (arg1) {
+                case "start":
+                    GameCore.StatGame();
+                    break;
                 case "1":
                     PlayerUtils.sendPlayerTrigger(player, "OPEN_SELECT_TEAM");
                     break;

@@ -1,4 +1,4 @@
-package org.koshakz.warhelper.gui.okna;
+package org.koshakz.warhelper.gui.widget;
 
 import org.koshakz.warhelper.gui.api.UIContainer;
 import org.koshakz.warhelper.gui.api.UIImage;

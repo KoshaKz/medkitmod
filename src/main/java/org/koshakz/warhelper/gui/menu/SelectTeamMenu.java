@@ -1,12 +1,12 @@
 package org.koshakz.warhelper.gui.menu;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.game.Team;
+import org.koshakz.warhelper.gui.GuiHandler;
 import org.koshakz.warhelper.gui.api.UIButton;
 import org.koshakz.warhelper.gui.api.UICustomMenu;
 import org.koshakz.warhelper.gui.api.UILabel;
-import org.koshakz.warhelper.gui.okna.TeamWidget;
+import org.koshakz.warhelper.gui.widget.TeamWidget;
 import org.koshakz.warhelper.utils.Network.NetworkHandler;
 import org.koshakz.warhelper.utils.Network.Packets.ClientSelectTeamPacket;
 
@@ -30,14 +30,9 @@ public class SelectTeamMenu extends UICustomMenu {
         );
 
         addChild(new UIButton(
-                (1f - 0.35f) / 2f,  // X позиция: (1 - ширина)/2 для центрирования
-                0.9f,               // Y позиция: 90% от верха
-                0.35f,              // ширина: 35% экрана
-                0.08f,              // высота: 8% экрана
+                .325f, .9f,.35f,.08f,
                 "da",
-                () -> {
-                    NetworkHandler.sendPacketOnServet(new ClientSelectTeamPacket(Team.SPECTATOR));
-                }
+                () -> GuiHandler.SelectTeamClick(Team.SPECTATOR)
         ));
         addChild(greenTeamWidget);
         addChild(redTeamWidget);

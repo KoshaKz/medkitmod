@@ -1,11 +1,7 @@
-package org.koshakz.warhelper.gui.okna;
+package org.koshakz.warhelper.gui.widget;
 
 import net.minecraft.network.chat.Component;
-import org.koshakz.warhelper.game.Team;
 import org.koshakz.warhelper.gui.api.*;
-import org.koshakz.warhelper.utils.Network.NetworkHandler;
-import org.koshakz.warhelper.utils.Network.Packets.ClientButtonPacket;
-import org.koshakz.warhelper.utils.Network.Packets.ClientSelectTeamPacket;
 
 public class SquadTextWidget extends UIContainer {
     private final UILabel squadName;

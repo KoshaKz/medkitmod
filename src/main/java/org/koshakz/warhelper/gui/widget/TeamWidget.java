@@ -1,11 +1,9 @@
-package org.koshakz.warhelper.gui.okna;
+package org.koshakz.warhelper.gui.widget;
 
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.game.Team;
+import org.koshakz.warhelper.gui.GuiHandler;
 import org.koshakz.warhelper.gui.api.*;
-import org.koshakz.warhelper.utils.Network.NetworkHandler;
-import org.koshakz.warhelper.utils.Network.Packets.ClientButtonPacket;
-import org.koshakz.warhelper.utils.Network.Packets.ClientSelectTeamPacket;
 
 public class TeamWidget extends UIContainer {
     private final UIButton selectTeamButton;
@@ -16,9 +14,11 @@ public class TeamWidget extends UIContainer {
         uiLabel = new UILabel(this, .5f, .6f, 2f, 2f, Component.literal(teamName), 0xFFFFFF, true);
 
         selectTeamButton = new UIButton(
-                this, 0f, 0f, 1f, 0.5f,
+                this,
+                0f, 0f, 1f, 0.5f,
                 teamTexture,
-                () -> NetworkHandler.sendPacketOnServet(new ClientSelectTeamPacket(team)));
+                () -> GuiHandler.SelectTeamClick(team)
+        );
 
         addChild(uiLabel);
         addChild(selectTeamButton);

@@ -12,6 +12,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.jline.utils.Log;
 import org.koshakz.warhelper.block.ModBlocks;
 import org.koshakz.warhelper.item.ModCreativeModTabs;
 import org.koshakz.warhelper.item.ModItems;
@@ -63,5 +64,9 @@ public class WarHelper {
         public static void onClientSetup(FMLClientSetupEvent event) {
             ClientTriggerSystem.init();
         }
+    }
+
+    public static void devLog(String massage) {
+        LOGGER.info("[DEV_LOG] {}", massage);
     }
 }
