@@ -7,8 +7,6 @@ import org.koshakz.warhelper.gui.api.UIButton;
 import org.koshakz.warhelper.gui.api.UICustomMenu;
 import org.koshakz.warhelper.gui.api.UILabel;
 import org.koshakz.warhelper.gui.widget.TeamWidget;
-import org.koshakz.warhelper.utils.Network.NetworkHandler;
-import org.koshakz.warhelper.utils.Network.Packets.ClientSelectTeamPacket;
 
 
 public class SelectTeamMenu extends UICustomMenu {

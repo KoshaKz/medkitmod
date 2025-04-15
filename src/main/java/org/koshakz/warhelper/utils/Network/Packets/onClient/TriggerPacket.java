@@ -1,8 +1,9 @@
-package org.koshakz.warhelper.utils.Network.Packets;
+package org.koshakz.warhelper.utils.Network.Packets.onClient;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 import org.koshakz.warhelper.utils.Network.ClientTriggerSystem;
+import org.koshakz.warhelper.utils.Network.Packets.Packet;
 
 import java.util.function.Supplier;
 

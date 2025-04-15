@@ -3,7 +3,7 @@ package org.koshakz.warhelper.gui.api;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UICheckboxGroup {
+public class UICheckboxGroup { //Опасно
     private final List<UICheckbox> checkboxes = new ArrayList<>();
 
     public void add(UICheckbox checkbox) {

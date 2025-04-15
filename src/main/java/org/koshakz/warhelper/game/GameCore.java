@@ -35,23 +35,24 @@ public class GameCore {
         );
     }
 
+    public static void CreateSuad(UUID ownerUUID, String name) {
+        squads.add(
+                new Squad(getPlayer(ownerUUID), name)
+        );
+    }
+
     public static void ChoseTeam(UUID uuid, Team team) {
-            players.stream()
-                    .filter(p -> p.player.getUUID().equals(uuid))
-                    .findFirst()
-                    .ifPresent(warPlayer -> {
-                        ServerPlayer player = warPlayer.player;
-                        WarHelper.devLog(warPlayer.player.getName().getString());
-                        server.getScoreboard().addPlayerToTeam(warPlayer.player.getScoreboardName(), getTeam(team.toString()));
+        WarPlayer warPlayer = getPlayer(uuid);
+        warPlayer.team = team;
+        server.getScoreboard().addPlayerToTeam(warPlayer.player.getScoreboardName(), getTeam(team.toString()));
 
-                        if (team.equals(Team.SPECTATOR)) {
-                            WarHelper.devLog("spec");
-                            warPlayer.player.gameMode.changeGameModeForPlayer(GameType.SPECTATOR);
-                        }
-
-                        PlayerUtils.sendPlayerTrigger(player, "OPEN_RESPAWN");
-                    });
+        if (team.equals(Team.SPECTATOR)) {
+            warPlayer.player.setGameMode(GameType.SPECTATOR);
         }
+
+        PlayerUtils.sendPlayerTrigger(warPlayer.player, "OPEN_RESPAWN");
+
+    }
 
     public static void addAllOnlinePlayers(MinecraftServer server) {
         server.getPlayerList().getPlayers().forEach(serverPlayer -> {
@@ -72,6 +73,12 @@ public class GameCore {
     }
 
 
+    public static WarPlayer getPlayer(UUID playerUUID) {
+        return players.stream()
+                .filter(p -> p.player.getUUID().equals(playerUUID))
+                .findFirst()
+                .orElse(null);
 
+    }
 
 }

@@ -9,7 +9,7 @@ import org.koshakz.warhelper.WarHelper;
 
 import java.util.function.Consumer;
 
-public class UICheckbox extends UIWidget {
+public class UICheckbox extends UIWidget { //Опасно
     private ResourceLocation texture;
     private boolean checked;
     private final Consumer<Boolean> onToggle;

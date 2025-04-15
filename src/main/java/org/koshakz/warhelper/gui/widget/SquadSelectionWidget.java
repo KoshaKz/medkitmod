@@ -4,12 +4,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.gui.api.*;
 import org.koshakz.warhelper.utils.Network.NetworkHandler;
-import org.koshakz.warhelper.utils.Network.Packets.ClientButtonPacket;
+import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientButtonPacket;
 
 public class SquadSelectionWidget extends UIContainer {
     private final UITextField nameField;
     private final UIButton createButton;
-    private final UIScrollableContainer scrollableContainer;
+    public final UIScrollableContainer squadsWidgets;
 
     public SquadSelectionWidget(float x, float y, float width, float height, String packet) {
         super(x, y, width, height);
@@ -40,22 +40,22 @@ public class SquadSelectionWidget extends UIContainer {
                 "qwasdf",
                 () -> NetworkHandler.sendPacketOnServet(new ClientButtonPacket(packet)));
 
-        scrollableContainer = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.85f);
+        squadsWidgets = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.85f);
 
-        SquadWidget squadWidget = new SquadWidget(scrollableContainer, 0f, 0.1f, 1f,0.15f);
+        SquadWidget squadWidget = new SquadWidget(squadsWidgets, 0f, 0.1f, 1f,0.15f);
         squadWidget.isBackgroundEnable = true;
 
-        scrollableContainer.addChild(squadWidget);
-        scrollableContainer.addChild(squadWidget);
-        scrollableContainer.addChild(squadWidget);
-        scrollableContainer.addChild(squadWidget);
-        scrollableContainer.addChild(squadWidget);
-        scrollableContainer.addChild(squadWidget);
-        scrollableContainer.addChild(squadWidget);
+        squadsWidgets.addChild(squadWidget);
+        squadsWidgets.addChild(squadWidget);
+        squadsWidgets.addChild(squadWidget);
+        squadsWidgets.addChild(squadWidget);
+        squadsWidgets.addChild(squadWidget);
+        squadsWidgets.addChild(squadWidget);
+        squadsWidgets.addChild(squadWidget);
 
         addChild(title);
         addChild(nameField);
         addChild(createButton);
-        addChild(scrollableContainer);
+        addChild(squadsWidgets);
     }
 }

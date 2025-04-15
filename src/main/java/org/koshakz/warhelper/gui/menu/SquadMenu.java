@@ -9,12 +9,14 @@ public class SquadMenu extends UICustomMenu {
         super(Component.literal("Squad Setup"));
     }
 
+    public SquadSelectionWidget squadSelectionWidget;
+
     @Override
     protected void init() {
         super.init();
 
-        SquadSelectionWidget teamSelectionWidget = new SquadSelectionWidget(0.02f, 0.1f, 0.23f, 0.75f, "squad_create");
-        teamSelectionWidget.isBackgroundEnable = true;
+        squadSelectionWidget = new SquadSelectionWidget(0.02f, 0.1f, 0.23f, 0.75f, "squad_create");
+        squadSelectionWidget.isBackgroundEnable = true;
 
         ClassSelectionWidget classSelectionWidget = new  ClassSelectionWidget(0.285f, 0.1f, 0.23f, 0.3f);
         classSelectionWidget.isBackgroundEnable = true;
@@ -25,7 +27,7 @@ public class SquadMenu extends UICustomMenu {
         MapWidget mapWidget = new MapWidget(0.55f, 0.125f, 0.4f, 0.75f);
         mapWidget.isBackgroundEnable = true;
 
-        addChild(teamSelectionWidget);
+        addChild(squadSelectionWidget);
         addChild(classSelectionWidget);
         addChild(spawnPointWidget);
         addChild(mapWidget);

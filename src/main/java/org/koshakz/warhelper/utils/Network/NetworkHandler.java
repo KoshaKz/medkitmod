@@ -9,6 +9,10 @@ import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
 import org.koshakz.warhelper.WarHelper;
 import org.koshakz.warhelper.utils.Network.Packets.*;
+import org.koshakz.warhelper.utils.Network.Packets.onClient.BandagesConfigPacket;
+import org.koshakz.warhelper.utils.Network.Packets.onClient.TriggerPacket;
+import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientButtonPacket;
+import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientSelectTeamPacket;
 
 public class NetworkHandler {
     private static final String PROTOCOL_VERSION = "1";
