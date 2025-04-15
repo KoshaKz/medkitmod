@@ -3,7 +3,7 @@ package org.koshakz.warhelper.game;
 public enum Team {
     SPECTATOR("spectator"),
     RED("red"),
-    GREEN("");
+    GREEN("green");
 
     private final String name;
 

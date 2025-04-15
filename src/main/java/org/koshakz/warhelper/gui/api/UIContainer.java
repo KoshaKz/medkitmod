@@ -54,6 +54,7 @@ public class UIContainer extends UIWidget {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         // Обрабатываем в обратном порядке (от верхних элементов к нижним)
         for (UIWidget uiWidget : children) {
+            WarHelper.devLog(children + "");
             if (uiWidget.mouseClicked(mouseX, mouseY, button)) {
                 return true;
             }
