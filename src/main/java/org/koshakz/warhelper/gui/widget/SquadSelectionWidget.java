@@ -8,10 +8,13 @@ import org.koshakz.warhelper.utils.Network.NetworkHandler;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientButtonPacket;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.CreateSquadPacket;
 
+import java.util.ArrayList;
+
 public class SquadSelectionWidget extends UIContainer {
     private final UITextField nameField;
     private final UIButton createButton;
     public final UIScrollableContainer squadsWidgets;
+    public final ArrayList<SquadWidget> squadsOnWidget = new ArrayList<>();
 
     public SquadSelectionWidget(float x, float y, float width, float height, String packet) {
         super(x, y, width, height);
@@ -49,13 +52,14 @@ public class SquadSelectionWidget extends UIContainer {
         addChild(nameField);
         addChild(createButton);
         addChild(squadsWidgets);
+        squadsOnWidget.forEach(this::addChild);
     }
 
 
     public void updateSquadList(ClientSquad[] squadsList) {
         squadsWidgets.ClearChildren();
         for (ClientSquad el : squadsList) {
-            squadsWidgets.addChild(
+            squadsOnWidget.add(
                     new SquadWidget(
                             squadsWidgets,
                             0f, 0.1f, 1f, 0.15f,
@@ -65,5 +69,6 @@ public class SquadSelectionWidget extends UIContainer {
                     )
             );
         }
+        squadsOnWidget.forEach(this::addChild);
     }
 }
