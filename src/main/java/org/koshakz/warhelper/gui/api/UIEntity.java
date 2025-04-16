@@ -68,30 +68,11 @@ public class UIEntity extends UIWidget {
         ClientLevel level = (ClientLevel) Minecraft.getInstance().level;
 
         return new AbstractClientPlayer(level, profile) {
-            @Override
-            public boolean isCustomNameVisible() {
-                return false;
-            }
-
-            @Override
-            public Component getDisplayName() {
-                return Component.empty();
-            }
-
-            @Override
-            public boolean shouldShowName() {
-                return false;
-            }
-
-            @Override
-            public boolean isModelPartShown(PlayerModelPart part) {
-                return true;
-            }
-
-            @Override
-            public String getModelName() {
-                return slim ? "slim" : "default";
-            }
+            @Override public boolean isCustomNameVisible() {return false;}
+            @Override public Component getDisplayName() {return Component.empty();}
+            @Override public boolean shouldShowName() {return false;}
+            @Override public boolean isModelPartShown(PlayerModelPart part) {return true;}
+            @Override public String getModelName() {return slim ? "slim" : "default";}
         };
     }
 
