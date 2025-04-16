@@ -62,7 +62,7 @@ minecraft {
         configureEach {
             workingDirectory project.file('run')
 
-            args '--username', 'KoshaKzz'
+
 
             // Recommended logging data for a userdev environment
             // The markers can be added/remove as needed separated by commas.
@@ -87,6 +87,8 @@ minecraft {
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             property 'forge.enabledGameTestNamespaces', mod_id
+
+            args '--username', 'KoshaKzz'
         }
 
         server {

@@ -12,6 +12,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.item.ItemStack;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
@@ -52,16 +53,45 @@ public class UIEntity extends UIWidget {
         }
     }
 
+    private boolean isSlim(Player original) {
+        if (original instanceof AbstractClientPlayer acp) {
+            // Метод getModelName() возвращает "slim" для моделей с узкими руками
+            return "slim".equals(acp.getModelName());
+        }
+        return false;
+    }
     private Player createFakePlayer(Player original) {
         if (original == null || Minecraft.getInstance().level == null) return null;
 
+        final boolean slim = isSlim(original);
         GameProfile profile = original.getGameProfile();
         ClientLevel level = (ClientLevel) Minecraft.getInstance().level;
 
         return new AbstractClientPlayer(level, profile) {
-            @Override public boolean isCustomNameVisible() { return false; }
-            @Override public Component getDisplayName() { return Component.empty(); }
-            @Override public boolean shouldShowName() { return false; }
+            @Override
+            public boolean isCustomNameVisible() {
+                return false;
+            }
+
+            @Override
+            public Component getDisplayName() {
+                return Component.empty();
+            }
+
+            @Override
+            public boolean shouldShowName() {
+                return false;
+            }
+
+            @Override
+            public boolean isModelPartShown(PlayerModelPart part) {
+                return true;
+            }
+
+            @Override
+            public String getModelName() {
+                return slim ? "slim" : "default";
+            }
         };
     }
 
@@ -95,24 +125,20 @@ public class UIEntity extends UIWidget {
                 .rotateZ((float) Math.PI)
                 .rotateX(angleY * 20.0F * ((float) Math.PI / 180F));
 
-        // Сохраняем старые значения
         float prevBodyRot = entity.yBodyRot;
         float prevYRot = entity.getYRot();
         float prevXRot = entity.getXRot();
         float prevHeadRot = entity.yHeadRot;
         float prevHeadRotO = entity.yHeadRotO;
 
-        // Поворачиваем
         entity.yBodyRot = 180.0F + angleX * 20.0F;
         entity.setYRot(180.0F + angleX * 40.0F);
         entity.setXRot(-angleY * 20.0F);
         entity.yHeadRot = entity.getYRot();
         entity.yHeadRotO = entity.getYRot();
 
-        // Рендер
         renderEntityInternal(gui, x, y, scale, rotation);
 
-        // Возвращаем старые значения
         entity.yBodyRot = prevBodyRot;
         entity.setYRot(prevYRot);
         entity.setXRot(prevXRot);

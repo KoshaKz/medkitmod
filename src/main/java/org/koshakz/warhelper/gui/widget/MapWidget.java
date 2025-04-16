@@ -2,15 +2,36 @@ package org.koshakz.warhelper.gui.widget;
 
 import net.minecraft.client.Minecraft;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.koshakz.warhelper.gui.api.UIContainer;
 import org.koshakz.warhelper.gui.api.UIEntity;
 import org.koshakz.warhelper.gui.api.UIImage;
 
+import static net.minecraftforge.common.crafting.CraftingHelper.getItemStack;
+
 public class MapWidget extends UIContainer {
     private final UIEntity playerWidget;
     private final UIEntity playerWidget2;
+
+    private ItemStack getItemStack(String itemId) {
+        ResourceLocation location = new ResourceLocation(itemId);
+        Item item = ForgeRegistries.ITEMS.getValue(location);
+
+        if (item == null) {
+            // Для отладки
+            Minecraft.getInstance().player.sendSystemMessage(
+                    Component.literal("Item not found: " + itemId)
+            );
+            return ItemStack.EMPTY;
+        }
+
+        return new ItemStack(item);
+    }
 
     public MapWidget(float x, float y, float width, float height) {
         super(x, y, width, height);
@@ -24,10 +45,10 @@ public class MapWidget extends UIContainer {
         );
 
         playerWidget.setArmor(
-                new ItemStack(Items.DIAMOND_HELMET),
-                new ItemStack(Items.DIAMOND_CHESTPLATE),
-                new ItemStack(Items.DIAMOND_LEGGINGS),
-                new ItemStack(Items.DIAMOND_BOOTS)
+                getItemStack("combatgear:ttsko_helmet"),
+                getItemStack("combatgear:ttsko_chestplate"),
+                ItemStack.EMPTY, // Пустые штаны
+                getItemStack("combatgear:ttsko_boots")
         );
 
         playerWidget2 = new UIEntity(
@@ -41,7 +62,7 @@ public class MapWidget extends UIContainer {
         playerWidget2.setArmor(
                 new ItemStack(Items.NETHERITE_HELMET),
                 new ItemStack(Items.NETHERITE_CHESTPLATE),
-                new ItemStack(Items.NETHERITE_LEGGINGS),
+                getItemStack("combatgear:ttsko_leggings"),
                 new ItemStack(Items.NETHERITE_BOOTS)
         );
 
