@@ -1,4 +1,4 @@
-package org.koshakz.warhelper.gui.widget;
+package org.koshakz.warhelper.gui.widget.squadWIdgets;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -6,7 +6,6 @@ import org.koshakz.warhelper.game.ClientSquad;
 import org.koshakz.warhelper.gui.GuiHandler;
 import org.koshakz.warhelper.gui.api.*;
 import org.koshakz.warhelper.utils.Network.NetworkHandler;
-import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientButtonPacket;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.CreateSquadPacket;
 
 import java.util.ArrayList;

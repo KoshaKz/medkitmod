@@ -1,4 +1,4 @@
-package org.koshakz.warhelper.gui.widget;
+package org.koshakz.warhelper.gui.widget.squadWIdgets;
 
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.gui.api.*;
