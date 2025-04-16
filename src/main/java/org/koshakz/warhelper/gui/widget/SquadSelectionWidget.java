@@ -3,6 +3,7 @@ package org.koshakz.warhelper.gui.widget;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.game.ClientSquad;
+import org.koshakz.warhelper.gui.GuiHandler;
 import org.koshakz.warhelper.gui.api.*;
 import org.koshakz.warhelper.utils.Network.NetworkHandler;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientButtonPacket;
@@ -52,23 +53,22 @@ public class SquadSelectionWidget extends UIContainer {
         addChild(nameField);
         addChild(createButton);
         addChild(squadsWidgets);
-        squadsOnWidget.forEach(this::addChild);
+        RenderSquads();
     }
 
 
-    public void updateSquadList(ClientSquad[] squadsList) {
-        squadsWidgets.ClearChildren();
-        for (ClientSquad el : squadsList) {
-            squadsOnWidget.add(
+    public void RenderSquads() {
+        squadsWidgets.removeChildren();
+        for (ClientSquad clientSquad : GuiHandler.squads) {
+            squadsWidgets.addChild(
                     new SquadWidget(
                             squadsWidgets,
                             0f, 0.1f, 1f, 0.15f,
-                            el.name,
-                            el.owner,
-                            el.members.length + "/" + el.maxMembers
+                            clientSquad.name,
+                            clientSquad.owner,
+                            clientSquad.members.length + "/" + clientSquad.maxMembers
                     )
             );
         }
-        squadsOnWidget.forEach(this::addChild);
     }
 }

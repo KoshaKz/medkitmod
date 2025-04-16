@@ -53,7 +53,7 @@ public class GuiHandler {
 
 
     public static void updateSquadUI() {
-        squadMenu.squadSelectionWidget.updateSquadList(squads.toArray(new ClientSquad[squads.size()]));
+        squadMenu.squadSelectionWidget.RenderSquads();
     }
 
 

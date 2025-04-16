@@ -29,13 +29,14 @@ public class UIScrollableContainer extends UIContainer {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        if (!isVisible) return;
         // Включаем ножницы для обрезки содержимого
         guiGraphics.enableScissor(x, y, x + width, y + height);
 
         // Рендерим видимые виджеты
         for (int i = 0; i < children.size(); i++) {
-
             UIWidget widget = children.get(i);
+            if (!widget.isVisible) continue;
             widget.setY((int) ((i + 1) * (widget.height * 1.2f)) + scrollY);
 
             if (isWidgetVisible(widget)) {
@@ -52,6 +53,7 @@ public class UIScrollableContainer extends UIContainer {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+        if (!isVisible) return false;
         int newScroll = (scrollY - (int) (delta * -10));
         if (contentHeight + newScroll < height || newScroll > 20 ) {return false;}
         scrollY = newScroll;
@@ -60,7 +62,7 @@ public class UIScrollableContainer extends UIContainer {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        // Обрабатываем в обратном порядке (от верхних элементов к нижним)
+        if (!isVisible) return false;
         for (UIWidget widget : children) {
             if (isWidgetVisible(widget)) {
                 if (widget.mouseClicked(mouseX, mouseY, button)) {
@@ -73,7 +75,12 @@ public class UIScrollableContainer extends UIContainer {
 
     public void addChild(UIWidget widget) {
         super.addChild(widget);
-        contentHeight = children.stream()
+        updateHeight();
+    }
+
+    @Override
+    public void updateHeight() {
+        contentHeight = children.stream().filter(w -> w.isVisible)
                 .mapToInt(w -> (int) (w.height * 1.2f))
                 .sum();
     }

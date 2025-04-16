@@ -15,6 +15,7 @@ public class WarPlayer {
     public ForgeConfig.Client player2;
     public ServerPlayer player;
     public Team team = Team.SPECTATOR;
+    public Squad squad;
 
     public WarPlayer(ServerPlayer player) {
         this.player = player;

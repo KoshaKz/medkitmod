@@ -32,21 +32,21 @@ public class GameCore {
     }
 
     public static void CreateSuad(UUID ownerUUID, String name) {
-        WarHelper.devLog("Server Create Da 1 " + name);
         WarPlayer squadOwner = getPlayer(ownerUUID);
-        squads.add(
-                new Squad(squadOwner, name)
-        );
-        WarHelper.devLog("Server Create " + name);
+        if (squadOwner.squad != null) return;
+        Squad squad = new Squad(squadOwner, name);
+        squadOwner.squad = squad;
+        squads.add(squad);
+
         players.stream().filter(player -> player.team.equals(squadOwner.team))
                 .forEach(player -> {
                     NetworkHandler.sendPacketOnClient(
                             player.player,
-                            new UpdateSquadPacket(SquadAction.CREATE, name, "123", squadOwner.player.getScoreboardName(),8, new String[] {player.player.getScoreboardName()})
+                            new UpdateSquadPacket(SquadAction.CREATE, name, "", squadOwner.player.getScoreboardName(),8, new String[] {player.player.getScoreboardName()})
                     );
                 }
         );
-        WarHelper.devLog("Server Da 3 " + name);
+
     }
 
     public static void ChoseTeam(UUID uuid, Team team) {

@@ -11,6 +11,9 @@ public abstract class UIWidget {
     protected int width;
     protected int height;
 
+    public boolean isVisible;
+    UIWidget parent;
+
     public UIWidget(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -40,6 +43,7 @@ public abstract class UIWidget {
         this.y = parent.y + (int) (parent.height * percentY);
         this.width = (int) (parent.width * percentWidth);
         this.height = (int) (parent.height * percentHeight);
+        this.parent = parent;
         //LOGGER.error(parent.width + " " + parent.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
     }
 
@@ -70,6 +74,22 @@ public abstract class UIWidget {
     public void setSize(int width, int height) {
         this.width = width;
         this.height = height;
+    }
+
+    public void updateHeight() {return;}
+
+    public void hide() {
+        isVisible = false;
+        if (parent != null) {
+            parent.updateHeight();
+        }
+    }
+
+    public void show() {
+        isVisible = true;
+        if (parent != null) {
+            parent.updateHeight();
+        }
     }
 
     public void setX(int newX) {

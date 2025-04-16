@@ -38,6 +38,7 @@ public class UIContainer extends UIWidget {
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        if (!isVisible) return;
         if(isBackgroundEnable){
             guiGraphics.fill(
                     this.x, this.y,
@@ -52,7 +53,7 @@ public class UIContainer extends UIWidget {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        // Обрабатываем в обратном порядке (от верхних элементов к нижним)
+        if (!isVisible) return false;
         for (UIWidget uiWidget : children) {
             WarHelper.devLog(children + "");
             if (uiWidget.mouseClicked(mouseX, mouseY, button)) {
@@ -64,6 +65,7 @@ public class UIContainer extends UIWidget {
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
+        if (!isVisible) return false;
         for (UIWidget uiWidget : children) {
             if (uiWidget.isMouseOver(mouseX, mouseY) && uiWidget.mouseScrolled(mouseX, mouseY, delta)) {
                 return true;
@@ -74,6 +76,7 @@ public class UIContainer extends UIWidget {
 
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+        if (!isVisible) return false;
         for (UIWidget widget : children) {
             if (widget.keyPressed(keyCode, scanCode, modifiers)) {
                 return true;
@@ -84,6 +87,7 @@ public class UIContainer extends UIWidget {
 
     @Override
     public boolean charTyped(char codePoint, int modifiers) {
+        if (!isVisible) return false;
         for (UIWidget widget : children) {
             if (widget.charTyped(codePoint, modifiers)) {
                 return true;
