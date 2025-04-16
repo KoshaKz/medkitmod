@@ -1,22 +1,16 @@
 package org.koshakz.warhelper.game;
 
-import com.google.common.collect.Lists;
-import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.server.players.PlayerList;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.scores.PlayerTeam;
-import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.server.ServerLifecycleHooks;
 import org.koshakz.warhelper.WarHelper;
 import org.koshakz.warhelper.utils.Network.NetworkHandler;
+import org.koshakz.warhelper.utils.Network.Packets.onClient.squad.SquadAction;
+import org.koshakz.warhelper.utils.Network.Packets.onClient.squad.UpdateSquadPacket;
 import org.koshakz.warhelper.utils.PlayerUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 public class GameCore {
@@ -28,6 +22,8 @@ public class GameCore {
 
 
     public static void StatGame() {
+        players.clear();
+        squads.clear();
         addAllOnlinePlayers(server);
         WarHelper.devLog("da");
         players.forEach(player ->
@@ -36,9 +32,21 @@ public class GameCore {
     }
 
     public static void CreateSuad(UUID ownerUUID, String name) {
+        WarHelper.devLog("Server Create Da 1 " + name);
+        WarPlayer squadOwner = getPlayer(ownerUUID);
         squads.add(
-                new Squad(getPlayer(ownerUUID), name)
+                new Squad(squadOwner, name)
         );
+        WarHelper.devLog("Server Create " + name);
+        players.stream().filter(player -> player.team.equals(squadOwner.team))
+                .forEach(player -> {
+                    NetworkHandler.sendPacketOnClient(
+                            player.player,
+                            new UpdateSquadPacket(SquadAction.CREATE, name, "123", squadOwner.player.getScoreboardName(),8, new String[] {player.player.getScoreboardName()})
+                    );
+                }
+        );
+        WarHelper.devLog("Server Da 3 " + name);
     }
 
     public static void ChoseTeam(UUID uuid, Team team) {
@@ -56,16 +64,8 @@ public class GameCore {
 
     public static void addAllOnlinePlayers(MinecraftServer server) {
         server.getPlayerList().getPlayers().forEach(serverPlayer -> {
-            // Если игрока ещё нет в коллекции
-            boolean alreadyExists = players.stream()
-                    .anyMatch(cp -> cp.player.getUUID().equals(serverPlayer.getUUID()));
-
-            if (!alreadyExists) {
-                // Создаём CustomPlayer (если у вас есть фабричный метод)
-                WarPlayer customPlayer = new WarPlayer(serverPlayer);
-                players.add(customPlayer);
-            }
-        });
+                players.add(new WarPlayer(serverPlayer));
+            });
     }
 
     public static PlayerTeam getTeam(String teamName) {

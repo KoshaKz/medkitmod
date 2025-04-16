@@ -10,13 +10,13 @@ public class SquadWidget extends UIContainer {
     private final UIButton button;
     private final UILabel squadCount;
 
-    public SquadWidget(UIWidget parent, float x, float y, float width, float height) {
+    public SquadWidget(UIWidget parent, float x, float y, float width, float height, String name, String owner, String squadCountText) {
         super(parent, x, y, width, height);
 
         moreButton = new UIButton(
                 this,
                 0.01f,
-                0.5f - (0.6f / 2),
+                0.2f,
                 0.15f,     // ширина: 15%
                 0.6f, // высота: 60%
                 "button_texture",
@@ -25,18 +25,16 @@ public class SquadWidget extends UIContainer {
 
         squadTextWidget = new SquadTextWidget(
                 this,
-                0.18f,
-                0.0f,
-                0.4f,
-                1f);
+                0.18f, 0.0f, 0.4f, 1f,
+                name,
+                owner
+        );
+
         squadTextWidget.isBackgroundEnable = false;
 
         button = new UIButton(
                 this,
-                0.5f, // X: центрирование по горизонтали
-                0.5f - (0.5f / 2),  // Y: центр (50%) - половина высоты кнопки (20% / 2 = 10%)
-                0.3f,               // ширина: 25%
-                0.5f,                // высота: 20%
+                0.5f, 0.25f, 0.3f, 0.5f,
                 "test_test",
                 () -> System.out.println("123")
         );
@@ -46,7 +44,7 @@ public class SquadWidget extends UIContainer {
                 1.0f - 0.05f - 0.1f, // X: 95% - 10% (ширина текста)
                 0.5f - (0.6f / 2) + (0.6f / 2) - 0.1f, // Выравнивание по центру текста
                 2.6f, 2.6f,
-                Component.literal("1/x"),
+                Component.literal(squadCountText),
                 0xFFFFFF,
                 false
         );

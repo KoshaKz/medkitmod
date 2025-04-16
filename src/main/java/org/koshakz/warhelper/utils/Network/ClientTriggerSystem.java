@@ -1,6 +1,7 @@
 package org.koshakz.warhelper.utils.Network;
 
 import net.minecraft.client.Minecraft;
+import org.koshakz.warhelper.gui.GuiHandler;
 import org.koshakz.warhelper.gui.menu.SelectTeamMenu;
 import org.koshakz.warhelper.gui.menu.SquadMenu;
 
@@ -29,7 +30,7 @@ public class ClientTriggerSystem {
             Minecraft.getInstance().setScreen(new SelectTeamMenu());
         });
         registerTrigger("OPEN_RESPAWN", () -> {
-            Minecraft.getInstance().setScreen(new SquadMenu());
+            Minecraft.getInstance().setScreen(GuiHandler.squadMenu);
         });
     }
 }

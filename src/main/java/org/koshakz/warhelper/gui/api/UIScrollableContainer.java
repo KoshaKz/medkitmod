@@ -77,4 +77,8 @@ public class UIScrollableContainer extends UIContainer {
                 .mapToInt(w -> (int) (w.height * 1.2f))
                 .sum();
     }
+
+    public void ClearChildren() {
+        children.clear();
+    }
 }

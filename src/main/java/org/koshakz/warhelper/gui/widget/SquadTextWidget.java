@@ -7,7 +7,7 @@ public class SquadTextWidget extends UIContainer {
     private final UILabel squadName;
     private final UILabel squadLeaderName;
 
-    public SquadTextWidget(UIWidget parent, float x, float y, float width, float height) {
+    public SquadTextWidget(UIWidget parent, float x, float y, float width, float height, String name, String owner) {
         super(parent, x, y, width, height);
 
         float elementSpacing = 0.05f; // Увеличенный отступ между элементами
@@ -20,7 +20,7 @@ public class SquadTextWidget extends UIContainer {
                 0.0f,
                 0.52f - verticalOffset - (2.6f * textScale / 2), // Y: 35%
                 2.6f, 2.6f,
-                Component.literal("Отряд 1"),
+                Component.literal(name),
                 0xFFFFFF,
                 false
         );
@@ -31,7 +31,7 @@ public class SquadTextWidget extends UIContainer {
                 2.6f * textScale + elementSpacing,
                 0.46f + verticalOffset - (2.2f * textScale / 2), // Y: 65%
                 2.2f, 2.2f,
-                Component.literal("nickname"),
+                Component.literal(owner),
                 0xCCCCCC,
                 false
         );

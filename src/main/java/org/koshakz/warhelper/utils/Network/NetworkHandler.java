@@ -11,8 +11,10 @@ import org.koshakz.warhelper.WarHelper;
 import org.koshakz.warhelper.utils.Network.Packets.*;
 import org.koshakz.warhelper.utils.Network.Packets.onClient.BandagesConfigPacket;
 import org.koshakz.warhelper.utils.Network.Packets.onClient.TriggerPacket;
+import org.koshakz.warhelper.utils.Network.Packets.onClient.squad.UpdateSquadPacket;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientButtonPacket;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientSelectTeamPacket;
+import org.koshakz.warhelper.utils.Network.Packets.onServer.CreateSquadPacket;
 
 public class NetworkHandler {
     private static final String PROTOCOL_VERSION = "1";
@@ -71,6 +73,22 @@ public class NetworkHandler {
                 ClientSelectTeamPacket::encode,
                 ClientSelectTeamPacket::decode,
                 ClientSelectTeamPacket::handle
+        );
+
+        CHANNEL.registerMessage(
+                packetId++,
+                CreateSquadPacket.class,
+                CreateSquadPacket::encode,
+                CreateSquadPacket::decode,
+                CreateSquadPacket::handle
+        );
+
+        CHANNEL.registerMessage(
+                packetId++,
+                UpdateSquadPacket.class,
+                UpdateSquadPacket::encode,
+                UpdateSquadPacket::decode,
+                UpdateSquadPacket::handle
         );
     }
 }

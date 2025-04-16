@@ -32,7 +32,7 @@ public abstract class UIWidget {
         this.y = (int) (screen.height * percentY);
         this.width = (int) (screen.width * percentWidth);
         this.height = (int) (screen.height * percentHeight);
-        WarHelper.LOGGER.error(screen.width + " " + screen.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
+        //WarHelper.LOGGER.error(screen.width + " " + screen.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
     }
 
     public UIWidget(UIWidget parent, float percentX, float percentY , float percentWidth, float percentHeight) {
@@ -40,7 +40,7 @@ public abstract class UIWidget {
         this.y = parent.y + (int) (parent.height * percentY);
         this.width = (int) (parent.width * percentWidth);
         this.height = (int) (parent.height * percentHeight);
-        WarHelper.LOGGER.error(parent.width + " " + parent.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
+        //LOGGER.error(parent.width + " " + parent.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
     }
 
     public abstract void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick);

@@ -2,9 +2,11 @@ package org.koshakz.warhelper.gui.widget;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
+import org.koshakz.warhelper.game.ClientSquad;
 import org.koshakz.warhelper.gui.api.*;
 import org.koshakz.warhelper.utils.Network.NetworkHandler;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientButtonPacket;
+import org.koshakz.warhelper.utils.Network.Packets.onServer.CreateSquadPacket;
 
 public class SquadSelectionWidget extends UIContainer {
     private final UITextField nameField;
@@ -37,25 +39,31 @@ public class SquadSelectionWidget extends UIContainer {
                 0.9225f,    // y: 25% сверху
                 0.2833f,    // ширина: ~28.33%
                 0.05f,      // высота: 5%
-                "qwasdf",
-                () -> NetworkHandler.sendPacketOnServet(new ClientButtonPacket(packet)));
+                "green",
+                () -> NetworkHandler.sendPacketOnServet(new CreateSquadPacket(nameField.getText())));
 
         squadsWidgets = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.85f);
 
-        SquadWidget squadWidget = new SquadWidget(squadsWidgets, 0f, 0.1f, 1f,0.15f);
-        squadWidget.isBackgroundEnable = true;
-
-        squadsWidgets.addChild(squadWidget);
-        squadsWidgets.addChild(squadWidget);
-        squadsWidgets.addChild(squadWidget);
-        squadsWidgets.addChild(squadWidget);
-        squadsWidgets.addChild(squadWidget);
-        squadsWidgets.addChild(squadWidget);
-        squadsWidgets.addChild(squadWidget);
 
         addChild(title);
         addChild(nameField);
         addChild(createButton);
         addChild(squadsWidgets);
+    }
+
+
+    public void updateSquadList(ClientSquad[] squadsList) {
+        squadsWidgets.ClearChildren();
+        for (ClientSquad el : squadsList) {
+            squadsWidgets.addChild(
+                    new SquadWidget(
+                            squadsWidgets,
+                            0f, 0.1f, 1f, 0.15f,
+                            el.name,
+                            el.owner,
+                            el.members.length + "/" + el.maxMembers
+                    )
+            );
+        }
     }
 }

@@ -45,7 +45,7 @@ public class UILabel extends UIWidget {
         this.scaleX = scaleX * (screen.width / 1920f);
         this.scaleY = scaleY * (screen.height / 1080f);
         this.isCentre = isCentre;
-        WarHelper.LOGGER.warn((screen.width / 1920f) + " " + (screen.height / 1080f));
+        //WarHelper.LOGGER.warn((screen.width / 1920f) + " " + (screen.height / 1080f));
     }
 
     @Override
