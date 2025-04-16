@@ -1,6 +1,8 @@
 package org.koshakz.warhelper.gui.widget.squadWIdgets;
 
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
+import org.koshakz.warhelper.WarHelper;
 import org.koshakz.warhelper.gui.api.*;
 
 public class SquadWidget extends UIContainer {
@@ -9,8 +11,14 @@ public class SquadWidget extends UIContainer {
     private final SquadTextWidget squadTextWidget;
     private final UIButton button;
     private final UILabel squadCount;
+    public boolean isOpen;
+    private boolean animation;
+    private int animatioTime = 1000;
 
-    public SquadWidget(UIWidget parent, float x, float y, float width, float height, String name, String owner, String squadCountText) {
+    private long elapsed;
+    private int newHeight;
+
+    public SquadWidget(UIWidget parent, float x, float y, float width, float height, String name, String owner, String squadCountText, boolean isBackground) {
         super(parent, x, y, width, height);
 
         moreButton = new UIButton(
@@ -30,13 +38,12 @@ public class SquadWidget extends UIContainer {
                 owner
         );
 
-        squadTextWidget.isBackgroundEnable = false;
 
         button = new UIButton(
                 this,
                 0.5f, 0.25f, 0.3f, 0.5f,
                 "test_test",
-                () -> System.out.println("123")
+                this::StartAnimation
         );
 
         squadCount = new UILabel(
@@ -49,9 +56,39 @@ public class SquadWidget extends UIContainer {
                 false
         );
 
+
         addChild(moreButton);
         addChild(squadTextWidget);
         addChild(button);
         addChild(squadCount);
+        this.isBackgroundEnable = isBackground;
+    }
+
+    @Override
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        if (animation) {
+            int test = (int) (elapsed - System.currentTimeMillis());
+            float test2 = test / (float) animatioTime;
+            test2 = 1f - test2;
+            //test2++;
+            this.height = (int) ((newHeight / 2f) + (test2 * newHeight));
+            if (test2 >= 1f) {
+                animation = false;
+            }
+            WarHelper.devLog(test + " | " + test2);
+        }
+    }
+
+    public void StartAnimation() {
+        elapsed = System.currentTimeMillis() + animatioTime;
+        isOpen = !isOpen;
+        animation = true;
+        if (isOpen) {
+            newHeight = height * 2;
+        } else {
+            newHeight = height / 2;
+        }
+
     }
 }

@@ -14,7 +14,6 @@ public class SquadSelectionWidget extends UIContainer {
     private final UITextField nameField;
     private final UIButton createButton;
     public final UIScrollableContainer squadsWidgets;
-    public final ArrayList<SquadWidget> squadsOnWidget = new ArrayList<>();
 
     public SquadSelectionWidget(float x, float y, float width, float height, String packet) {
         super(x, y, width, height);
@@ -65,7 +64,8 @@ public class SquadSelectionWidget extends UIContainer {
                             0f, 0.1f, 1f, 0.15f,
                             clientSquad.name,
                             clientSquad.owner,
-                            clientSquad.members.length + "/" + clientSquad.maxMembers
+                            clientSquad.members.length + "/" + clientSquad.maxMembers,
+                            true
                     )
             );
         }
