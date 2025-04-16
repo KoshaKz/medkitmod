@@ -25,10 +25,16 @@ public class GameCore {
         players.clear();
         squads.clear();
         addAllOnlinePlayers(server);
-        WarHelper.devLog("da");
-        players.forEach(player ->
-                PlayerUtils.sendPlayerTrigger(player.player, "OPEN_SELECT_TEAM")
-        );
+
+        players.forEach(player -> {
+            WarHelper.devLog("Stated game");
+            NetworkHandler.sendPacketOnClient(player.player, new UpdateSquadPacket(SquadAction.DELETE_ALL, "123", "345", "456",8, new String[0]));
+            WarHelper.devLog("Stated game");
+            PlayerUtils.sendPlayerTrigger(player.player, "OPEN_SELECT_TEAM");
+            WarHelper.devLog("Stated game");
+        });
+
+        WarHelper.devLog("Stated game");
     }
 
     public static void CreateSuad(UUID ownerUUID, String name) {

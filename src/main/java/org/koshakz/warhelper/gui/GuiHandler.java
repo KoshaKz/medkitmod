@@ -29,6 +29,7 @@ public class GuiHandler {
                     new ClientSquad(packet.name, packet.owner, packet.members, packet.maxMembers)
             );
             case DELETE -> squads.remove(getSquad(packet.name));
+            case DELETE_ALL -> squads.clear();
             case UPDATE -> {
                 ClientSquad clientSquad = getSquad(packet.name);
 
@@ -37,6 +38,11 @@ public class GuiHandler {
                 clientSquad.members = packet.members;
                 clientSquad.maxMembers = packet.maxMembers;
             }
+            case JOIN -> {
+
+            }
+
+
         }
         updateSquadUI();
         WarHelper.devLog("Packet" + packet.name);

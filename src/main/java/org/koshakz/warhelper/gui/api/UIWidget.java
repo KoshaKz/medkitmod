@@ -11,7 +11,7 @@ public abstract class UIWidget {
     protected int width;
     protected int height;
 
-    public boolean isVisible;
+    public boolean isVisible = true;
     UIWidget parent;
 
     public UIWidget(int x, int y, int width, int height) {

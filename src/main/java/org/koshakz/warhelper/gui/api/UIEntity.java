@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
-public class UIEntity extends UIWidget {
+public class UIEntity extends UIWidget { //Очень опасно
     private LivingEntity entity;
     private final float scalePercent;
     private final EntityType<? extends LivingEntity> entityType;
