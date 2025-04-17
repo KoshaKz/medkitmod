@@ -60,6 +60,7 @@ public class UIEntity extends UIWidget { //Очень опасно
         }
         return false;
     }
+
     private Player createFakePlayer(Player original) {
         if (original == null || Minecraft.getInstance().level == null) return null;
 
@@ -124,7 +125,7 @@ public class UIEntity extends UIWidget { //Очень опасно
         entity.setYRot(prevYRot);
         entity.setXRot(prevXRot);
         entity.yHeadRot = prevHeadRot;
-        entity.yHeadRotO = prevHeadRotO;
+        entity.yHeadRotO = prevHeadRotO;//фонарик паращит
     }
 
     private void renderEntityInternal(GuiGraphics gui, int x, int y, int scale, Quaternionf rotation) {

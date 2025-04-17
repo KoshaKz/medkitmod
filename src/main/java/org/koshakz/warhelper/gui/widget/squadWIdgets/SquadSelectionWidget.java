@@ -46,14 +46,12 @@ public class SquadSelectionWidget extends UIContainer {
 
         squadsWidgets = new UIScrollableContainer(this, 0f, 0.06f, 1f, 0.85f);
 
-
         addChild(title);
         addChild(nameField);
         addChild(createButton);
         addChild(squadsWidgets);
         RenderSquads();
     }
-
 
     public void RenderSquads() {
         squadsWidgets.removeChildren();
