@@ -3,6 +3,7 @@ package org.koshakz.warhelper.gui.widget.squadWIdgets;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.WarHelper;
+import org.koshakz.warhelper.gui.GuiHandler;
 import org.koshakz.warhelper.gui.api.*;
 import org.koshakz.warhelper.utils.ClientTaskScheduler;
 
@@ -19,13 +20,15 @@ public class SquadWidget extends UIContainer {
 
     public boolean isOpen;
 
-    public SquadWidget(UIWidget parent, float x, float y, float width, float height, String name, String owner, String squadCountText, boolean isBackground) {
+    public SquadWidget(UIWidget parent, float x, float y, float width, float height, String name, String owner, String squadCountText, boolean isOpen, boolean isBackground) {
         super(parent, x, y, width, height);
+
+        this.isOpen = isOpen;
 
         moreButton = new UIButton(
                 this,
                 0.01f,
-                0.2f,
+                isOpen ? .1f : .2f,
                 0.15f,     // ширина: 15%
                 0.6f, // высота: 60%
                 "button_texture",
@@ -42,15 +45,15 @@ public class SquadWidget extends UIContainer {
 
         button = new UIButton(
                 this,
-                0.5f, 0.25f, 0.3f, 0.5f,
+                0.5f, isOpen ? .125f : .25f, 0.3f, 0.5f,
                 "test_test",
-                () -> schedulePeriodic( 1)
+                () -> GuiHandler.ExpandButton(name)
         );
 
         squadCount = new UILabel(
                 this,
-                1.0f - 0.05f - 0.1f, // X: 95% - 10% (ширина текста)
-                0.5f - (0.6f / 2) + (0.6f / 2) - 0.1f, // Выравнивание по центру текста
+                .85f, // X: 95% - 10% (ширина текста)
+                isOpen ? .2f : .4f, // Выравнивание по центру текста
                 2f, 2f,
                 Component.literal(squadCountText),
                 0xFFFFFF,
@@ -63,6 +66,7 @@ public class SquadWidget extends UIContainer {
         addChild(button);
         addChild(squadCount);
         this.isBackgroundEnable = isBackground;
+        this.isOpen = isOpen;
     }
 
     @Override

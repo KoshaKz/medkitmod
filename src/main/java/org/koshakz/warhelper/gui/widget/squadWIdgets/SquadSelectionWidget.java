@@ -63,6 +63,7 @@ public class SquadSelectionWidget extends UIContainer {
                             clientSquad.name,
                             clientSquad.owner,
                             clientSquad.members.length + "/" + clientSquad.maxMembers,
+                            clientSquad.isOpen,
                             true
                     )
             );

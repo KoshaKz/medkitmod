@@ -52,7 +52,7 @@ public class UILabel extends UIWidget {
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         guiGraphics.pose().pushPose();
         guiGraphics.pose().scale(scaleX, scaleY, 1); // Масштабирование
-        WarHelper.devLog(y + " " + scaleY + " " + parent);
+        //WarHelper.devLog(y + " " + scaleY + " " + parent);
         if (isCentre) {
             guiGraphics.drawCenteredString(
                     font,

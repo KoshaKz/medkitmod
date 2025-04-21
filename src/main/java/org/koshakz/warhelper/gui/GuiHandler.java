@@ -45,7 +45,6 @@ public class GuiHandler {
 
         }
         updateSquadUI();
-        WarHelper.devLog("Packet" + packet.name);
     }
 
 
@@ -60,6 +59,11 @@ public class GuiHandler {
 
     public static void updateSquadUI() {
         squadMenu.squadSelectionWidget.RenderSquads();
+    }
+
+    public static void ExpandButton(String name) {
+        WarHelper.devLog(getSquad(name).isOpen + "");
+        getSquad(name).isOpen = true;
     }
 
 

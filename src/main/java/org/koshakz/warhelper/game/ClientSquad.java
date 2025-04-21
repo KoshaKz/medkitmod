@@ -9,6 +9,7 @@ public class ClientSquad {
     public String owner;
     public String[] members;
     public int maxMembers;
+    public boolean isOpen;
 
     public ClientSquad(String name, String owner, String[] members, int maxMembers) {
         this.name = name;
