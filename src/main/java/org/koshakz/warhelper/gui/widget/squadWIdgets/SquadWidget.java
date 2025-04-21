@@ -47,7 +47,7 @@ public class SquadWidget extends UIContainer {
                 this,
                 0.5f, isOpen ? .125f : .25f, 0.3f, 0.5f,
                 "test_test",
-                () -> GuiHandler.ExpandButton(name)
+                () -> schedulePeriodic(1)
         );
 
         squadCount = new UILabel(
@@ -60,7 +60,20 @@ public class SquadWidget extends UIContainer {
                 false
         );
 
+        String[] squadNames = {
+                "Отряд 1",
+                "Отряд 2",
+                "Отряд 3",
+                "Отряд 4",
+                "Отряд 5",
+                "Отряд 6",
+                "Отряд 7",
+                "Отряд 8"
+        };
+        SquadListWidget squadList = new SquadListWidget(this, 0f, 1.5f,1f, 2.5f, squadNames);
+        squadList.isBackgroundEnable = true;
 
+        addChild(squadList);
         addChild(moreButton);
         addChild(squadTextWidget);
         addChild(button);

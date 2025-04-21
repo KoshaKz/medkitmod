@@ -3,6 +3,7 @@ package org.koshakz.warhelper.gui.menu;
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.gui.api.*;
 import org.koshakz.warhelper.gui.widget.*;
+import org.koshakz.warhelper.gui.widget.squadWIdgets.SquadListWidget;
 import org.koshakz.warhelper.gui.widget.squadWIdgets.SquadSelectionWidget;
 
 public class SquadMenu extends UICustomMenu {

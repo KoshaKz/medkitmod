@@ -63,7 +63,7 @@ public class UIEntity extends UIWidget { //Очень опасно
 
     private Player createFakePlayer(Player original) {
         if (original == null || Minecraft.getInstance().level == null) return null;
-
+        
         final boolean slim = isSlim(original);
         GameProfile profile = original.getGameProfile();
         ClientLevel level = (ClientLevel) Minecraft.getInstance().level;
