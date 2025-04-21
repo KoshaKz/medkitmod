@@ -39,7 +39,7 @@ public class GameCore {
 
     public static void CreateSuad(UUID ownerUUID, String name) {
         WarPlayer squadOwner = getPlayer(ownerUUID);
-        if (squadOwner.squad != null) return;
+        //if (squadOwner.squad != null) return;
         Squad squad = new Squad(squadOwner, name);
         squadOwner.squad = squad;
         squads.add(squad);

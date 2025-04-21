@@ -25,6 +25,8 @@ public class UIScrollableContainer extends UIContainer {
 
     public UIScrollableContainer(UIWidget parent, float x, float y, float width, float height) {
         super(parent, x, y, width, height);
+        //isBackgroundEnable = true;
+        //color = 0xFFFF0000;
     }
 
     @Override
@@ -33,17 +35,8 @@ public class UIScrollableContainer extends UIContainer {
         // Включаем ножницы для обрезки содержимого
         guiGraphics.enableScissor(x, y, x + width, y + height);
 
-        // Рендерим видимые виджеты
-        for (int i = 0; i < children.size(); i++) {
-            UIWidget widget = children.get(i);
-            if (!widget.isVisible) continue;
-            widget.setY((int) ((i + 1) * (widget.height * 1.2f)) + scrollY);
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
 
-            if (isWidgetVisible(widget)) {
-                widget.render(guiGraphics, mouseX, mouseY, partialTick);
-            }
-
-        }
         guiGraphics.disableScissor();
 
     }
@@ -55,9 +48,24 @@ public class UIScrollableContainer extends UIContainer {
     public boolean mouseScrolled(double mouseX, double mouseY, double delta) {
         if (!isVisible) return false;
         int newScroll = (scrollY - (int) (delta * -10));
-        if (contentHeight + newScroll < height || newScroll > 20 ) {return false;}
+        if (contentHeight + newScroll < height || newScroll > 0 ) {return false;}
         scrollY = newScroll;
+
+        updateChildrenY();
+
+
         return true;
+    }
+
+    public void updateChildrenY() {
+        int floor = y;
+        for (UIWidget widget : children) {
+            if (!widget.isVisible) continue;
+
+            widget.setY(floor + scrollY);
+            floor += widget.height + 10;
+
+        }
     }
 
     @Override
@@ -76,16 +84,24 @@ public class UIScrollableContainer extends UIContainer {
     public void addChild(UIWidget widget) {
         super.addChild(widget);
         updateHeight();
+        updateChildrenY();
     }
 
     @Override
+    public void update() {
+        updateHeight();
+        updateChildrenY();
+    }
+
     public void updateHeight() {
         contentHeight = children.stream().filter(w -> w.isVisible)
-                .mapToInt(w -> (int) (w.height * 1.2f))
+                .mapToInt(w -> (w.height + 10))
                 .sum();
     }
 
     public void ClearChildren() {
         children.clear();
+        updateHeight();
+        updateChildrenY();
     }
 }

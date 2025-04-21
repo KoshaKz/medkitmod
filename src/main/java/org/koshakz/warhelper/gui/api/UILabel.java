@@ -52,20 +52,21 @@ public class UILabel extends UIWidget {
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         guiGraphics.pose().pushPose();
         guiGraphics.pose().scale(scaleX, scaleY, 1); // Масштабирование
+        WarHelper.devLog(y + " " + scaleY + " " + parent);
         if (isCentre) {
             guiGraphics.drawCenteredString(
                     font,
                     text,
-                    (int) (x / scaleX),
-                    (int) (y / scaleY),
+                    Math.round(x / scaleX),
+                    Math.round(y / scaleY),
                     color
             );
         } else {
             guiGraphics.drawString(
                     font,
                     text,
-                    (int) (x / scaleX),
-                    (int) (y / scaleY),
+                    Math.round(x / scaleX),
+                    Math.round(y / scaleY),
                     color,
                     true // dropShadow
             );
@@ -73,10 +74,6 @@ public class UILabel extends UIWidget {
         guiGraphics.pose().popPose();
     }
 
-    @Override
-    public void setY(int newY) {
-        this.y = newY;
-    }
 
     public void changeText(String newText) {
         this.text = Component.literal(newText);

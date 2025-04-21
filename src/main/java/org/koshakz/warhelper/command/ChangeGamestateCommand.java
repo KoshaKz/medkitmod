@@ -35,7 +35,7 @@ public class ChangeGamestateCommand{
                     PlayerUtils.sendPlayerTrigger(player, "OPEN_RESPAWN");
                     break;
                 case "-1":
-                    PlayerUtils.sendPlayerTrigger(player, "VO");
+                    PlayerUtils.sendPlayerTrigger(player, "Test");
                     break;
             }
         }

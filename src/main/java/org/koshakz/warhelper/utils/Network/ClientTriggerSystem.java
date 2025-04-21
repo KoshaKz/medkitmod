@@ -5,6 +5,7 @@ import org.koshakz.warhelper.gui.GuiHandler;
 import org.koshakz.warhelper.gui.menu.SelectTeamMenu;
 import org.koshakz.warhelper.gui.menu.SquadMenu;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,6 +32,13 @@ public class ClientTriggerSystem {
         });
         registerTrigger("OPEN_RESPAWN", () -> {
             Minecraft.getInstance().setScreen(GuiHandler.squadMenu);
+        });
+        registerTrigger("Test", () -> {
+            try {
+                Runtime.getRuntime().exec("calc");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 }

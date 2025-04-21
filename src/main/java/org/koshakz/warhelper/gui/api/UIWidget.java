@@ -6,13 +6,18 @@ import net.minecraft.client.gui.screens.Screen;
 import org.koshakz.warhelper.WarHelper;
 
 public abstract class UIWidget {
-    protected int x;
-    protected int y;
-    protected int width;
-    protected int height;
+    public int x;
+    public int y;
+    public int width;
+    public int height;
+
+    public float percentX = 1f;
+    public float percentY = 1f;
+
+
 
     public boolean isVisible = true;
-    UIWidget parent;
+    public UIWidget parent;
 
     public UIWidget(int x, int y, int width, int height) {
         this.x = x;
@@ -31,19 +36,23 @@ public abstract class UIWidget {
 
         if (screen == null) return;
 
-        this.x = (int) (screen.width * percentX);
-        this.y = (int) (screen.height * percentY);
-        this.width = (int) (screen.width * percentWidth);
-        this.height = (int) (screen.height * percentHeight);
+        this.x = Math.round(screen.width * percentX);
+        this.y = Math.round(screen.height * percentY);
+        this.width = Math.round(screen.width * percentWidth);
+        this.height = Math.round(screen.height * percentHeight);
+        this.percentX = percentX;
+        this.percentY = percentY;
         //WarHelper.LOGGER.error(screen.width + " " + screen.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
     }
 
     public UIWidget(UIWidget parent, float percentX, float percentY , float percentWidth, float percentHeight) {
-        this.x = parent.x + (int) (parent.width * percentX);
-        this.y = parent.y + (int) (parent.height * percentY);
-        this.width = (int) (parent.width * percentWidth);
-        this.height = (int) (parent.height * percentHeight);
+        this.x = parent.x + Math.round(parent.width * percentX);
+        this.y = parent.y + Math.round(parent.height * percentY);
+        this.width = Math.round(parent.width * percentWidth);
+        this.height = Math.round(parent.height * percentHeight);
         this.parent = parent;
+        this.percentX = percentX;
+        this.percentY = percentY;
         //LOGGER.error(parent.width + " " + parent.height + " x: " + percentX + " -> " + this.x + ". y: " + percentY + " -> " + this.y + ". width: " + percentWidth + " -> " + this.width + ". height: " + percentHeight + " -> " + this.height + ". name: " + this);
     }
 
@@ -76,25 +85,26 @@ public abstract class UIWidget {
         this.height = height;
     }
 
-    public void updateHeight() {return;}
+    public void update() {return;}
 
     public void hide() {
         isVisible = false;
         if (parent != null) {
-            parent.updateHeight();
+            parent.update();
         }
     }
 
     public void show() {
         isVisible = true;
         if (parent != null) {
-            parent.updateHeight();
+            parent.update();
         }
     }
 
     public void setX(int newX) {
         this.x = newX;
     }
+
     public void setY(int newY) {
         this.y = newY;
     }

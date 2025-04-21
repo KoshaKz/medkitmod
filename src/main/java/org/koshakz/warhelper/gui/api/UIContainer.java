@@ -55,7 +55,6 @@ public class UIContainer extends UIWidget {
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         if (!isVisible) return false;
         for (UIWidget uiWidget : children) {
-            WarHelper.devLog(children + "");
             if (uiWidget.mouseClicked(mouseX, mouseY, button)) {
                 return true;
             }
@@ -98,7 +97,7 @@ public class UIContainer extends UIWidget {
 
     @Override
     public void setY(int newY) {
-        children.forEach((widget) -> widget.setY(newY + (int) (height * ((widget.y - y) / (float) height))));
+        children.forEach((widget) -> widget.setY(newY + Math.round(height * widget.percentY)));
         y = newY;
     }
 }

@@ -32,6 +32,7 @@ public class UICustomMenu extends Screen {
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        WarHelper.devLog("x: "+mouseX + " y: "+mouseY);
         return frame.mouseClicked(mouseX, mouseY, button);
     }
 
