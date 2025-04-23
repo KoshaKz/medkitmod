@@ -87,4 +87,40 @@ public class GameCore {
 
     }
 
+    public static Squad getSquad(String name) {
+        return squads.stream()
+                .filter(s -> s.name.equals(name))
+                .findFirst()
+                .orElse(null);
+
+    }
+
+    public static void playerJoinSquad(UUID playerUUID, String squadName) {
+        WarPlayer player = getPlayer(playerUUID);
+        //if (player.squad != null) return;
+        Squad squad = getSquad(squadName);
+        //проверки надо добавить
+        squad.squadPlayers.add(player);
+        player.squad = squad;
+
+        players.stream().filter(warPlayer -> warPlayer.team.equals(squad.owner.team))
+                .forEach(warPlayer -> {
+                            NetworkHandler.sendPacketOnClient(
+                                    player.player,
+                                    new UpdateSquadPacket(
+                                            SquadAction.UPDATE,
+                                            squad.name,
+                                            squad.name,
+                                            squad.owner.player.getScoreboardName(),
+                                            8,
+                                            squad.squadPlayers.stream()
+                                                    .map(p -> p.player.getScoreboardName())
+                                                    .toArray(String[]::new)
+                                    )
+                            );
+                        }
+                );
+
+    }
+
 }

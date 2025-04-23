@@ -12,7 +12,7 @@ public class UIContainer extends UIWidget {
     public boolean isBackgroundEnable;
     public int color = 0x80FFFFFF;
 
-    protected final List<UIWidget> children = new ArrayList<>();
+    public final List<UIWidget> children = new ArrayList<>();
 
     public UIContainer() {
         super(0, 0);
@@ -27,8 +27,6 @@ public class UIContainer extends UIWidget {
     }
 
     public void addChild(UIWidget widget) {
-        //widget.x += this.x;
-        //widget.y += this.y;
         children.add(widget);
     }
 

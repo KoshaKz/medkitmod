@@ -1,5 +1,6 @@
 package org.koshakz.warhelper.gui.widget.squadWIdgets;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import org.koshakz.warhelper.WarHelper;
@@ -9,30 +10,34 @@ import org.koshakz.warhelper.utils.ClientTaskScheduler;
 
 public class SquadWidget extends UIContainer {
 
-    private static final int OPENING_SPEED = 5;
+    private static int OPENING_SPEED;
 
     private final UIButton moreButton;
     private final SquadTextWidget squadTextWidget;
     private final UIButton button;
     private final UILabel squadCount;
-    private final float bigHeight = 0.3f;
-    private final float smallHeight = 0.15f;
+    private final SquadListWidget squadListWidget;
+    private float bigHeight;
+    private float smallHeight;
 
+    public String name;
     public boolean isOpen;
 
-    public SquadWidget(UIWidget parent, float x, float y, float width, float height, String name, String owner, String squadCountText, boolean isOpen, boolean isBackground) {
+    public SquadWidget(UIWidget parent, float x, float y, float width, float height, String name, String owner, String squadCountText, String[] playerList, boolean isOpen) {
         super(parent, x, y, width, height);
 
         this.isOpen = isOpen;
 
+        OPENING_SPEED = Math.round(0.05f * Minecraft.getInstance().screen.height);
+
         moreButton = new UIButton(
                 this,
                 0.01f,
-                isOpen ? .1f : .2f,
+                .2f,
                 0.15f,     // ширина: 15%
                 0.6f, // высота: 60%
                 "button_texture",
-                () -> System.out.println("test_test")
+                () -> moreButtonClick(name)
         );
 
         squadTextWidget = new SquadTextWidget(
@@ -45,50 +50,66 @@ public class SquadWidget extends UIContainer {
 
         button = new UIButton(
                 this,
-                0.5f, isOpen ? .125f : .25f, 0.3f, 0.5f,
+                0.5f, .25f, 0.3f, 0.5f,
                 "test_test",
-                () -> schedulePeriodic(1)
+                () -> GuiHandler.JoinSquadButton(name)
         );
 
         squadCount = new UILabel(
                 this,
-                .85f, // X: 95% - 10% (ширина текста)
-                isOpen ? .2f : .4f, // Выравнивание по центру текста
-                2f, 2f,
+                .85f, .4f,2f, 2f,
                 Component.literal(squadCountText),
                 0xFFFFFF,
                 false
         );
 
-        String[] squadNames = {
-                "Отряд 1",
-                "Отряд 2",
-                "Отряд 3",
-                "Отряд 4",
-                "Отряд 5",
-                "Отряд 6",
-                "Отряд 7",
-                "Отряд 8"
-        };
-        SquadListWidget squadList = new SquadListWidget(this, 0f, 1.5f,1f, 2.5f, squadNames);
-        squadList.isBackgroundEnable = true;
+        WarHelper.devLog("Parent "+this.y + " " + this.height);
 
-        addChild(squadList);
+        squadListWidget = new SquadListWidget(
+                this,
+                0f, 1f, 1f, 1f,
+                playerList
+
+        );
+
+        smallHeight = height;
+        bigHeight = smallHeight + (squadListWidget.height / (float) parent.height);
+
+        WarHelper.devLog("bigHeigh "+ bigHeight);
+
+        this.height = (int) (parent.height * (isOpen ? bigHeight : smallHeight));
+
+
+
+
         addChild(moreButton);
         addChild(squadTextWidget);
         addChild(button);
         addChild(squadCount);
-        this.isBackgroundEnable = isBackground;
+        addChild(squadListWidget);
+        children.forEach((widget) -> widget.percentY = (widget.y - widget.parent.y) / (float) this.height);
+
+        this.name = name;
         this.isOpen = isOpen;
+
+        this.isBackgroundEnable = true;
+        //schedulePeriodic(1);
     }
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        guiGraphics.enableScissor(x, y, x + width, y + height);
+
         super.render(guiGraphics, mouseX, mouseY, partialTick);
+
+        guiGraphics.disableScissor();
     }
 
-    private void schedulePeriodic(int intervalTicks) {
-        this.isOpen = !isOpen;
+    private void moreButtonClick(String name) {
+        GuiHandler.ExpandButton(name);
+    }
+
+    public void startAnimation() {
         int TargetHeight = (int) (parent.height * (isOpen ? bigHeight : smallHeight));
         ClientTaskScheduler.schedule(new Runnable() {
             @Override
@@ -98,17 +119,21 @@ public class SquadWidget extends UIContainer {
                     height = Math.min(TargetHeight, height + OPENING_SPEED);
                     children.forEach((widget) -> widget.percentY = (widget.y - widget.parent.y) / (float) height);
 
-                    ClientTaskScheduler.schedule(this, intervalTicks);
+                    ClientTaskScheduler.schedule(this, 1);
                 } else if (TargetHeight < height) {
 
                     height = Math.max(TargetHeight, height - OPENING_SPEED);
                     children.forEach((widget) -> widget.percentY = (widget.y - widget.parent.y) / (float) height);
 
-                    ClientTaskScheduler.schedule(this, intervalTicks);
+                    ClientTaskScheduler.schedule(this, 1);
                 }
                 parent.update();
             }
-        }, intervalTicks);
+        }, 1);
+    }
+
+    public void switchOpenOption() {
+        isOpen = ! isOpen;
     }
 
 

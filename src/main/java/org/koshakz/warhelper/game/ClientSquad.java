@@ -20,4 +20,9 @@ public class ClientSquad {
     }
 
 
+    public void switchOpenOption() {
+        isOpen = !isOpen;
+    }
+
+
 }

@@ -15,6 +15,7 @@ import org.koshakz.warhelper.utils.Network.Packets.onClient.squad.UpdateSquadPac
 import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientButtonPacket;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.ClientSelectTeamPacket;
 import org.koshakz.warhelper.utils.Network.Packets.onServer.CreateSquadPacket;
+import org.koshakz.warhelper.utils.Network.Packets.onServer.SquadJoinPacket;
 
 public class NetworkHandler {
     private static final String PROTOCOL_VERSION = "1";
@@ -81,6 +82,14 @@ public class NetworkHandler {
                 CreateSquadPacket::encode,
                 CreateSquadPacket::decode,
                 CreateSquadPacket::handle
+        );
+
+        CHANNEL.registerMessage(
+                packetId++,
+                SquadJoinPacket.class,
+                SquadJoinPacket::encode,
+                SquadJoinPacket::decode,
+                SquadJoinPacket::handle
         );
 
         CHANNEL.registerMessage(
